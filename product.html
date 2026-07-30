@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VANGUARD UAS | FALCTA SYSTEMS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">HOME / SUMMARY</a>
+        <a href="product.html" class="active">VANGUARD UAS</a>
+        <a href="company.html">COMPANY / TEAM</a>
+        <a href="contact.html">SECURE COMMS</a>
+    </nav>
+
+    <header>
+        <h1>[ VANGUARD UAS ]</h1>
+        <p class="subtitle">CLASS: ATTRITABLE // STATUS: DEPLOYMENT READY</p>
+    </header>
+
+    <div class="container">
+        <section id="advantage">
+            <h2>THE TACTICAL ADVANTAGE</h2>
+            <span class="sys-req">THREAT ASSESSMENT: ELECTRONIC WARFARE</span>
+            <p>Modern conflicts have proven that conventional €10,000–€50,000 drones are too expensive to risk and too vulnerable to electronic warfare (jamming and spoofing)[cite: 1]. The Vanguard eliminates these critical weaknesses:</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>[01] GPS-DENIED NAV</h3>
+                    <p>Operates completely independent of satellites[cite: 1]. Couples a 60GHz FMCW radar chip with an STM32 MCU, correcting IMU drift by calculating speed and altitude based on ground reflections[cite: 1].</p>
+                </div>
+                <div class="card">
+                    <h3>[02] CLEAN VALUE CHAIN</h3>
+                    <p>Electronics are sourced exclusively from allied nations (NATO, Taiwan, Japan) to guarantee safety from espionage and vetoed hardware[cite: 1].</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section id="architecture">
+            <h2>HARDWARE SCHEMATICS</h2>
+            <span class="sys-req">INTERNAL SUBSYSTEMS OVERVIEW</span>
+            
+            <div class="tactical-img-container">
+                <img src="https://placehold.co/1200x500/111411/ff9900?text=SYSTEM+ARCHITECTURE+DIAGRAM" alt="PCB Architecture Diagram">
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>MODULE / COMPONENT</th>
+                        <th>OPERATIONAL SPECIFICATIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">CORE MCU</span></td>
+                        <td>The Brain. Calculates velocity, acceleration, and inclination via IMU, and altitude via Barometer.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">SECURE COMMS</span></td>
+                        <td>2.4GHz RX (Control) and 5.8GHz VTX (Video). Allows pilot to fly via FOV camera outside direct line of sight.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">MODULAR SENSORS</span></td>
+                        <td>Interchangeable slots for Doppler/Radar and Lidar (topography/obstacle detection).</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">POWER MGT</span></td>
+                        <td>LDO + Buck converter. GPIO-controlled Load Switches (MOSFETs) cut Lidar power mid-flight to conserve battery.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">DRIVE SYSTEM</span></td>
+                        <td>Dual ESC utilizing 12 N-channel MOSFETs / Gate drivers for dual motors and servo.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr class="section-divider">
+
+        <section id="procurement">
+            <h2>PROCUREMENT LOGISTICS</h2>
+            <span class="sys-req">ECOSYSTEM LOCK-IN STRATEGY</span>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>// PELOTON PACKS</h3>
+                    <p>Priced at €4,500 to equip an entire platoon[cite: 1]. Includes 5 operational gliders, high-discharge 18650 batteries, and ground comms[cite: 1].</p>
+                </div>
+                <div class="card">
+                    <h3>// TRENCH KITS & UPGRADES</h3>
+                    <p>Main PCB utilizes watertight module slots for field repair[cite: 1]. Easily swap damaged modules or upgrade to stealth/long-range sensors[cite: 1].</p>
+                </div>
+                <div class="card">
+                    <h3>// TACTICAL SAAS</h3>
+                    <p>Raw LiDAR data is logged passively to MicroSD, then processed post-flight via our proprietary, encrypted offline PC Software to generate topo maps[cite: 1].</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
