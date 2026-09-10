@@ -10,7 +10,7 @@
     <meta property="og:description" content="Custom drone development for hostile-environment performance and mission-critical reliability.">
     <meta property="og:type" content="website">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://placehold.co data:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -74,8 +74,35 @@
             </div>
 
             <div class="figure">
-                <img src="https://placehold.co/1200x500/eaf1f8/123159?text=System+Architecture+Diagram" alt="UAS system architecture diagram" loading="lazy">
-                <div class="figure-caption">System architecture overview — subsystem placement across the airframe.</div>
+                <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="archTitle">
+                    <title id="archTitle">Block diagram of the Vanguard UAS core subsystems and their connections to the central MCU</title>
+                    <rect width="900" height="380" fill="#0b0e12"/>
+                    <line x1="140" y1="65" x2="450" y2="190" stroke="#4b6b46" stroke-width="2" stroke-dasharray="6 5"/>
+                    <line x1="760" y1="65" x2="450" y2="190" stroke="#4b6b46" stroke-width="2" stroke-dasharray="6 5"/>
+                    <line x1="140" y1="315" x2="450" y2="190" stroke="#4b6b46" stroke-width="2" stroke-dasharray="6 5"/>
+                    <line x1="760" y1="315" x2="450" y2="190" stroke="#4b6b46" stroke-width="2" stroke-dasharray="6 5"/>
+
+                    <rect x="60" y="30" width="160" height="70" fill="#10141a" stroke="#ff9900" stroke-width="1.5"/>
+                    <text x="140" y="60" fill="#dfe7e2" font-family="'Share Tech Mono', monospace" font-size="15" text-anchor="middle">COMMS</text>
+                    <text x="140" y="80" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="11" text-anchor="middle">2.4GHz / 5.8GHz</text>
+
+                    <rect x="680" y="30" width="160" height="70" fill="#10141a" stroke="#ff9900" stroke-width="1.5"/>
+                    <text x="760" y="60" fill="#dfe7e2" font-family="'Share Tech Mono', monospace" font-size="15" text-anchor="middle">SENSORS</text>
+                    <text x="760" y="80" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="11" text-anchor="middle">RADAR / LIDAR</text>
+
+                    <rect x="60" y="280" width="160" height="70" fill="#10141a" stroke="#ff9900" stroke-width="1.5"/>
+                    <text x="140" y="310" fill="#dfe7e2" font-family="'Share Tech Mono', monospace" font-size="15" text-anchor="middle">POWER</text>
+                    <text x="140" y="330" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="11" text-anchor="middle">LDO + BUCK</text>
+
+                    <rect x="680" y="280" width="160" height="70" fill="#10141a" stroke="#ff9900" stroke-width="1.5"/>
+                    <text x="760" y="310" fill="#dfe7e2" font-family="'Share Tech Mono', monospace" font-size="15" text-anchor="middle">DRIVE</text>
+                    <text x="760" y="330" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="11" text-anchor="middle">DUAL ESC / MOSFET</text>
+
+                    <rect x="380" y="150" width="140" height="80" fill="#10141a" stroke="#39ff14" stroke-width="2"/>
+                    <text x="450" y="185" fill="#39ff14" font-family="'Share Tech Mono', monospace" font-size="16" text-anchor="middle">CORE MCU</text>
+                    <text x="450" y="205" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="11" text-anchor="middle">STM32 / IMU</text>
+                </svg>
+                <div class="figure-caption">System architecture overview — subsystem placement around the core flight controller.</div>
             </div>
 
             <div class="table-scroll">
@@ -135,6 +162,7 @@
         <p>Tell us what you need the platform to do, and we'll tell you what's achievable.</p>
         <div class="hero-actions">
             <a href="contact.html" class="btn btn-primary">Contact Us</a>
+            <a href="falcta-systems-capability-brief.pdf" class="btn btn-secondary">Download Capability Brief (PDF)</a>
         </div>
     </div>
 

@@ -10,7 +10,7 @@
     <meta property="og:description" content="We build for the field, not the brochure. Custom UAS development and geospatial intelligence for defense and civil protection.">
     <meta property="og:type" content="website">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://placehold.co data:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -27,13 +27,47 @@
     </nav>
 
     <header>
-        <div class="hero-inner">
-            <span class="eyebrow">UAS &amp; Geospatial Intelligence</span>
-            <h1>Built for the field, not the brochure.</h1>
-            <p class="subtitle">Falcta Systems designs and builds unmanned aerial systems and geospatial intelligence tools for the Portuguese Army, Air Force, and Civil Protection.</p>
-            <div class="hero-actions">
-                <a href="services.html" class="btn btn-primary">View Services</a>
-                <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+        <div class="hero-inner hero-grid">
+            <div class="hero-copy">
+                <span class="eyebrow">UAS &amp; Geospatial Intelligence</span>
+                <h1>Built for the field, not the brochure.</h1>
+                <p class="subtitle">Falcta Systems designs and builds unmanned aerial systems and geospatial intelligence tools for the Portuguese Army, Air Force, and Civil Protection.</p>
+                <div class="hero-actions">
+                    <a href="services.html" class="btn btn-primary">View Services</a>
+                    <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+                <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="420" height="420" fill="#0b0e12"/>
+                    <circle cx="210" cy="210" r="180" fill="none" stroke="#242b26" stroke-width="1"/>
+                    <circle cx="210" cy="210" r="135" fill="none" stroke="#242b26" stroke-width="1"/>
+                    <circle cx="210" cy="210" r="90" fill="none" stroke="#242b26" stroke-width="1"/>
+                    <circle cx="210" cy="210" r="45" fill="none" stroke="#242b26" stroke-width="1"/>
+                    <line x1="210" y1="24" x2="210" y2="396" stroke="#242b26" stroke-width="1"/>
+                    <line x1="24" y1="210" x2="396" y2="210" stroke="#242b26" stroke-width="1"/>
+                    <circle cx="210" cy="210" r="180" fill="none" stroke="#4b6b46" stroke-width="2"/>
+                    <defs>
+                        <radialGradient id="sweepGrad" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ff9900" stop-opacity="0.4"/>
+                            <stop offset="100%" stop-color="#ff9900" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+                    <g class="radar-sweep">
+                        <path d="M210,210 L210,30 A180,180 0 0,1 390,210 Z" fill="url(#sweepGrad)"/>
+                    </g>
+                    <circle cx="284" cy="150" r="4" fill="#39ff14">
+                        <animate attributeName="opacity" values="1;0.2;1" dur="2.4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="150" cy="262" r="3" fill="#39ff14" opacity="0.6"/>
+                    <g transform="translate(210,210)">
+                        <polygon points="0,-15 11,11 0,4 -11,11" fill="#dfe7e2" stroke="#ff9900" stroke-width="1.5"/>
+                    </g>
+                    <text x="30" y="42" fill="#ff9900" font-family="'Share Tech Mono', monospace" font-size="13">GPS: DENIED</text>
+                    <text x="30" y="60" fill="#39ff14" font-family="'Share Tech Mono', monospace" font-size="13">NAV: RADAR/IMU</text>
+                    <text x="278" y="386" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="12">ALT 118M</text>
+                    <text x="278" y="401" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="12">HDG 274°</text>
+                </svg>
             </div>
         </div>
     </header>
@@ -105,6 +139,7 @@
         <p>For procurement, partnership, or technical enquiries, our team is available to brief your organization directly.</p>
         <div class="hero-actions">
             <a href="contact.html" class="btn btn-primary">Contact Us</a>
+            <a href="falcta-systems-capability-brief.pdf" class="btn btn-secondary">Download Capability Brief (PDF)</a>
         </div>
     </div>
 

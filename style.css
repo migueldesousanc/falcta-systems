@@ -120,6 +120,41 @@ header {
     position: relative;
 }
 
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.hero-visual svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--border-color);
+}
+
+.radar-sweep {
+    transform-origin: 210px 210px;
+    animation: radar-spin 4s linear infinite;
+}
+
+@keyframes radar-spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+        order: -1;
+        max-width: 320px;
+        margin: 0 auto 1rem;
+    }
+}
+
 .eyebrow {
     display: block;
     font-family: var(--font-heading);
@@ -385,10 +420,14 @@ li::before {
     100% { opacity: 1; }
 }
 
-.figure img {
+.figure img,
+.figure svg {
     width: 100%;
     height: auto;
     display: block;
+}
+
+.figure img {
     filter: grayscale(80%) contrast(120%);
 }
 
