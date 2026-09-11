@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Falcta Systems</title>
-    <meta name="description" content="Contact Falcta Systems for procurement, partnership, and technical enquiries. HQ in Luso, Portugal.">
+    <title>Contact | Falcata Systems</title>
+    <meta name="description" content="Contact Falcata Systems for procurement, partnership, and technical enquiries. HQ in Luso, Portugal.">
     <meta name="theme-color" content="#07090a">
-    <meta property="og:title" content="Contact | Falcta Systems">
-    <meta property="og:description" content="Get in touch with Falcta Systems for procurement and partnership enquiries.">
+    <meta property="og:title" content="Contact | Falcata Systems">
+    <meta property="og:description" content="Get in touch with Falcata Systems for procurement and partnership enquiries.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://falctasystems.com/og-image.png">
+    <meta property="og:image" content="https://falcatasystems.site/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="alternate" hreflang="en" href="https://falctasystems.com/contact.html">
-    <link rel="alternate" hreflang="pt" href="https://falctasystems.com/pt/contact.html">
-    <link rel="alternate" hreflang="x-default" href="https://falctasystems.com/contact.html">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-QrPvyji8JmGqL0YOWaPC+jRKxFUrq8kswgC+CDC2FC8='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <link rel="alternate" hreflang="en" href="https://falcatasystems.site/contact.html">
+    <link rel="alternate" hreflang="pt" href="https://falcatasystems.site/pt/contact.html">
+    <link rel="alternate" hreflang="x-default" href="https://falcatasystems.site/contact.html">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-vEKsLpin6ifbzpdV32yBVGkW536z2AB6apHXpEQbYoU='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav>
-        <a href="index.html" class="nav-brand">FALCTA SYSTEMS</a>
+        <a href="index.html" class="nav-brand">FALCATA SYSTEMS</a>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="services.html">Services</a>
@@ -49,7 +49,7 @@
         <div class="container">
             <div class="contact-box">
                 For procurement, partnerships, and investor relations, reach us directly at<br>
-                <a href="mailto:comms@falctasystems.com">comms@falctasystems.com</a>
+                <a href="mailto:comms@falcatasystems.site">comms@falcatasystems.site</a>
             </div>
 
             <!-- Builds a mailto: link since there is no backend to receive submissions -->
@@ -71,7 +71,7 @@
                 </div>
 
                 <button type="submit" class="submit-btn">Send Message</button>
-                <p id="form-status" class="form-status" hidden>Your message has been handed to your mail client. If nothing opened, email us directly at comms@falctasystems.com</p>
+                <p id="form-status" class="form-status" hidden>Your message has been handed to your mail client. If nothing opened, email us directly at comms@falcatasystems.site</p>
             </form>
 
             <script>
@@ -84,22 +84,26 @@
                     const subject = document.getElementById('title').value.trim();
                     const message = document.getElementById('message').value.trim();
                     const body = `From: ${senderEmail}\n\n${message}`;
-                    window.location.href = `mailto:comms@falctasystems.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    window.location.href = `mailto:comms@falcatasystems.site?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                     document.getElementById('form-status').hidden = false;
                 });
             </script>
 
-            <p>Falcta Systems' operational headquarters and hardware assembly are located in Luso, Portugal — a location chosen for its access to diverse topography and dense forestry, used for testing GPS-denied navigation and LiDAR obstacle detection.</p>
+            <p>Falcata Systems' operational headquarters and hardware assembly are located in Luso, Portugal — a location chosen for its access to diverse topography and dense forestry, used for testing GPS-denied navigation and LiDAR obstacle detection.</p>
 
-            <div class="card map-card">
-                <h3>HQ: R. Padre Francisco Branco, 3050-238 Luso, Portugal</h3>
-                <iframe
-                    class="tactical-map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3043.684445890987!2d-8.381395384606275!3d40.38556637936838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd22f03f295b93d3%3A0x6b135b54203673c6!2sR.%20Padre%20Francisco%20Branco%2C%203050-238%20Luso%2C%20Portugal!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+            <div class="card location-card">
+                <div class="location-visual" aria-hidden="true">
+                    <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="80" cy="80" r="70" fill="none" stroke="#242b26" stroke-width="1"/>
+                        <circle cx="80" cy="80" r="46" fill="none" stroke="#242b26" stroke-width="1"/>
+                        <circle cx="80" cy="80" r="70" fill="none" stroke="#4b6b46" stroke-width="2"/>
+                        <circle cx="80" cy="80" r="5" fill="#ff9900"/>
+                    </svg>
+                </div>
+                <div class="location-body">
+                    <h3>Luso, Portugal</h3>
+                    <p>Operational HQ and hardware assembly, shown here at region level. For security reasons we don't publish an exact map pin — confirmed partners receive the precise address by appointment.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -107,7 +111,7 @@
     <footer>
         <div class="footer-inner">
             <div>
-                <h4>Falcta Systems</h4>
+                <h4>Falcata Systems</h4>
                 <p>UAS and geospatial intelligence tools for defense and civil protection, designed and manufactured in Portugal.</p>
             </div>
             <div>
@@ -119,11 +123,11 @@
             </div>
             <div>
                 <h4>Contact</h4>
-                <a href="mailto:comms@falctasystems.com">comms@falctasystems.com</a>
+                <a href="mailto:comms@falcatasystems.site">comms@falcatasystems.site</a>
                 <p>R. Padre Francisco Branco, 3050-238 Luso, Portugal</p>
             </div>
         </div>
-        <div class="footer-bottom">&copy; 2026 Falcta Systems. All rights reserved.</div>
+        <div class="footer-bottom">&copy; 2026 Falcata Systems. All rights reserved.</div>
     </footer>
 
 </body>

@@ -1,13 +1,13 @@
 # Security Policy
 
-Falcta Systems takes the security of our website and infrastructure seriously.
+Falcata Systems takes the security of our website and infrastructure seriously.
 
 ## Reporting a Vulnerability
 
 If you believe you've found a security vulnerability affecting this site or
-any Falcta Systems service, please report it privately to:
+any Falcata Systems service, please report it privately to:
 
-**comms@falctasystems.com**
+**comms@falcatasystems.site**
 
 Please include:
 - A description of the vulnerability and its potential impact
@@ -20,6 +20,6 @@ opportunity to address it.
 
 ## Scope
 
-This policy covers the falctasystems.com website and its source repository.
+This policy covers the falcatasystems.site website and its source repository.
 It does not cover third-party services we link to or embed (e.g. Google
 Maps).

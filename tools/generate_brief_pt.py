@@ -1,5 +1,5 @@
 """
-Generates the Portuguese version of the Falcta Systems one-page capability
+Generates the Portuguese version of the Falcata Systems one-page capability
 brief (PDF). Mirrors generate_brief.py's layout and styling exactly; only
 the copy is translated.
 
@@ -74,7 +74,7 @@ pdf.add_page()
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Courier", "B", 22)
 pdf.set_text_color(*DARK)
-pdf.cell(0, 10, "[ FALCTA SYSTEMS ]", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 10, "[ FALCATA SYSTEMS ]", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Helvetica", "", 11)
@@ -165,12 +165,12 @@ pdf.ln(3)
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Courier", "", 9)
 pdf.set_text_color(*MUTED)
-pdf.cell(0, 5, "comms@falctasystems.com   |   R. Padre Francisco Branco, 3050-238 Luso, Portugal", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 5, "comms@falcatasystems.site   |   R. Padre Francisco Branco, 3050-238 Luso, Portugal", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 pdf.set_x(pdf.l_margin)
-pdf.cell(0, 5, "falctasystems.com", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 5, "falcatasystems.site", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Helvetica", "I", 8)
-pdf.cell(0, 5, "Preparado pela Falcta Systems. Para uso do destinatário na avaliação da Falcta Systems como fornecedor.", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 5, "Preparado pela Falcata Systems. Para uso do destinatário na avaliação da Falcata Systems como fornecedor.", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
-pdf.output("../falcta-systems-capability-brief-pt.pdf")
+pdf.output("../falcata-systems-capability-brief-pt.pdf")
 print("done")

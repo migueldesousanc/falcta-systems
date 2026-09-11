@@ -1,5 +1,5 @@
 """
-Generates the social-preview image (og:image) for Falcta Systems, matching
+Generates the social-preview image (og:image) for Falcata Systems, matching
 the site's dark tactical/HUD visual theme (dark background, faint grid,
 radar-ring motif, orange/green HUD accents). Produces both the English and
 Portuguese variants.
@@ -66,14 +66,14 @@ def render(out, eyebrow, headline):
     tri = [(cx, cy - 22), (cx + 16, cy + 16), (cx, cy + 6), (cx - 16, cy + 16)]
     draw.polygon(tri, fill=TEXT_BRIGHT, outline=ACCENT)
 
-    # Wordmark: "[ FALCTA SYSTEMS ]"
+    # Wordmark: "[ FALCATA SYSTEMS ]"
     wm_font = mono_bold(46)
     x = 90
     y = 175
     draw.text((x, y), "[ ", font=wm_font, fill=ACCENT)
     bx1 = draw.textlength("[ ", font=wm_font)
-    draw.text((x + bx1, y), "FALCTA SYSTEMS", font=wm_font, fill=TEXT_BRIGHT)
-    bx2 = draw.textlength("FALCTA SYSTEMS", font=wm_font)
+    draw.text((x + bx1, y), "FALCATA SYSTEMS", font=wm_font, fill=TEXT_BRIGHT)
+    bx2 = draw.textlength("FALCATA SYSTEMS", font=wm_font)
     draw.text((x + bx1 + bx2, y), " ]", font=wm_font, fill=ACCENT)
 
     # Eyebrow
@@ -86,7 +86,7 @@ def render(out, eyebrow, headline):
 
     # Footer accent line + domain
     draw.line([(x, H - 70), (700, H - 70)], fill=ACCENT_SECONDARY, width=2)
-    draw.text((x, H - 55), "falctasystems.com", font=mono(20), fill=TEXT_MAIN)
+    draw.text((x, H - 55), "falcatasystems.site", font=mono(20), fill=TEXT_MAIN)
 
     img.save(out, optimize=True)
     print(f"wrote {out}")

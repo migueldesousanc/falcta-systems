@@ -1,5 +1,5 @@
 """
-Generates the Falcta Systems one-page capability brief (PDF).
+Generates the Falcata Systems one-page capability brief (PDF).
 
 Print-friendly (white background) by design, even though the website uses a
 dark theme: this is meant to be printed or forwarded internally by
@@ -77,7 +77,7 @@ pdf.add_page()
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Courier", "B", 22)
 pdf.set_text_color(*DARK)
-pdf.cell(0, 10, "[ FALCTA SYSTEMS ]", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 10, "[ FALCATA SYSTEMS ]", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Helvetica", "", 11)
@@ -166,12 +166,12 @@ pdf.ln(3)
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Courier", "", 9)
 pdf.set_text_color(*MUTED)
-pdf.cell(0, 5, "comms@falctasystems.com   |   R. Padre Francisco Branco, 3050-238 Luso, Portugal", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 5, "comms@falcatasystems.site   |   R. Padre Francisco Branco, 3050-238 Luso, Portugal", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 pdf.set_x(pdf.l_margin)
-pdf.cell(0, 5, "falctasystems.com", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 5, "falcatasystems.site", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Helvetica", "I", 8)
-pdf.cell(0, 5, "Prepared by Falcta Systems. For recipient use in evaluating Falcta Systems as a supplier.", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 5, "Prepared by Falcata Systems. For recipient use in evaluating Falcata Systems as a supplier.", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
-pdf.output("/tmp/claude-1000/-home-mikescorreia/dfd06df4-1b54-4d0c-be61-11503a912948/scratchpad/falcta-systems-capability-brief.pdf")
+pdf.output("../falcata-systems-capability-brief.pdf")
 print("done")
