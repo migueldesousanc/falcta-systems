@@ -17,7 +17,7 @@
     <link rel="alternate" hreflang="en" href="https://falcatasystems.site/contact.html">
     <link rel="alternate" hreflang="pt" href="https://falcatasystems.site/pt/contact.html">
     <link rel="alternate" hreflang="x-default" href="https://falcatasystems.site/contact.html">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-vEKsLpin6ifbzpdV32yBVGkW536z2AB6apHXpEQbYoU='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Dcgzwrqd5AXaUypmVSn+ld9ruqeZKMUSS3JW4T3baLQ='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -61,6 +61,18 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="sector">Área de interesse</label>
+                    <select id="sector" name="sector" class="form-input" required>
+                        <option value="" disabled selected>Selecione uma opção</option>
+                        <option value="Exército / Reconhecimento Tático">Exército / Reconhecimento Tático</option>
+                        <option value="Força Aérea / Integração de Sistemas">Força Aérea / Integração de Sistemas</option>
+                        <option value="Proteção Civil / Emergência">Proteção Civil / Emergência</option>
+                        <option value="Inteligência Geoespacial">Inteligência Geoespacial</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="title">Assunto</label>
                     <input type="text" id="title" name="title" class="form-input" placeholder="Sobre o que se trata?" required>
                 </div>
@@ -81,9 +93,11 @@
                         return;
                     }
                     const senderEmail = document.getElementById('email').value.trim();
-                    const subject = document.getElementById('title').value.trim();
+                    const sector = document.getElementById('sector').value.trim();
+                    const userSubject = document.getElementById('title').value.trim();
                     const message = document.getElementById('message').value.trim();
-                    const body = `From: ${senderEmail}\n\n${message}`;
+                    const subject = `Contacto Falcata Systems — ${sector}`;
+                    const body = `From: ${senderEmail}\nAssunto: ${userSubject}\n\n${message}`;
                     window.location.href = `mailto:comms@falcatasystems.site?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                     document.getElementById('form-status').hidden = false;
                 });
@@ -125,6 +139,17 @@
                 <h4>Contacto</h4>
                 <a href="mailto:comms@falcatasystems.site">comms@falcatasystems.site</a>
                 <p>R. Padre Francisco Branco, 3050-238 Luso, Portugal</p>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <a href="privacy.html">Política de Privacidade</a>
+                <a href="terms.html">Termos e Condições</a>
+                <!-- TODO: adicionar o URL real da página da empresa no LinkedIn -->
+                <div class="footer-social">
+                    <a href="#" target="_blank" rel="noopener" aria-label="Falcata Systems no LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.94 6 2.5 6S0 4.88 0 3.5 1.06 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V23h-4V8z"/></svg>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">&copy; 2026 Falcata Systems. Todos os direitos reservados.</div>

@@ -37,48 +37,18 @@
         </div>
     </nav>
 
-    <header>
-        <div class="hero-inner hero-grid">
-            <div class="hero-copy">
-                <span class="eyebrow">UAS e Inteligência Geoespacial</span>
-                <h1>Feito para o terreno, não para o folheto.</h1>
-                <p class="subtitle">A Falcata Systems concebe e constrói sistemas aéreos não tripulados e ferramentas de inteligência geoespacial para o Exército Português, a Força Aérea e a Proteção Civil.</p>
-                <div class="hero-actions">
-                    <a href="services.html" class="btn btn-primary">Ver Serviços</a>
-                    <a href="contact.html" class="btn btn-secondary">Contactar</a>
-                </div>
-            </div>
-            <div class="hero-visual" aria-hidden="true">
-                <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <rect width="420" height="420" fill="#0b0e12"/>
-                    <circle cx="210" cy="210" r="180" fill="none" stroke="#242b26" stroke-width="1"/>
-                    <circle cx="210" cy="210" r="135" fill="none" stroke="#242b26" stroke-width="1"/>
-                    <circle cx="210" cy="210" r="90" fill="none" stroke="#242b26" stroke-width="1"/>
-                    <circle cx="210" cy="210" r="45" fill="none" stroke="#242b26" stroke-width="1"/>
-                    <line x1="210" y1="24" x2="210" y2="396" stroke="#242b26" stroke-width="1"/>
-                    <line x1="24" y1="210" x2="396" y2="210" stroke="#242b26" stroke-width="1"/>
-                    <circle cx="210" cy="210" r="180" fill="none" stroke="#4b6b46" stroke-width="2"/>
-                    <defs>
-                        <radialGradient id="sweepGrad" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stop-color="#ff9900" stop-opacity="0.4"/>
-                            <stop offset="100%" stop-color="#ff9900" stop-opacity="0"/>
-                        </radialGradient>
-                    </defs>
-                    <g class="radar-sweep">
-                        <path d="M210,210 L210,30 A180,180 0 0,1 390,210 Z" fill="url(#sweepGrad)"/>
-                    </g>
-                    <circle cx="284" cy="150" r="4" fill="#39ff14">
-                        <animate attributeName="opacity" values="1;0.2;1" dur="2.4s" repeatCount="indefinite"/>
-                    </circle>
-                    <circle cx="150" cy="262" r="3" fill="#39ff14" opacity="0.6"/>
-                    <g transform="translate(210,210)">
-                        <polygon points="0,-15 11,11 0,4 -11,11" fill="#dfe7e2" stroke="#ff9900" stroke-width="1.5"/>
-                    </g>
-                    <text x="30" y="42" fill="#ff9900" font-family="'Share Tech Mono', monospace" font-size="13">GPS: DENIED</text>
-                    <text x="30" y="60" fill="#39ff14" font-family="'Share Tech Mono', monospace" font-size="13">NAV: RADAR/IMU</text>
-                    <text x="278" y="386" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="12">ALT 118M</text>
-                    <text x="278" y="401" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="12">HDG 274°</text>
-                </svg>
+    <!-- TODO: Substituir por foto/render real da plataforma UAS Vanguard, ou uma foto de terreno/campo.
+         Tamanho recomendado: 1920x1080 mín. Adicionar o ficheiro como hero-bg.jpg na raiz do repositório
+         — o style.css já o referencia, por isso o hero passa a usá-lo automaticamente. Até lá, o
+         gradiente abaixo sustenta o layout sozinho. -->
+    <header class="hero-photo">
+        <div class="hero-inner">
+            <span class="eyebrow">UAS e Inteligência Geoespacial</span>
+            <h1>Feito para o terreno, não para o folheto.</h1>
+            <p class="subtitle">A Falcata Systems concebe e constrói sistemas aéreos não tripulados e ferramentas de inteligência geoespacial para o Exército Português, a Força Aérea e a Proteção Civil.</p>
+            <div class="hero-actions">
+                <a href="services.html" class="btn btn-primary">Ver Serviços</a>
+                <a href="contact.html" class="btn btn-secondary">Contactar</a>
             </div>
         </div>
     </header>
@@ -89,15 +59,15 @@
             <h2>Parceiros operacionais</h2>
             <p class="section-intro">As nossas plataformas são desenvolvidas em resposta direta a requisitos operacionais de entidades nacionais de defesa e proteção civil.</p>
             <div class="grid grid-3">
-                <div class="card stat-card">
+                <div class="card stat-card" id="army">
                     <h3>Exército Português</h3>
                     <p class="stat-label">Reconhecimento tático</p>
                 </div>
-                <div class="card stat-card">
+                <div class="card stat-card" id="air-force">
                     <h3>Força Aérea Portuguesa</h3>
                     <p class="stat-label">Integração de sistemas aerotransportados</p>
                 </div>
-                <div class="card stat-card">
+                <div class="card stat-card" id="civil-protection">
                     <h3>Proteção Civil</h3>
                     <p class="stat-label">Levantamento de terreno e emergência</p>
                 </div>
@@ -105,7 +75,81 @@
         </div>
     </section>
 
+    <!-- TODO: Miguel/Nuno — review and refine this copy for accuracy -->
     <section class="section-alt">
+        <div class="container">
+            <span class="eyebrow">Aplicações</span>
+            <h2>Feito para estas missões</h2>
+            <p class="section-intro">Cada plataforma que entregamos é construída para um caso de uso operacional específico, não para uma ficha técnica genérica.</p>
+            <div class="grid grid-3">
+                <a href="#army" class="card industry-card">
+                    <div class="industry-icon" aria-hidden="true">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                            <circle cx="20" cy="20" r="14"/>
+                            <circle cx="20" cy="20" r="4"/>
+                            <line x1="20" y1="2" x2="20" y2="10"/>
+                            <line x1="20" y1="30" x2="20" y2="38"/>
+                            <line x1="2" y1="20" x2="10" y2="20"/>
+                            <line x1="30" y1="20" x2="38" y2="20"/>
+                        </svg>
+                    </div>
+                    <h3>Reconhecimento Tático</h3>
+                    <p>Reconhecimento aéreo em tempo real e inteligência de terreno para unidades táticas a operar em ambientes contestados ou sem GPS.</p>
+                </a>
+                <a href="#air-force" class="card industry-card">
+                    <div class="industry-icon" aria-hidden="true">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                            <line x1="10" y1="10" x2="30" y2="30"/>
+                            <line x1="30" y1="10" x2="10" y2="30"/>
+                            <rect x="16" y="16" width="8" height="8" rx="1.5"/>
+                            <circle cx="10" cy="10" r="4"/>
+                            <circle cx="30" cy="10" r="4"/>
+                            <circle cx="10" cy="30" r="4"/>
+                            <circle cx="30" cy="30" r="4"/>
+                        </svg>
+                    </div>
+                    <h3>Integração Aerotransportada</h3>
+                    <p>Plataformas UAS personalizadas concebidas para integração com sistemas aerotransportados e protocolos operacionais existentes.</p>
+                </a>
+                <a href="#civil-protection" class="card industry-card">
+                    <div class="industry-icon" aria-hidden="true">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+                            <path d="M20 4 L34 10 V20 C34 29 28 34 20 37 C12 34 6 29 6 20 V10 Z"/>
+                            <line x1="20" y1="16" x2="20" y2="24"/>
+                            <circle cx="20" cy="29" r="0.8" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>Levantamento de Emergência</h3>
+                    <p>Ferramentas de levantamento rápido de terreno e perceção situacional para resposta a catástrofes e coordenação de emergência.</p>
+                </a>
+                <a href="#geospatial-intelligence" class="card industry-card">
+                    <div class="industry-icon" aria-hidden="true">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+                            <path d="M20 3 C13 3 8 8.5 8 15 C8 24 20 36 20 36 C20 36 32 24 32 15 C32 8.5 27 3 20 3 Z"/>
+                            <circle cx="20" cy="15" r="5"/>
+                        </svg>
+                    </div>
+                    <h3>Inteligência Geoespacial</h3>
+                    <p>Dados de LiDAR, magnetometria e levantamentos processados com ML para cartografia, planeamento e análise.</p>
+                </a>
+                <a href="#managed-surveys" class="card industry-card">
+                    <div class="industry-icon" aria-hidden="true">
+                        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+                            <rect x="9" y="7" width="22" height="28" rx="2"/>
+                            <rect x="15" y="4" width="10" height="6" rx="1.5"/>
+                            <line x1="14" y1="17" x2="26" y2="17"/>
+                            <line x1="14" y1="23" x2="26" y2="23"/>
+                            <line x1="14" y1="29" x2="22" y2="29"/>
+                        </svg>
+                    </div>
+                    <h3>Levantamentos Geridos</h3>
+                    <p>Serviços de levantamento geridos para organizações que precisam de dados geoespaciais sem operar a sua própria frota de UAS.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section>
         <div class="container">
             <span class="eyebrow">Serviço Atual</span>
             <h2>Desenvolvimento de drones personalizados</h2>
@@ -114,7 +158,7 @@
         </div>
     </section>
 
-    <section>
+    <section class="section-alt">
         <div class="container">
             <span class="eyebrow">Foco Tecnológico</span>
             <h2>Prioridades de engenharia</h2>
@@ -128,16 +172,16 @@
         </div>
     </section>
 
-    <section class="section-alt">
+    <section>
         <div class="container">
             <span class="eyebrow">Próximos Desenvolvimentos</span>
             <h2>O que estamos a construir a seguir</h2>
             <div class="grid">
-                <div class="card">
+                <div class="card" id="geospatial-intelligence">
                     <h3>Plataforma de Inteligência Geoespacial</h3>
                     <p>Levantamentos aéreos com drones — magnetometria, LiDAR, espectrometria de raios gama — processados com ML para análise de terreno e avaliação de ameaças.</p>
                 </div>
-                <div class="card">
+                <div class="card" id="managed-surveys">
                     <h3>Serviços de Levantamento Geridos</h3>
                     <p>Recolha de dados aéreos e elaboração de relatórios de ciclo completo para clientes de defesa e proteção civil.</p>
                 </div>
@@ -171,6 +215,17 @@
                 <h4>Contacto</h4>
                 <a href="mailto:comms@falcatasystems.site">comms@falcatasystems.site</a>
                 <p>R. Padre Francisco Branco, 3050-238 Luso, Portugal</p>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <a href="privacy.html">Política de Privacidade</a>
+                <a href="terms.html">Termos e Condições</a>
+                <!-- TODO: adicionar o URL real da página da empresa no LinkedIn -->
+                <div class="footer-social">
+                    <a href="#" target="_blank" rel="noopener" aria-label="Falcata Systems no LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.94 6 2.5 6S0 4.88 0 3.5 1.06 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V23h-4V8z"/></svg>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">&copy; 2026 Falcata Systems. Todos os direitos reservados.</div>

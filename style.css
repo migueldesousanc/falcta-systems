@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Share+Tech+Mono&display=swap');
 
 :root {
     --bg-base: #07090a;
@@ -10,12 +10,13 @@
     --text-muted: #5c6b62;
     --accent-primary: #ff9900;
     --accent-secondary: #4b6b46;
+    --accent-teal: #4a93a8;
     --hud-green: #39ff14;
     --danger: #ff3b3b;
 
-    --font-heading: 'Share Tech Mono', 'Courier New', Courier, monospace;
+    --font-heading: 'Archivo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --font-mono: var(--font-heading);
+    --font-mono: 'Share Tech Mono', 'Courier New', Courier, monospace;
 }
 
 * {
@@ -43,6 +44,11 @@ img {
     max-width: 100%;
 }
 
+/* Offset anchor-jump targets so the sticky nav doesn't cover them */
+[id] {
+    scroll-margin-top: 90px;
+}
+
 /* NAVIGATION */
 nav {
     background-color: rgba(16, 20, 26, 0.92);
@@ -61,24 +67,16 @@ nav {
 
 .nav-brand {
     font-family: var(--font-heading);
-    font-size: 1.15rem;
+    font-weight: 700;
+    font-size: 1.2rem;
     color: var(--text-bright);
-    letter-spacing: 1px;
+    letter-spacing: 0.04em;
     text-decoration: none;
-}
-
-.nav-brand::before {
-    content: "[ ";
-    color: var(--accent-primary);
-}
-
-.nav-brand::after {
-    content: " ]";
-    color: var(--accent-primary);
 }
 
 .nav-links {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
     gap: 0.5rem 2rem;
 }
@@ -87,6 +85,7 @@ nav {
     color: var(--text-main);
     text-decoration: none;
     font-family: var(--font-heading);
+    font-weight: 600;
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -97,7 +96,6 @@ nav {
 
 .nav-links a:hover {
     color: var(--accent-primary);
-    text-shadow: 0 0 6px rgba(255, 153, 0, 0.4);
 }
 
 .nav-links a.active {
@@ -118,6 +116,7 @@ nav {
 .lang-switch a,
 .lang-switch .current {
     font-family: var(--font-heading);
+    font-weight: 600;
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -147,72 +146,50 @@ header {
     position: relative;
 }
 
+/* Full-bleed photo hero (homepage only). Drop a real image in at
+   hero-bg.jpg (repo root) — the layout and overlay work with or without
+   it, since the gradient renders underneath regardless. */
+header.hero-photo {
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    background-image:
+        linear-gradient(180deg, rgba(7, 9, 10, 0.5) 0%, rgba(7, 9, 10, 0.92) 100%),
+        radial-gradient(ellipse at 25% 15%, rgba(74, 147, 168, 0.25), transparent 55%),
+        url("hero-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    border-bottom: 3px solid var(--accent-secondary);
+}
+
 .hero-inner {
     max-width: 1100px;
     margin: 0 auto;
     position: relative;
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 3rem;
-    align-items: center;
-}
-
-.hero-visual svg {
     width: 100%;
-    height: auto;
-    display: block;
-    border: 1px solid var(--border-color);
-}
-
-.radar-sweep {
-    transform-origin: 210px 210px;
-    animation: radar-spin 4s linear infinite;
-}
-
-@keyframes radar-spin {
-    to { transform: rotate(360deg); }
-}
-
-@media (max-width: 900px) {
-    .hero-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-visual {
-        order: -1;
-        max-width: 320px;
-        margin: 0 auto 1rem;
-    }
 }
 
 .eyebrow {
     display: block;
     font-family: var(--font-heading);
+    font-weight: 700;
     font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.16em;
     color: var(--accent-primary);
     margin-bottom: 0.9rem;
 }
 
-.eyebrow::before {
-    content: "// ";
-}
-
 h1 {
     font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    font-weight: normal;
+    font-size: clamp(2rem, 4.6vw, 3.1rem);
+    font-weight: 800;
     color: var(--text-bright);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    line-height: 1.3;
-    max-width: 800px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    max-width: 820px;
     margin-bottom: 1.25rem;
-    text-shadow: 0 0 12px rgba(223, 231, 226, 0.15);
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
 }
 
 .subtitle {
@@ -232,6 +209,7 @@ h1 {
     display: inline-block;
     padding: 0.85rem 1.7rem;
     font-family: var(--font-heading);
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 0.9rem;
@@ -281,10 +259,10 @@ section + section {
 h2 {
     font-family: var(--font-heading);
     font-size: 1.75rem;
-    font-weight: normal;
+    font-weight: 700;
     color: var(--text-bright);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     border-left: 4px solid var(--accent-primary);
     padding-left: 14px;
     display: inline-block;
@@ -293,17 +271,14 @@ h2 {
 
 h3 {
     font-family: var(--font-heading);
+    font-weight: 700;
     font-size: 1.1rem;
     color: var(--accent-primary);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     border-bottom: 1px dashed var(--border-color);
     padding-bottom: 0.6rem;
     margin-bottom: 1rem;
-}
-
-h3::before {
-    content: "// ";
 }
 
 p {
@@ -365,6 +340,7 @@ p {
 
 .stat-card .stat-label {
     font-family: var(--font-heading);
+    font-weight: 600;
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -397,8 +373,14 @@ li::before {
 
 .highlight {
     font-family: var(--font-heading);
+    font-weight: 700;
     color: var(--hud-green);
-    font-weight: bold;
+}
+
+/* Component names in the spec table are an actual data readout, so they
+   keep the monospace treatment even though .highlight elsewhere doesn't. */
+td .highlight {
+    font-family: var(--font-mono);
 }
 
 /* TAGS */
@@ -411,6 +393,7 @@ li::before {
 
 .tag {
     font-family: var(--font-heading);
+    font-weight: 600;
     font-size: 0.85rem;
     background-color: var(--bg-alt);
     color: var(--hud-green);
@@ -424,6 +407,105 @@ li::before {
 .tag:hover {
     border-color: var(--accent-primary);
     box-shadow: 0 0 8px rgba(255, 153, 0, 0.2);
+}
+
+/* INDUSTRIES / APPLICATIONS */
+.industry-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.industry-icon {
+    color: var(--accent-teal);
+    margin-bottom: 1.1rem;
+}
+
+.industry-icon svg {
+    width: 40px;
+    height: 40px;
+    display: block;
+}
+
+/* PROCESS FLOW ("How It Works") */
+.process-flow {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+}
+
+.process-step {
+    flex: 1 1 180px;
+    position: relative;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.process-step:not(:first-child)::before {
+    content: "";
+    position: absolute;
+    top: 23px;
+    left: -50%;
+    width: 100%;
+    height: 2px;
+    background: var(--border-color);
+    z-index: 0;
+}
+
+.process-node {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-teal);
+    background: var(--bg-panel);
+    color: var(--accent-teal);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.process-step h3 {
+    font-size: 0.95rem;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0.5rem;
+}
+
+.process-step p {
+    font-size: 0.85rem;
+    max-width: none;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .process-flow {
+        flex-direction: column;
+    }
+
+    .process-step {
+        text-align: left;
+        padding: 0 0 2rem 4.5rem;
+    }
+
+    .process-node {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+    }
+
+    .process-step:not(:first-child)::before {
+        top: -2rem;
+        left: 22px;
+        width: 2px;
+        height: 2rem;
+    }
 }
 
 /* IMAGE FRAME */
@@ -441,7 +523,7 @@ li::before {
     top: 18px;
     right: 25px;
     color: var(--danger);
-    font-family: var(--font-heading);
+    font-family: var(--font-mono);
     font-weight: bold;
     animation: blink 2s infinite;
     z-index: 1;
@@ -496,6 +578,7 @@ th {
     background-color: var(--accent-secondary);
     color: var(--bg-base);
     font-family: var(--font-heading);
+    font-weight: 700;
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -551,6 +634,7 @@ tbody tr:hover td:first-child .highlight {
 /* CONTACT */
 .contact-box {
     font-family: var(--font-heading);
+    font-weight: 600;
     font-size: 1.05rem;
     text-align: center;
     padding: 1.75rem;
@@ -577,7 +661,7 @@ tbody tr:hover td:first-child .highlight {
 }
 
 .contact-form::before {
-    content: "[ SECURE UPLOAD TERMINAL ]";
+    content: "Send a Message";
     position: absolute;
     top: -12px;
     left: 20px;
@@ -585,8 +669,10 @@ tbody tr:hover td:first-child .highlight {
     padding: 0 10px;
     color: var(--accent-primary);
     font-family: var(--font-heading);
-    font-size: 0.95rem;
-    letter-spacing: 1px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 .form-group {
@@ -597,30 +683,34 @@ tbody tr:hover td:first-child .highlight {
 
 .form-group label {
     font-family: var(--font-heading);
+    font-weight: 600;
     color: var(--text-bright);
-    font-size: 0.95rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
 }
 
 .form-input {
     background-color: var(--bg-base);
     border: 1px solid var(--border-color);
-    color: var(--hud-green);
+    color: var(--text-bright);
     padding: 1rem;
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
     font-size: 1rem;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+select.form-input {
+    cursor: pointer;
+}
+
 .form-input::placeholder {
-    color: #2b3a2b;
+    color: var(--text-muted);
 }
 
 .form-input:focus {
-    border-color: var(--hud-green);
-    box-shadow: 0 0 10px rgba(57, 255, 20, 0.15);
+    border-color: var(--accent-teal);
+    box-shadow: 0 0 10px rgba(74, 147, 168, 0.2);
 }
 
 textarea.form-input {
@@ -634,9 +724,10 @@ textarea.form-input {
     border: 1px dashed var(--accent-primary);
     padding: 1rem 2rem;
     font-family: var(--font-heading);
+    font-weight: 700;
     font-size: 1.05rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0.08em;
     cursor: pointer;
     transition: all 0.3s;
     align-self: flex-start;
@@ -659,6 +750,7 @@ textarea.form-input {
 
 .form-status {
     font-family: var(--font-heading);
+    font-weight: 600;
     color: var(--hud-green);
     font-size: 0.9rem;
     margin-top: 0.25rem;
@@ -732,16 +824,12 @@ footer {
 
 .footer-inner h4 {
     font-family: var(--font-heading);
+    font-weight: 700;
     color: var(--text-bright);
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 1rem;
-}
-
-.footer-inner h4::before {
-    content: "// ";
-    color: var(--accent-primary);
 }
 
 .footer-inner p, .footer-inner a {
@@ -756,13 +844,41 @@ footer {
     color: var(--accent-primary);
 }
 
+.footer-social {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    margin-bottom: 0;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.footer-social a:hover {
+    border-color: var(--accent-teal);
+    color: var(--accent-teal);
+}
+
+.footer-social svg {
+    width: 16px;
+    height: 16px;
+}
+
 .footer-bottom {
     max-width: 1100px;
     margin: 0 auto;
     padding-top: 1.5rem;
     font-family: var(--font-heading);
     font-size: 0.8rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.03em;
     color: var(--text-muted);
 }
 
@@ -774,6 +890,10 @@ footer {
 
     header {
         padding: 3.5rem 1.25rem;
+    }
+
+    header.hero-photo {
+        min-height: 440px;
     }
 
     .subtitle {
