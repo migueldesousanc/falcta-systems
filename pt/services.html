@@ -85,33 +85,46 @@
             </div>
 
             <div class="figure">
-                <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="archTitle">
-                    <title id="archTitle">Diagrama de blocos dos subsistemas centrais do UAS Vanguard e as suas ligações ao MCU central</title>
-                    <rect width="900" height="380" fill="#0b0e12"/>
-                    <line x1="140" y1="65" x2="450" y2="190" stroke="#4b6b46" stroke-width="2" stroke-dasharray="6 5"/>
-                    <line x1="760" y1="65" x2="450" y2="190" stroke="#4b6b46" stroke-width="2" stroke-dasharray="6 5"/>
-                    <line x1="140" y1="315" x2="450" y2="190" stroke="#4b6b46" stroke-width="2" stroke-dasharray="6 5"/>
-                    <line x1="760" y1="315" x2="450" y2="190" stroke="#4b6b46" stroke-width="2" stroke-dasharray="6 5"/>
+                <svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="archTitle">
+                    <title id="archTitle">Diagrama que mostra os subsistemas centrais do UAS Vanguard — comunicações, sensores, energia e tração — cada um ligado ao MCU central</title>
+                    <rect width="700" height="520" fill="#0b0e12"/>
 
-                    <rect x="60" y="30" width="160" height="70" fill="#10141a" stroke="#ff9900" stroke-width="1.5"/>
-                    <text x="140" y="60" fill="#dfe7e2" font-family="'Share Tech Mono', monospace" font-size="15" text-anchor="middle">COMMS</text>
-                    <text x="140" y="80" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="11" text-anchor="middle">2.4GHz / 5.8GHz</text>
+                    <defs>
+                        <marker id="archArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                            <path d="M0,0 L10,5 L0,10 z" fill="#5c6b62"/>
+                        </marker>
+                    </defs>
 
-                    <rect x="680" y="30" width="160" height="70" fill="#10141a" stroke="#ff9900" stroke-width="1.5"/>
-                    <text x="760" y="60" fill="#dfe7e2" font-family="'Share Tech Mono', monospace" font-size="15" text-anchor="middle">SENSORS</text>
-                    <text x="760" y="80" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="11" text-anchor="middle">RADAR / LIDAR</text>
+                    <line x1="350" y1="112" x2="350" y2="206" stroke="#5c6b62" stroke-width="2" marker-end="url(#archArrow)"/>
+                    <line x1="350" y1="408" x2="350" y2="314" stroke="#5c6b62" stroke-width="2" marker-end="url(#archArrow)"/>
+                    <line x1="202" y1="260" x2="263" y2="260" stroke="#5c6b62" stroke-width="2" marker-end="url(#archArrow)"/>
+                    <line x1="498" y1="260" x2="437" y2="260" stroke="#5c6b62" stroke-width="2" marker-end="url(#archArrow)"/>
 
-                    <rect x="60" y="280" width="160" height="70" fill="#10141a" stroke="#ff9900" stroke-width="1.5"/>
-                    <text x="140" y="310" fill="#dfe7e2" font-family="'Share Tech Mono', monospace" font-size="15" text-anchor="middle">POWER</text>
-                    <text x="140" y="330" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="11" text-anchor="middle">LDO + BUCK</text>
+                    <!-- Comunicações (topo) -->
+                    <rect x="265" y="30" width="170" height="80" rx="6" fill="#10141a" stroke="#ff9900" stroke-width="2"/>
+                    <text x="350" y="63" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="17" text-anchor="middle">Comms</text>
+                    <text x="350" y="85" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">RX 2,4GHz · VTX 5,8GHz</text>
 
-                    <rect x="680" y="280" width="160" height="70" fill="#10141a" stroke="#ff9900" stroke-width="1.5"/>
-                    <text x="760" y="310" fill="#dfe7e2" font-family="'Share Tech Mono', monospace" font-size="15" text-anchor="middle">DRIVE</text>
-                    <text x="760" y="330" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="11" text-anchor="middle">DUAL ESC / MOSFET</text>
+                    <!-- Sensores modulares (esquerda) -->
+                    <rect x="30" y="210" width="170" height="100" rx="6" fill="#10141a" stroke="#4a93a8" stroke-width="2"/>
+                    <text x="115" y="253" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="16" text-anchor="middle">Sensores modulares</text>
+                    <text x="115" y="275" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Radar + LiDAR</text>
 
-                    <rect x="380" y="150" width="140" height="80" fill="#10141a" stroke="#39ff14" stroke-width="2"/>
-                    <text x="450" y="185" fill="#39ff14" font-family="'Share Tech Mono', monospace" font-size="16" text-anchor="middle">CORE MCU</text>
-                    <text x="450" y="205" fill="#93a39a" font-family="'Share Tech Mono', monospace" font-size="11" text-anchor="middle">STM32 / IMU</text>
+                    <!-- Gestão de energia (direita) -->
+                    <rect x="500" y="210" width="170" height="100" rx="6" fill="#10141a" stroke="#4b6b46" stroke-width="2"/>
+                    <text x="585" y="248" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="15" text-anchor="middle">Gestão de</text>
+                    <text x="585" y="266" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="15" text-anchor="middle">energia</text>
+                    <text x="585" y="288" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">LDO+buck, corte por GPIO</text>
+
+                    <!-- Sistema de tração (baixo) -->
+                    <rect x="265" y="410" width="170" height="80" rx="6" fill="#10141a" stroke="#ff3b3b" stroke-width="2"/>
+                    <text x="350" y="443" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="17" text-anchor="middle">Sistema de tração</text>
+                    <text x="350" y="465" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">ESC duplo · 12 MOSFETs</text>
+
+                    <!-- MCU central (centro, mais destacado) -->
+                    <rect x="265" y="208" width="170" height="104" rx="6" fill="#10141a" stroke="#39ff14" stroke-width="3"/>
+                    <text x="350" y="253" fill="#39ff14" font-family="Archivo, sans-serif" font-weight="800" font-size="19" text-anchor="middle">MCU central</text>
+                    <text x="350" y="278" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">STM32 · IMU · barómetro</text>
                 </svg>
                 <div class="figure-caption">Visão geral da arquitetura do sistema — disposição dos subsistemas em torno do controlador de voo central.</div>
             </div>
@@ -228,7 +241,7 @@
             <div>
                 <h4>Contacto</h4>
                 <a href="mailto:comms@falcatasystems.site">comms@falcatasystems.site</a>
-                <p>R. Padre Francisco Branco, 3050-238 Luso, Portugal</p>
+                <p>Luso, Portugal</p>
             </div>
             <div>
                 <h4>Legal</h4>
