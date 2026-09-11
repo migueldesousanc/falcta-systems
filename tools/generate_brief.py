@@ -115,12 +115,12 @@ tag_row(pdf, ["GPS-DENIED NAVIGATION", "LIDAR INTEGRATION", "RESILIENT COMMS", "
 # Platform capabilities
 section_title(pdf, "Platform Capabilities")
 bullets = [
-    "GPS-denied navigation: 60GHz FMCW radar coupled with an STM32 MCU, correcting IMU "
-    "drift from ground-reflection speed and altitude data.",
+    "GPS-denied navigation: radar-based ground-reflection sensing corrects inertial drift, "
+    "maintaining accurate speed and altitude data without a satellite link.",
     "Clean value chain: electronics sourced exclusively from allied nations (NATO, Taiwan, "
     "Japan), avoiding espionage risk and vetoed hardware.",
-    "Modular sensor payloads: interchangeable Doppler radar and LiDAR slots for topography "
-    "and obstacle detection.",
+    "Modular sensor payloads: interchangeable sensor bay supporting multiple ranging "
+    "technologies for topography and obstacle detection.",
     "Lean manufacturing: in-house PCB prototyping and 3D-printed aero-grade chassis, cutting "
     "unit costs well below traditional defense-contractor pricing.",
 ]

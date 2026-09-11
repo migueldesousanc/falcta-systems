@@ -76,7 +76,7 @@
             <div class="grid">
                 <div class="card">
                     <h3>GPS-Denied Navigation</h3>
-                    <p>Couples a 60GHz FMCW radar chip with an STM32 MCU, correcting IMU drift by calculating speed and altitude from ground reflections — no satellite link required.</p>
+                    <p>Uses radar-based ground-reflection sensing to correct inertial drift and maintain accurate speed and altitude data — no satellite link required.</p>
                 </div>
                 <div class="card">
                     <h3>Clean Value Chain</h3>
@@ -103,28 +103,28 @@
                     <!-- Comms (top) -->
                     <rect x="265" y="30" width="170" height="80" rx="6" fill="#10141a" stroke="#ff9900" stroke-width="2"/>
                     <text x="350" y="63" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="17" text-anchor="middle">Comms</text>
-                    <text x="350" y="85" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">2.4GHz RX · 5.8GHz VTX</text>
+                    <text x="350" y="85" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Control &amp; video links</text>
 
                     <!-- Modular sensors (left) -->
                     <rect x="30" y="210" width="170" height="100" rx="6" fill="#10141a" stroke="#4a93a8" stroke-width="2"/>
                     <text x="115" y="253" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="16" text-anchor="middle">Modular sensors</text>
-                    <text x="115" y="275" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Radar + LiDAR</text>
+                    <text x="115" y="275" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Multi-sensor bay</text>
 
                     <!-- Power management (right) -->
                     <rect x="500" y="210" width="170" height="100" rx="6" fill="#10141a" stroke="#4b6b46" stroke-width="2"/>
                     <text x="585" y="248" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="15" text-anchor="middle">Power</text>
                     <text x="585" y="266" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="15" text-anchor="middle">management</text>
-                    <text x="585" y="288" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">LDO+buck, GPIO cutoff</text>
+                    <text x="585" y="288" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Smart load regulation</text>
 
                     <!-- Drive system (bottom) -->
                     <rect x="265" y="410" width="170" height="80" rx="6" fill="#10141a" stroke="#ff3b3b" stroke-width="2"/>
                     <text x="350" y="443" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="17" text-anchor="middle">Drive system</text>
-                    <text x="350" y="465" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Dual ESC · 12 MOSFETs</text>
+                    <text x="350" y="465" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Precision speed control</text>
 
                     <!-- Core MCU (center, most prominent) -->
                     <rect x="265" y="208" width="170" height="104" rx="6" fill="#10141a" stroke="#39ff14" stroke-width="3"/>
                     <text x="350" y="253" fill="#39ff14" font-family="Archivo, sans-serif" font-weight="800" font-size="19" text-anchor="middle">Core MCU</text>
-                    <text x="350" y="278" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">STM32 · IMU · barometer</text>
+                    <text x="350" y="278" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Flight-critical sensing</text>
                 </svg>
                 <div class="figure-caption">System architecture overview — subsystem placement around the core flight controller.</div>
             </div>
@@ -140,23 +140,23 @@
                 <tbody>
                     <tr>
                         <td><span class="highlight">Core MCU</span></td>
-                        <td>Calculates velocity, acceleration, and inclination via IMU, and altitude via barometer.</td>
+                        <td>Handles flight-critical calculations — velocity, orientation, and altitude — from onboard inertial and pressure sensors.</td>
                     </tr>
                     <tr>
                         <td><span class="highlight">Comms</span></td>
-                        <td>2.4GHz RX (control) and 5.8GHz VTX (video), enabling FPV operation beyond direct line of sight.</td>
+                        <td>Dual-frequency link separating control and video, enabling real-time FPV operation beyond direct line of sight.</td>
                     </tr>
                     <tr>
                         <td><span class="highlight">Modular Sensors</span></td>
-                        <td>Interchangeable slots for Doppler radar and LiDAR, covering topography and obstacle detection.</td>
+                        <td>Interchangeable sensor bay supporting multiple ranging technologies for terrain mapping and obstacle detection.</td>
                     </tr>
                     <tr>
                         <td><span class="highlight">Power Management</span></td>
-                        <td>LDO + buck converter, with GPIO-controlled load switches to cut LiDAR power mid-flight and conserve battery.</td>
+                        <td>Efficient power regulation with intelligent load control to extend flight time.</td>
                     </tr>
                     <tr>
                         <td><span class="highlight">Drive System</span></td>
-                        <td>Dual ESC using 12 N-channel MOSFETs / gate drivers for dual motors and servo control.</td>
+                        <td>Dual-motor propulsion with precision electronic speed control.</td>
                     </tr>
                 </tbody>
             </table>

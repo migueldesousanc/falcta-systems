@@ -955,4 +955,12 @@ footer {
     table {
         min-width: 520px;
     }
+
+    /* At phone widths the nav's brand + links + language switch no longer
+       fit on one row, so it wraps to two lines and grows taller than the
+       90px offset above assumes. Anchor-jump targets (e.g. the Applications
+       cards on the homepage) would otherwise land partly hidden under it. */
+    [id] {
+        scroll-margin-top: 140px;
+    }
 }

@@ -113,12 +113,12 @@ tag_row(pdf, ["NAVEGAÇÃO SEM GPS", "INTEGRAÇÃO LIDAR", "COMUNICAÇÕES RESIL
 # Platform capabilities
 section_title(pdf, "Capacidades da Plataforma")
 bullets = [
-    "Navegação sem GPS: radar FMCW de 60GHz combinado com um MCU STM32, corrigindo o desvio "
-    "do IMU a partir de dados de velocidade e altitude por reflexão do solo.",
+    "Navegação sem GPS: deteção por radar através de reflexões do solo corrige o desvio "
+    "inercial, mantendo dados precisos de velocidade e altitude sem ligação por satélite.",
     "Cadeia de valor limpa: eletrónica adquirida exclusivamente junto de nações aliadas "
     "(NATO, Taiwan, Japão), evitando riscos de espionagem e hardware vetado.",
-    "Cargas úteis modulares: slots intercambiáveis de radar Doppler e LiDAR para topografia "
-    "e deteção de obstáculos.",
+    "Cargas úteis modulares: módulo de sensores intercambiável que suporta múltiplas "
+    "tecnologias de deteção para topografia e deteção de obstáculos.",
     "Fabrico lean: prototipagem de PCBs internamente e chassis impresso em 3D de grau "
     "aeronáutico, reduzindo os custos unitários muito abaixo dos preços tradicionais da "
     "indústria de defesa.",

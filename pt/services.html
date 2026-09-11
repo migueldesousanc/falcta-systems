@@ -76,7 +76,7 @@
             <div class="grid">
                 <div class="card">
                     <h3>Navegação sem GPS</h3>
-                    <p>Combina um chip de radar FMCW de 60GHz com um MCU STM32, corrigindo o desvio do IMU ao calcular velocidade e altitude a partir de reflexões do solo — sem necessidade de ligação por satélite.</p>
+                    <p>Utiliza deteção por radar através de reflexões do solo para corrigir o desvio inercial e manter dados precisos de velocidade e altitude — sem necessidade de ligação por satélite.</p>
                 </div>
                 <div class="card">
                     <h3>Cadeia de Valor Limpa</h3>
@@ -103,28 +103,28 @@
                     <!-- Comunicações (topo) -->
                     <rect x="265" y="30" width="170" height="80" rx="6" fill="#10141a" stroke="#ff9900" stroke-width="2"/>
                     <text x="350" y="63" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="17" text-anchor="middle">Comms</text>
-                    <text x="350" y="85" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">RX 2,4GHz · VTX 5,8GHz</text>
+                    <text x="350" y="85" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Ligações de controlo e vídeo</text>
 
                     <!-- Sensores modulares (esquerda) -->
                     <rect x="30" y="210" width="170" height="100" rx="6" fill="#10141a" stroke="#4a93a8" stroke-width="2"/>
                     <text x="115" y="253" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="16" text-anchor="middle">Sensores modulares</text>
-                    <text x="115" y="275" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Radar + LiDAR</text>
+                    <text x="115" y="275" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Módulo multissensor</text>
 
                     <!-- Gestão de energia (direita) -->
                     <rect x="500" y="210" width="170" height="100" rx="6" fill="#10141a" stroke="#4b6b46" stroke-width="2"/>
                     <text x="585" y="248" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="15" text-anchor="middle">Gestão de</text>
                     <text x="585" y="266" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="15" text-anchor="middle">energia</text>
-                    <text x="585" y="288" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">LDO+buck, corte por GPIO</text>
+                    <text x="585" y="288" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Regulação inteligente</text>
 
                     <!-- Sistema de tração (baixo) -->
                     <rect x="265" y="410" width="170" height="80" rx="6" fill="#10141a" stroke="#ff3b3b" stroke-width="2"/>
                     <text x="350" y="443" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="17" text-anchor="middle">Sistema de tração</text>
-                    <text x="350" y="465" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">ESC duplo · 12 MOSFETs</text>
+                    <text x="350" y="465" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Controlo de precisão</text>
 
                     <!-- MCU central (centro, mais destacado) -->
                     <rect x="265" y="208" width="170" height="104" rx="6" fill="#10141a" stroke="#39ff14" stroke-width="3"/>
                     <text x="350" y="253" fill="#39ff14" font-family="Archivo, sans-serif" font-weight="800" font-size="19" text-anchor="middle">MCU central</text>
-                    <text x="350" y="278" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">STM32 · IMU · barómetro</text>
+                    <text x="350" y="278" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Cálculos críticos de voo</text>
                 </svg>
                 <div class="figure-caption">Visão geral da arquitetura do sistema — disposição dos subsistemas em torno do controlador de voo central.</div>
             </div>
@@ -140,23 +140,23 @@
                 <tbody>
                     <tr>
                         <td><span class="highlight">Core MCU</span></td>
-                        <td>Calcula velocidade, aceleração e inclinação através do IMU, e altitude através do barómetro.</td>
+                        <td>Trata dos cálculos críticos de voo — velocidade, orientação e altitude — a partir de sensores inerciais e de pressão a bordo.</td>
                     </tr>
                     <tr>
                         <td><span class="highlight">Comms</span></td>
-                        <td>RX de 2,4GHz (controlo) e VTX de 5,8GHz (vídeo), permitindo operação FPV além da linha de vista direta.</td>
+                        <td>Ligação de dupla frequência que separa controlo e vídeo, permitindo operação FPV em tempo real além da linha de vista direta.</td>
                     </tr>
                     <tr>
                         <td><span class="highlight">Sensores Modulares</span></td>
-                        <td>Slots intercambiáveis para radar Doppler e LiDAR, cobrindo topografia e deteção de obstáculos.</td>
+                        <td>Módulo de sensores intercambiável que suporta múltiplas tecnologias de deteção para cartografia de terreno e deteção de obstáculos.</td>
                     </tr>
                     <tr>
                         <td><span class="highlight">Gestão de Energia</span></td>
-                        <td>Conversor LDO + buck, com comutadores de carga controlados por GPIO para cortar a alimentação do LiDAR em pleno voo e poupar bateria.</td>
+                        <td>Regulação eficiente de energia com controlo de carga inteligente para prolongar o tempo de voo.</td>
                     </tr>
                     <tr>
                         <td><span class="highlight">Sistema de Tração</span></td>
-                        <td>ESC duplo com 12 MOSFETs de canal N / gate drivers para controlo de motores duplos e servos.</td>
+                        <td>Propulsão de duplo motor com controlo eletrónico de velocidade de precisão.</td>
                     </tr>
                 </tbody>
             </table>
