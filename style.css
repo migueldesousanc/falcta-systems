@@ -105,6 +105,39 @@ nav {
     border-bottom-color: var(--accent-primary);
 }
 
+/* LANGUAGE SWITCH */
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-left: 0.5rem;
+    padding-left: 1rem;
+    border-left: 1px solid var(--border-color);
+}
+
+.lang-switch a,
+.lang-switch .current {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    color: var(--text-main);
+}
+
+.lang-switch a:hover {
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+.lang-switch .current {
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    background-color: rgba(255, 153, 0, 0.08);
+}
+
 /* HERO */
 header {
     background-color: rgba(7, 9, 10, 0.94);
