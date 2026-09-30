@@ -291,6 +291,10 @@ p {
     max-width: 700px;
 }
 
+.section-subhead {
+    margin-top: 2.5rem;
+}
+
 /* GRID / CARDS */
 .grid {
     display: grid;

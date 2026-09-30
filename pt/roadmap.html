@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roteiro | Falcata Systems</title>
+    <meta name="description" content="Em que fase está a Amélia Nótus, e os add-ons em desenvolvimento ativo na Falcata Systems — incluindo o conceito Vision Node para cartografia de baixo custo e navegação sem GNSS.">
+    <meta name="theme-color" content="#07090a">
+    <meta property="og:title" content="Roteiro | Falcata Systems">
+    <meta property="og:description" content="Fase do projeto e os add-ons em desenvolvimento ativo na Falcata Systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://falcatasystems.site/pt/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="alternate" hreflang="en" href="https://falcatasystems.site/roadmap.html">
+    <link rel="alternate" hreflang="pt" href="https://falcatasystems.site/pt/roadmap.html">
+    <link rel="alternate" hreflang="x-default" href="https://falcatasystems.site/roadmap.html">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-brand">FALCATA SYSTEMS</a>
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="services.html">Serviços</a>
+            <a href="company.html">Empresa</a>
+            <a href="roadmap.html" class="active">Roteiro</a>
+            <a href="contact.html">Contacto</a>
+            <span class="lang-switch">
+                <a href="../roadmap.html">EN</a>
+                <span class="current">PT</span>
+            </span>
+        </div>
+    </nav>
+
+    <header>
+        <div class="hero-inner">
+            <span class="eyebrow">Saiba Mais</span>
+            <h1>Onde estamos, e o que vem a seguir.</h1>
+            <p class="subtitle">Fase do projeto, e os add-ons em desenvolvimento ativo.</p>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <span class="eyebrow">Fase do Projeto</span>
+            <h2>A construir o nosso primeiro protótipo</h2>
+            <p>Estamos atualmente a construir o nosso primeiro protótipo Amélia Nótus — a adquirir hardware essencial, incluindo LiDAR, radar e componentes de controlo de voo, com um primeiro teste de campo previsto para dezembro. O nosso foco é o desempenho em ambientes hostis e a fiabilidade crítica da missão desde o primeiro dia.</p>
+            <div class="card status-card">
+                <div class="status-row">
+                    <span class="status-label">Estado</span>
+                    <span class="status-value">Primeiro protótipo em desenvolvimento</span>
+                </div>
+                <div class="status-row">
+                    <span class="status-label">Foco atual</span>
+                    <span class="status-value">Aquisição de hardware essencial — LiDAR, radar, componentes de controlo de voo</span>
+                </div>
+                <div class="status-row">
+                    <span class="status-label">Próximo marco</span>
+                    <span class="status-value">Primeiro teste de campo previsto para dezembro</span>
+                </div>
+                <div class="status-row">
+                    <span class="status-label">Em desenvolvimento</span>
+                    <span class="status-value">Vision Node — add-on de cartografia de baixo custo e navegação sem GNSS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt">
+        <div class="container">
+            <span class="eyebrow">Em Desenvolvimento</span>
+            <h2>Vision Node: cartografia de baixo custo e navegação sem GNSS</h2>
+            <p class="section-intro">Um conceito de módulo add-on: um único nó de câmara voltada para baixo faz os dois trabalhos — apoio à navegação e cartografia para planeamento de missão — em vez de sensores separados para cada um. Foi concebido para substituir o sensor de fluxo ótico já existente na lista de material de navegação, não para se somar a ele.</p>
+
+            <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Função</th>
+                        <th>Resultado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">Odometria visual</span></td>
+                        <td>Velocidade no solo e correção de desvio para o estimador de estado do controlador de voo, em tempo real.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Fixação relativa ao mapa</span></td>
+                        <td>Posição absoluta sem GNSS, aproximadamente uma vez por segundo.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Mapa aproximado</span></td>
+                        <td>Pré-visualização de ortomosaico e elevação a bordo; produto de resolução completa processado em terra.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Pontos de interesse</span></td>
+                        <td>Pontes, estradas, acessos bloqueados, edifícios danificados — sinalizados em terra hoje, a bordo numa iteração posterior.</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h3 class="section-subhead">Uma abordagem em camadas para navegar sem GNSS</h3>
+            <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Camada</th>
+                        <th>Método</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">Relativa</span></td>
+                        <td>Odometria visual fundida com barómetro e IMU — deriva lentamente, em vez da deriva rápida da inércia isolada.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Mapa autoconstruído</span></td>
+                        <td>Mapear o trajeto de entrada enquanto o GNSS ainda está disponível, depois relocalizar face a esse mapa quando bloqueado ("aprender e repetir").</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Mapa de referência</span></td>
+                        <td>Corresponder imagens em tempo real a uma ortofoto pré-carregada, usando estradas e rios como características persistentes.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Verificação de spoofing</span></td>
+                        <td>Comparar a posição obtida por visão com o GNSS; uma discrepância sinaliza possível spoofing.</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <span class="eyebrow">O Caminho Até Lá</span>
+            <h2>Roteiro de desenvolvimento</h2>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="process-node">1</div>
+                    <h3>Cartografia em Terra</h3>
+                    <p>Captura geo-referenciada, processada em terra. Valida a qualidade de imagem e o produto cartográfico.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-node">2</div>
+                    <h3>Odometria a Bordo</h3>
+                    <p>Odometria visual a alimentar o estimador de estado, testada primeiro em simulação e em registos de voo reproduzidos.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-node">3</div>
+                    <h3>Relocalização</h3>
+                    <p>Aprender e repetir, seguido de correspondência com mapa de referência a partir de uma ortofoto pré-carregada.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-node">4</div>
+                    <h3>Deteção de Pontos de Interesse</h3>
+                    <p>ML em terra a migrar para bordo ao longo do tempo, exportado para o C2 para perceção situacional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-band">
+        <h2>Quer acompanhar, ou ajudar a moldar o roteiro?</h2>
+        <p>Diga-nos o que precisa que a plataforma faça, e dizemos-lhe onde se encaixa.</p>
+        <div class="hero-actions">
+            <a href="contact.html" class="btn btn-primary">Contactar</a>
+            <a href="../falcata-systems-capability-brief-pt.pdf" class="btn btn-secondary">Descarregar Dossier de Capacidades (PDF)</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <h4>Falcata Systems</h4>
+                <p>Ferramentas UAS e de inteligência geoespacial para defesa e proteção civil, concebidas e fabricadas em Portugal.</p>
+            </div>
+            <div>
+                <h4>Navegar</h4>
+                <a href="index.html">Início</a>
+                <a href="services.html">Serviços</a>
+                <a href="company.html">Empresa</a>
+                <a href="roadmap.html">Roteiro</a>
+                <a href="contact.html">Contacto</a>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <a href="mailto:comms@falcatasystems.site">comms@falcatasystems.site</a>
+                <p>Luso, Portugal</p>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <a href="privacy.html">Política de Privacidade</a>
+                <a href="terms.html">Termos e Condições</a>
+                <!-- TODO: add the real LinkedIn company page URL -->
+                <div class="footer-social">
+                    <a href="#" target="_blank" rel="noopener" aria-label="Falcata Systems no LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.94 6 2.5 6S0 4.88 0 3.5 1.06 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V23h-4V8z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2026 Falcata Systems. Todos os direitos reservados.</div>
+    </footer>
+
+</body>
+</html>
