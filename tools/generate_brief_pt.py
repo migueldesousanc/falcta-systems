@@ -107,7 +107,7 @@ pdf.set_x(pdf.l_margin)
 pdf.ln(1)
 body_text(
     pdf,
-    "Estamos a conceber a Vanguard em torno das exigências operacionais reais do "
+    "Estamos a conceber a Amélia Nótus em torno das exigências operacionais reais do "
     "reconhecimento tático, da integração de sistemas aerotransportados e do "
     "levantamento de terreno em emergência -- os ambientes onde os nossos "
     "utilizadores-alvo realmente operam.",
@@ -118,7 +118,7 @@ body_text(
 section_title(pdf, "Fase Atual")
 body_text(
     pdf,
-    "Estamos atualmente a construir o nosso primeiro protótipo Vanguard -- a "
+    "Estamos atualmente a construir o nosso primeiro protótipo Amélia Nótus -- a "
     "adquirir hardware essencial, incluindo LiDAR, radar e componentes de "
     "controlo de voo, com um primeiro teste de campo previsto para dezembro. "
     "O nosso foco é o desempenho em ambientes hostis e a fiabilidade crítica "
@@ -132,8 +132,10 @@ tag_row(pdf, ["NAVEGAÇÃO SEM GPS", "INTEGRAÇÃO LIDAR", "COMUNICAÇÕES RESIL
 # Capacidades da plataforma
 section_title(pdf, "Capacidades da Plataforma")
 bullets = [
-    "Navegação sem GPS: deteção por radar através de reflexões do solo corrige o desvio "
-    "inercial, mantendo dados precisos de velocidade e altitude sem ligação por satélite.",
+    "Navegação sem GPS: odometria visual a bordo, fundida com deteção inercial e "
+    "barométrica, corrige o desvio e mantém dados precisos de posição e velocidade sem "
+    "ligação por satélite; a correspondência com mapas de referência e a relocalização de "
+    "rota alargam isto a uma solução completa de navegação sem GNSS.",
     "Cadeia de valor limpa: eletrónica adquirida exclusivamente junto de nações aliadas "
     "(NATO, Taiwan, Japão), evitando riscos de espionagem e hardware vetado.",
     "Cargas úteis modulares: módulo de sensores intercambiável que suporta múltiplas "
@@ -200,7 +202,7 @@ pdf.set_text_color(*DARK)
 pdf.cell(0, 5.2, "Mike -- Fundador, Integração de Sensores e Arquitetura de Software", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 body_text(
     pdf,
-    "Convenceu um chip de radar e um módulo LiDAR a deixarem de discutir e a "
+    "Convenceu um sensor de visão e um módulo LiDAR a deixarem de discutir e a "
     "cooperar -- basicamente diplomacia. Quando a plataforma não precisa de GPS "
     "para saber onde está, é o Mike.",
     size=9.5,

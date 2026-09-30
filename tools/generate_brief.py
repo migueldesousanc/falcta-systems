@@ -121,7 +121,7 @@ pdf.set_x(pdf.l_margin)
 pdf.ln(1)
 body_text(
     pdf,
-    "We're designing Vanguard around the real operational demands of tactical "
+    "We're designing Amélia Nótus around the real operational demands of tactical "
     "reconnaissance, airborne systems integration, and emergency terrain survey -- "
     "the environments our target users actually operate in.",
     size=9.5,
@@ -131,7 +131,7 @@ body_text(
 section_title(pdf, "Current Stage")
 body_text(
     pdf,
-    "We're currently building our first Vanguard prototype -- sourcing core hardware, "
+    "We're currently building our first Amélia Nótus prototype -- sourcing core hardware, "
     "including LiDAR, radar, and flight control components, now, with a first field "
     "test targeted for this December. Our focus is hostile-environment performance "
     "and mission-critical reliability from day one."
@@ -144,8 +144,10 @@ tag_row(pdf, ["GPS-DENIED NAVIGATION", "LIDAR INTEGRATION", "RESILIENT COMMS", "
 # Platform capabilities
 section_title(pdf, "Platform Capabilities")
 bullets = [
-    "GPS-denied navigation: radar-based ground-reflection sensing corrects inertial drift, "
-    "maintaining accurate speed and altitude data without a satellite link.",
+    "GPS-denied navigation: onboard visual odometry, fused with inertial and barometric "
+    "sensing, corrects drift and maintains accurate position and speed without a satellite "
+    "link; reference-map matching and route relocalisation extend this into a full "
+    "GNSS-denied fix.",
     "Clean value chain: electronics sourced exclusively from allied nations (NATO, Taiwan, "
     "Japan), avoiding espionage risk and vetoed hardware.",
     "Modular sensor payloads: interchangeable sensor bay supporting multiple ranging "
@@ -211,7 +213,7 @@ pdf.set_text_color(*DARK)
 pdf.cell(0, 5.2, "Mike -- Founder, Sensor Integration & Software Architecture", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 body_text(
     pdf,
-    "Convinced a radar chip and a LiDAR module to stop arguing and cooperate -- "
+    "Convinced a vision sensor and a LiDAR module to stop arguing and cooperate -- "
     "basically diplomacy. When the platform doesn't need GPS to know where it is, "
     "that's Mike.",
     size=9.5,
