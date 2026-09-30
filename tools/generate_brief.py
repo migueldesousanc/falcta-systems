@@ -10,7 +10,7 @@ Originally a strict one-pager; with the Compliance and Founders sections
 added for content parity with the site, it now runs one full page plus a
 few trailing footer lines onto a short second page. If that's worth fixing
 properly, the honest options are trimming a section's copy or accepting
-two pages outright -- not further shrinking type/leading to force page 1.
+two pages outright - not further shrinking type/leading to force page 1.
 
 Typography/color intentionally mirror the website's current (post-redesign)
 identity: Archivo for headings/labels (the site's --font-heading), a plain
@@ -103,7 +103,7 @@ pdf.cell(0, 10, "FALCATA SYSTEMS", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Helvetica", "", 11)
 pdf.set_text_color(*MUTED)
-pdf.cell(0, 6, "UAS & Geospatial Intelligence -- Built for the field, not the brochure.", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 6, "UAS & Geospatial Intelligence - Built for the field, not the brochure.", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
 pdf.set_draw_color(*ACCENT)
 pdf.set_line_width(0.8)
@@ -122,7 +122,7 @@ pdf.ln(1)
 body_text(
     pdf,
     "We're designing Amélia Nótus around the real operational demands of tactical "
-    "reconnaissance, airborne systems integration, and emergency terrain survey -- "
+    "reconnaissance, airborne systems integration, and emergency terrain survey - "
     "the environments our target users actually operate in.",
     size=9.5,
 )
@@ -131,7 +131,7 @@ body_text(
 section_title(pdf, "Current Stage")
 body_text(
     pdf,
-    "We're currently building our first Amélia Nótus prototype -- sourcing core hardware, "
+    "We're currently building our first Amélia Nótus prototype - sourcing core hardware, "
     "including LiDAR, radar, and flight control components, now, with a first field "
     "test targeted for this December. Our focus is hostile-environment performance "
     "and mission-critical reliability from day one."
@@ -173,7 +173,7 @@ pdf.set_text_color(*DARK)
 pdf.cell(0, 5.2, "Geospatial Intelligence Platform", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 body_text(
     pdf,
-    "Drone-based airborne surveys -- magnetometry, LiDAR, gamma-ray spectrometry -- "
+    "Drone-based airborne surveys - magnetometry, LiDAR, gamma-ray spectrometry - "
     "processed with machine learning for terrain analysis and threat assessment.",
     size=9.5,
 )
@@ -210,10 +210,10 @@ section_title(pdf, "Founders")
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Archivo", "B", 10)
 pdf.set_text_color(*DARK)
-pdf.cell(0, 5.2, "Mike -- Founder, Sensor Integration & Software Architecture", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 5.2, "Mike - Founder, Sensor Integration & Software Architecture", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 body_text(
     pdf,
-    "Convinced a vision sensor and a LiDAR module to stop arguing and cooperate -- "
+    "Convinced a vision sensor and a LiDAR module to stop arguing and cooperate - "
     "basically diplomacy. When the platform doesn't need GPS to know where it is, "
     "that's Mike.",
     size=9.5,
@@ -221,15 +221,15 @@ body_text(
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Archivo", "B", 10)
 pdf.set_text_color(*DARK)
-pdf.cell(0, 5.2, "Nuno -- Founder, Hardware, PCB & Manufacturing", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 5.2, "Nuno - Founder, Hardware, PCB & Manufacturing", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 body_text(
     pdf,
     "Builds the part that has to survive being dropped, shaken, rained on, and "
-    "occasionally yelled at -- chassis, CAD models, and PCB design included.",
+    "occasionally yelled at - chassis, CAD models, and PCB design included.",
     size=9.5,
 )
 
-# Footer block -- flows after content rather than pinned to the bottom of
+# Footer block - flows after content rather than pinned to the bottom of
 # page 1, since this brief now runs close to a full page with the added
 # Compliance and Founders sections.
 pdf.ln(0.5)

@@ -89,7 +89,7 @@ pdf.cell(0, 10, "FALCATA SYSTEMS", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Helvetica", "", 11)
 pdf.set_text_color(*MUTED)
-pdf.cell(0, 6, "UAS e Inteligência Geoespacial -- Feito para o terreno, não para o folheto.", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 6, "UAS e Inteligência Geoespacial - Feito para o terreno, não para o folheto.", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
 pdf.set_draw_color(*ACCENT)
 pdf.set_line_width(0.8)
@@ -109,7 +109,7 @@ body_text(
     pdf,
     "Estamos a conceber a Amélia Nótus em torno das exigências operacionais reais do "
     "reconhecimento tático, da integração de sistemas aerotransportados e do "
-    "levantamento de terreno em emergência -- os ambientes onde os nossos "
+    "levantamento de terreno em emergência - os ambientes onde os nossos "
     "utilizadores-alvo realmente operam.",
     size=9.5,
 )
@@ -118,7 +118,7 @@ body_text(
 section_title(pdf, "Fase Atual")
 body_text(
     pdf,
-    "Estamos atualmente a construir o nosso primeiro protótipo Amélia Nótus -- a "
+    "Estamos atualmente a construir o nosso primeiro protótipo Amélia Nótus - a "
     "adquirir hardware essencial, incluindo LiDAR, radar e componentes de "
     "controlo de voo, com um primeiro teste de campo previsto para dezembro. "
     "O nosso foco é o desempenho em ambientes hostis e a fiabilidade crítica "
@@ -162,7 +162,7 @@ pdf.set_text_color(*DARK)
 pdf.cell(0, 5.2, "Plataforma de Inteligência Geoespacial", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 body_text(
     pdf,
-    "Levantamentos aéreos com drones -- magnetometria, LiDAR, espectrometria de raios gama -- "
+    "Levantamentos aéreos com drones - magnetometria, LiDAR, espectrometria de raios gama - "
     "processados com aprendizagem automática para análise de terreno e avaliação de ameaças.",
     size=9.5,
 )
@@ -199,27 +199,27 @@ section_title(pdf, "Fundadores")
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Archivo", "B", 10)
 pdf.set_text_color(*DARK)
-pdf.cell(0, 5.2, "Mike -- Fundador, Integração de Sensores e Arquitetura de Software", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 5.2, "Mike - Fundador, Integração de Sensores e Arquitetura de Software", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 body_text(
     pdf,
     "Convenceu um sensor de visão e um módulo LiDAR a deixarem de discutir e a "
-    "cooperar -- basicamente diplomacia. Quando a plataforma não precisa de GPS "
+    "cooperar - basicamente diplomacia. Quando a plataforma não precisa de GPS "
     "para saber onde está, é o Mike.",
     size=9.5,
 )
 pdf.set_x(pdf.l_margin)
 pdf.set_font("Archivo", "B", 10)
 pdf.set_text_color(*DARK)
-pdf.cell(0, 5.2, "Nuno -- Fundador, Hardware, PCB e Fabrico", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+pdf.cell(0, 5.2, "Nuno - Fundador, Hardware, PCB e Fabrico", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 body_text(
     pdf,
     "Constrói a peça que tem de sobreviver a ser deixada cair, abanada, encharcada "
-    "pela chuva e, de vez em quando, repreendida aos gritos -- chassis, modelos CAD "
+    "pela chuva e, de vez em quando, repreendida aos gritos - chassis, modelos CAD "
     "e design de PCBs incluídos.",
     size=9.5,
 )
 
-# Footer block -- flows after content rather than pinned to the bottom of
+# Footer block - flows after content rather than pinned to the bottom of
 # page 1, since this brief now runs close to a full page with the added
 # Compliance and Founders sections.
 pdf.ln(0.5)
