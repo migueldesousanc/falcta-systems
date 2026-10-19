@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roadmap | Falcata Systems</title>
-    <meta name="description" content="Where Amélia Nótus stands today, and the add-ons in active development at Falcata Systems — including the Vision Node concept for low-cost mapping and GNSS-denied navigation.">
+    <meta name="description" content="Where FMM-L stands today and what's next: bench demo in November 2026, field test in December 2026, final prototype in March 2027.">
     <meta name="theme-color" content="#07090a">
     <meta property="og:title" content="Roadmap | Falcata Systems">
-    <meta property="og:description" content="Project phase and the add-ons in active development at Falcata Systems.">
+    <meta property="og:description" content="FMM-L's path from bench demo to final prototype, and the role of the NÓTUS demonstrator.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://falcatasystems.site/og-image.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="https://falcatasystems.site/assets/img/fmm-hero.jpg">
+    <meta property="og:image:width" content="1600">
+    <meta property="og:image:height" content="900">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="alternate" hreflang="en" href="https://falcatasystems.site/roadmap.html">
@@ -27,7 +27,7 @@
         <a href="index.html" class="nav-brand">FALCATA SYSTEMS</a>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="services.html">Services</a>
+            <a href="services.html">Product</a>
             <a href="company.html">Company</a>
             <a href="roadmap.html" class="active">Roadmap</a>
             <a href="contact.html">Contact</a>
@@ -40,33 +40,29 @@
 
     <header>
         <div class="hero-inner">
-            <span class="eyebrow">Know More</span>
-            <h1>Where we are, and what's next.</h1>
-            <p class="subtitle">Project phase, and the add-ons in active development.</p>
+            <span class="eyebrow">Roadmap</span>
+            <h1>From bench demo to field-ready prototype.</h1>
+            <p class="subtitle">Where FMM-L stands today, and what's next.</p>
         </div>
     </header>
 
     <section>
         <div class="container">
             <span class="eyebrow">Project Phase</span>
-            <h2>Building our first prototype</h2>
-            <p>We're currently building our first Amélia Nótus prototype — sourcing core hardware, including LiDAR, radar, and flight control components, now, with a first field test targeted for this December. Our focus is hostile-environment performance and mission-critical reliability from day one.</p>
+            <h2>Prototype in development</h2>
+            <p>FMM-L is a prototype in active development. We're pre-revenue, with no customers yet — our focus right now is bringing up the hardware and validating the four core functions on the bench ahead of our first live demo.</p>
             <div class="card status-card">
                 <div class="status-row">
                     <span class="status-label">Status</span>
-                    <span class="status-value">First prototype in development</span>
+                    <span class="status-value">Prototype in development</span>
                 </div>
                 <div class="status-row">
-                    <span class="status-label">Current focus</span>
-                    <span class="status-value">Sourcing core hardware — LiDAR, radar, flight control components</span>
+                    <span class="status-label">Stage</span>
+                    <span class="status-value">Pre-revenue, no customers yet</span>
                 </div>
                 <div class="status-row">
-                    <span class="status-label">Next milestone</span>
-                    <span class="status-value">First field test targeted for this December</span>
-                </div>
-                <div class="status-row">
-                    <span class="status-label">In development</span>
-                    <span class="status-value">Vision Node — low-cost mapping &amp; GNSS-denied navigation add-on</span>
+                    <span class="status-label">Current Focus</span>
+                    <span class="status-value">Bench validation of the encrypted link, relay, MAVLink integration, and GNSS integrity monitoring</span>
                 </div>
             </div>
         </div>
@@ -74,106 +70,41 @@
 
     <section class="section-alt">
         <div class="container">
-            <span class="eyebrow">In Development</span>
-            <h2>Vision Node: low-cost mapping and GNSS-denied navigation</h2>
-            <p class="section-intro">A concept add-on module: one downward-facing camera node doing both jobs — navigation aid and mission-planning map — instead of separate sensors for each. It's designed to offset the optical flow sensor already in the navigation BOM, not add to it.</p>
-
-            <div class="table-scroll">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Function</th>
-                        <th>Output</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="highlight">Visual odometry</span></td>
-                        <td>Ground velocity and drift correction for the flight controller's state estimator, in real time.</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Map-relative fix</span></td>
-                        <td>Absolute position without GNSS, roughly once per second.</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Rough map</span></td>
-                        <td>Orthomosaic and elevation preview on board; full-resolution product processed on the ground.</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Points of interest</span></td>
-                        <td>Bridges, roads, blocked access, damaged buildings — flagged on the ground today, on board in a later iteration.</td>
-                    </tr>
-                </tbody>
-            </table>
-            </div>
-
-            <h3 class="section-subhead">A layered approach to navigating without GNSS</h3>
-            <div class="table-scroll">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Layer</th>
-                        <th>Method</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="highlight">Relative</span></td>
-                        <td>Visual odometry fused with baro and IMU — drifts slowly instead of the fast drift of inertial sensing alone.</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Self-built map</span></td>
-                        <td>Map the ingress path while GNSS is still available, then relocalise against it once jammed ("teach and repeat").</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Reference map</span></td>
-                        <td>Match live frames against a preloaded orthophoto, using roads and rivers as persistent features.</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Spoof check</span></td>
-                        <td>Compare the vision-based position against GNSS; a mismatch flags possible spoofing.</td>
-                    </tr>
-                </tbody>
-            </table>
+            <span class="eyebrow">Milestones</span>
+            <h2>Three milestones to a field-ready prototype</h2>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="process-node">1</div>
+                    <h3>Bench Demo — Nov 2026</h3>
+                    <p>FMM-L's four core functions demonstrated on the bench: encrypted C2 link, relay, native MAVLink integration, and GNSS jamming/spoofing detection.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-node">2</div>
+                    <h3>Field Test — Dec 2026</h3>
+                    <p>First outdoor field test, validating the same functions in real flight and radio conditions.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-node">3</div>
+                    <h3>Final Prototype — Mar 2027</h3>
+                    <p>Final FMM-L prototype, ready for partner and customer evaluation.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section>
         <div class="container">
-            <span class="eyebrow">Getting There</span>
-            <h2>Development roadmap</h2>
-            <div class="process-flow">
-                <div class="process-step">
-                    <div class="process-node">1</div>
-                    <h3>Ground Mapping</h3>
-                    <p>Geotagged capture, processed on the ground. Validates image quality and the map product.</p>
-                </div>
-                <div class="process-step">
-                    <div class="process-node">2</div>
-                    <h3>Onboard Odometry</h3>
-                    <p>Visual odometry feeding the state estimator, tested first in simulation and replayed flight logs.</p>
-                </div>
-                <div class="process-step">
-                    <div class="process-node">3</div>
-                    <h3>Relocalisation</h3>
-                    <p>Teach-and-repeat, then reference-map matching against a preloaded orthophoto.</p>
-                </div>
-                <div class="process-step">
-                    <div class="process-node">4</div>
-                    <h3>POI Detection</h3>
-                    <p>Ground-side ML moving on board over time, exported to C2 for situational awareness.</p>
-                </div>
-            </div>
+            <span class="eyebrow">Demonstrator</span>
+            <h2>NÓTUS: where we test it</h2>
+            <p>NÓTUS, Falcata's fixed-wing glider, is the flight demonstrator we use to validate FMM-L in real flight conditions — not a product in its own right. It gives us a controlled, repeatable airframe to put FMM-L's command link, relay behavior, and GNSS integrity monitoring through real-world testing before the module goes on a customer's own vehicle, whether that's a drone or a ground vehicle.</p>
         </div>
     </section>
 
     <div class="cta-band">
-        <h2>Want to follow along, or shape the roadmap?</h2>
-        <p>Tell us what you need the platform to do, and we'll tell you where it fits in.</p>
+        <h2>Want to follow along, or help shape the roadmap?</h2>
+        <p>Tell us what you need the module to do, and we'll tell you where it fits in.</p>
         <div class="hero-actions">
             <a href="contact.html" class="btn btn-primary">Contact Us</a>
-            <a href="falcata-systems-capability-brief.pdf" class="btn btn-secondary">Download Capability Brief (PDF)</a>
         </div>
     </div>
 
@@ -181,12 +112,12 @@
         <div class="footer-inner">
             <div>
                 <h4>Falcata Systems</h4>
-                <p>UAS and geospatial intelligence tools for defense and civil protection, designed and manufactured in Portugal.</p>
+                <p>Resilient command, control and GNSS-integrity modules for unmanned systems, engineered in Portugal for defense and civil protection.</p>
             </div>
             <div>
                 <h4>Navigate</h4>
                 <a href="index.html">Home</a>
-                <a href="services.html">Services</a>
+                <a href="services.html">Product</a>
                 <a href="company.html">Company</a>
                 <a href="roadmap.html">Roadmap</a>
                 <a href="contact.html">Contact</a>

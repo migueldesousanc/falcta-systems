@@ -413,6 +413,10 @@ td .highlight {
     box-shadow: 0 0 8px rgba(255, 153, 0, 0.2);
 }
 
+.tag-row-note {
+    margin-top: 1.5rem;
+}
+
 /* INDUSTRIES / APPLICATIONS */
 .industry-card {
     display: block;
@@ -575,6 +579,53 @@ td .highlight {
     font-size: 0.8rem;
     color: var(--accent-primary);
     border-top: 1px solid var(--border-color);
+}
+
+/* CONCEPT RENDERS (FMM-L hardware imagery) */
+.render-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: 1.75rem;
+    margin: 2rem 0;
+}
+
+.render-figure {
+    position: relative;
+    margin: 2rem 0;
+    border: 2px solid var(--border-color);
+    padding: 5px;
+    background-color: var(--bg-panel);
+}
+
+.render-grid .render-figure {
+    margin: 0;
+}
+
+.render-figure picture,
+.render-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.render-figure img {
+    filter: grayscale(55%) contrast(112%) brightness(92%);
+}
+
+.render-figure figcaption {
+    padding: 0.9rem 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    color: var(--text-bright);
+    border-top: 1px solid var(--border-color);
+}
+
+.render-figure figcaption .render-tag {
+    color: var(--accent-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-right: 0.4em;
 }
 
 /* TABLE */

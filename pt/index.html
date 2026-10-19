@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Falcata Systems | UAS e Inteligência Geoespacial</title>
-    <meta name="description" content="A Falcata Systems está a construir a Amélia Nótus, uma plataforma UAS concebida para as necessidades operacionais do Exército, da Força Aérea e da Proteção Civil portugueses.">
+    <title>Falcata Systems | Comando e Navegação Resilientes para Sistemas Não Tripulados</title>
+    <meta name="description" content="A Falcata Systems está a construir o FMM-L, um módulo de missão que mantém drones e veículos terrestres ligados e a navegar quando o rádio e o GPS são bloqueados — em qualquer veículo que já tenha.">
     <meta name="theme-color" content="#07090a">
-    <meta property="og:title" content="Falcata Systems | UAS e Inteligência Geoespacial">
-    <meta property="og:description" content="Feito para o terreno, não para o folheto. A construir a Amélia Nótus, uma plataforma UAS para missões de defesa e proteção civil.">
+    <meta property="og:title" content="Falcata Systems | Comando e Navegação Resilientes para Sistemas Não Tripulados">
+    <meta property="og:description" content="A Falcata mantém sistemas não tripulados ligados e a navegar quando o rádio e o GPS são bloqueados, em qualquer veículo que o cliente já tenha.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://falcatasystems.site/pt/og-image.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="https://falcatasystems.site/assets/img/fmm-hero.jpg">
+    <meta property="og:image:width" content="1600">
+    <meta property="og:image:height" content="900">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="alternate" hreflang="en" href="https://falcatasystems.site/index.html">
@@ -27,7 +27,7 @@
         <a href="index.html" class="nav-brand">FALCATA SYSTEMS</a>
         <div class="nav-links">
             <a href="index.html" class="active">Início</a>
-            <a href="services.html">Serviços</a>
+            <a href="services.html">Produto</a>
             <a href="company.html">Empresa</a>
             <a href="roadmap.html">Roteiro</a>
             <a href="contact.html">Contacto</a>
@@ -38,17 +38,13 @@
         </div>
     </nav>
 
-    <!-- TODO: Substituir por foto/render real da plataforma UAS Amélia Nótus, ou uma foto de terreno/campo.
-         Tamanho recomendado: 1920x1080 mín. Adicionar o ficheiro como hero-bg.jpg na raiz do repositório
-         — o style.css já o referencia, por isso o hero passa a usá-lo automaticamente. Até lá, o
-         gradiente abaixo sustenta o layout sozinho. -->
-    <header class="hero-photo">
+    <header>
         <div class="hero-inner">
-            <span class="eyebrow">UAS e Inteligência Geoespacial</span>
-            <h1>Feito para o terreno, não para o folheto.</h1>
-            <p class="subtitle">A Falcata Systems está a construir a Amélia Nótus — uma plataforma UAS concebida para as necessidades operacionais do Exército, da Força Aérea e da Proteção Civil portugueses.</p>
+            <span class="eyebrow">C2 Resiliente e Integridade GNSS</span>
+            <h1>A Falcata mantém sistemas não tripulados ligados e a navegar quando o rádio e o GPS são bloqueados, em qualquer veículo que o cliente já tenha.</h1>
+            <p class="subtitle">O jamming e a negação de GPS interrompem as operações não tripuladas antes mesmo de a missão começar. O Falcata Mission Module (FMM-L) é uma pequena caixa que se instala em qualquer drone ou veículo terrestre e mantém vivos tanto a ligação de comando como a solução de navegação.</p>
             <div class="hero-actions">
-                <a href="services.html" class="btn btn-primary">Ver Serviços</a>
+                <a href="services.html" class="btn btn-primary">Como Funciona o FMM-L</a>
                 <a href="contact.html" class="btn btn-secondary">Contactar</a>
             </div>
         </div>
@@ -56,144 +52,127 @@
 
     <section>
         <div class="container">
-            <span class="eyebrow">Mercados-Alvo</span>
-            <h2>Para quem estamos a construir</h2>
-            <p class="section-intro">Estamos a conceber a Amélia Nótus em torno das exigências operacionais reais do reconhecimento tático, da integração de sistemas aerotransportados e do levantamento de terreno em emergência — os ambientes onde os nossos utilizadores-alvo realmente operam.</p>
-            <div class="grid grid-3">
-                <div class="card stat-card" id="army">
-                    <h3>Exército e Força Aérea Portugueses</h3>
-                    <p class="stat-label">Concebido para reconhecimento tático e integração de sistemas aerotransportados</p>
-                </div>
-                <div class="card stat-card" id="civil-protection">
-                    <h3>Proteção Civil</h3>
-                    <p class="stat-label">Concebido para levantamento de terreno e emergência</p>
-                </div>
-                <div class="card stat-card" id="nato">
-                    <h3>OTAN</h3>
-                    <p class="stat-label">Concebido para interoperabilidade aliada</p>
-                </div>
-            </div>
+            <figure class="render-figure">
+                <picture>
+                    <source srcset="../assets/img/fmm-hero.webp" type="image/webp">
+                    <img src="../assets/img/fmm-hero.jpg" width="1600" height="900" alt="Módulo de missão FMM-L, uma caixa compacta concebida para se instalar num drone ou veículo terrestre." fetchpriority="high">
+                </picture>
+                <figcaption><span class="render-tag">Render conceptual</span>Módulo de missão FMM-L — imagem placeholder, render real por adicionar.</figcaption>
+            </figure>
         </div>
     </section>
 
-    <!-- TODO: Miguel/Nuno — review and refine this copy for accuracy -->
-    <!-- TODO: as fotos abaixo são imagens de banco público (Wikimedia Commons), não equipamento ou
-         missões da Falcata Systems. Substituir por fotografia de campo real assim que disponível
-         (ver a linha de créditos fotográficos abaixo da grelha para a origem atual). -->
     <section class="section-alt">
         <div class="container">
-            <span class="eyebrow">Aplicações</span>
-            <h2>Construído para ajuda, apoio e mais</h2>
-            <p class="section-intro">Cada plataforma que entregamos é construída para um caso de uso operacional específico, não para uma ficha técnica genérica.</p>
-            <div class="grid grid-3">
-                <a href="#army" class="card industry-card">
-                    <img src="../missions/tactical-reconnaissance.jpg" alt="" class="industry-photo" loading="lazy">
-                    <div class="industry-body">
-                        <h3>Reconhecimento Tático</h3>
-                        <p>Reconhecimento aéreo em tempo real e inteligência de terreno para unidades táticas a operar em ambientes contestados ou sem GPS.</p>
-                    </div>
-                </a>
-                <a href="#army" class="card industry-card">
-                    <img src="../missions/airborne-integration.jpg" alt="" class="industry-photo" loading="lazy">
-                    <div class="industry-body">
-                        <h3>Integração Aerotransportada</h3>
-                        <p>Plataformas UAS personalizadas concebidas para integração com sistemas aerotransportados e protocolos operacionais existentes.</p>
-                    </div>
-                </a>
-                <a href="#civil-protection" class="card industry-card">
-                    <img src="../missions/emergency-survey.jpg" alt="" class="industry-photo" loading="lazy">
-                    <div class="industry-body">
-                        <h3>Levantamento de Emergência</h3>
-                        <p>Ferramentas de levantamento rápido de terreno e perceção situacional para resposta a catástrofes e coordenação de emergência.</p>
-                    </div>
-                </a>
-                <a href="#geospatial-intelligence" class="card industry-card">
-                    <img src="../missions/geospatial-intelligence.jpg" alt="" class="industry-photo" loading="lazy">
-                    <div class="industry-body">
-                        <h3>Inteligência Geoespacial</h3>
-                        <p>Dados de LiDAR, magnetometria e levantamentos processados com ML para cartografia, planeamento e análise.</p>
-                    </div>
-                </a>
-                <a href="#managed-surveys" class="card industry-card">
-                    <img src="../missions/managed-surveys.jpg" alt="" class="industry-photo" loading="lazy">
-                    <div class="industry-body">
-                        <h3>Levantamentos Geridos</h3>
-                        <p>Serviços de levantamento geridos para organizações que precisam de dados geoespaciais sem operar a sua própria frota de UAS.</p>
-                    </div>
-                </a>
-                <a href="roadmap.html" class="card industry-card">
-                    <img src="../missions/know-more.jpg" alt="" class="industry-photo" loading="lazy">
-                    <div class="industry-body">
-                        <h3>Saiba Mais</h3>
-                        <p>Em que fase está o projeto, e os add-ons — como o Vision Node — atualmente em desenvolvimento.</p>
-                    </div>
-                </a>
-            </div>
-            <p class="photo-credit">Fotografia ilustrativa: NASA/JPL-Caltech, USGS, BLM (domínio público); terreno montanhoso por <a href="https://commons.wikimedia.org/wiki/File:Atlas_mountains_aerial_1.jpg" target="_blank" rel="noopener">Kallerna</a> (CC BY-SA 4.0), via Wikimedia Commons.</p>
+            <span class="eyebrow">O Problema</span>
+            <h2>O jamming e o spoofing quebram a missão, não o veículo</h2>
+            <p class="section-intro">O jamming de rádio corta o operador do veículo. O jamming e o spoofing de GPS alimentam-no com uma posição falsa. Qualquer um dos dois costuma bastar para terminar uma missão, e a guerra eletrónica moderna faz ambos por rotina — contra drones, robôs terrestres e tudo o que há pelo meio.</p>
         </div>
     </section>
 
     <section>
         <div class="container">
-            <span class="eyebrow">Fase Atual</span>
-            <h2>A construir o nosso primeiro protótipo</h2>
-            <p>Estamos atualmente a construir o nosso primeiro protótipo Amélia Nótus — a adquirir hardware essencial, incluindo LiDAR, radar e componentes de controlo de voo, com um primeiro teste de campo previsto para dezembro. O nosso foco é o desempenho em ambientes hostis e a fiabilidade crítica da missão desde o primeiro dia.</p>
+            <span class="eyebrow">FMM-L v1</span>
+            <h2>Quatro funções, uma caixa</h2>
+            <p class="section-intro">O FMM-L instala-se no piloto automático já existente do veículo e faz exatamente quatro coisas.</p>
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>Ligação C2 Cifrada</h3>
+                    <p>Comando e telemetria circulam por um canal cifrado com AES-128, para que o operador mantenha uma linha segura com o veículo mesmo em condições contestadas.</p>
+                </div>
+                <div class="card">
+                    <h3>Relay e Malha</h3>
+                    <p>Os módulos FMM-L reencaminham o tráfego uns dos outros, alargando o alcance da ligação de comando e telemetria sem infraestrutura adicional em terra.</p>
+                </div>
+                <div class="card">
+                    <h3>Agnóstico de Veículo</h3>
+                    <p>Funciona com qualquer piloto automático ArduPilot ou PX4 através de MAVLink — sem necessidade de trabalho de integração por parte do cliente.</p>
+                </div>
+                <div class="card">
+                    <h3>Monitorização de Integridade GNSS</h3>
+                    <p>Deteta jamming e spoofing de GPS em tempo real e alerta o operador, em vez de deixar passar uma fixação de posição incorreta sem ser notada.</p>
+                </div>
+            </div>
+
+            <div class="render-grid">
+                <figure class="render-figure">
+                    <picture>
+                        <source srcset="../assets/img/fmm-views.webp" type="image/webp">
+                        <img src="../assets/img/fmm-views.jpg" width="1200" height="800" alt="Módulo FMM-L apresentado a partir de vários ângulos." loading="lazy">
+                    </picture>
+                    <figcaption><span class="render-tag">Render conceptual</span>FMM-L, várias vistas — imagem placeholder, render real por adicionar.</figcaption>
+                </figure>
+                <figure class="render-figure">
+                    <picture>
+                        <source srcset="../assets/img/fmm-ugv.webp" type="image/webp">
+                        <img src="../assets/img/fmm-ugv.jpg" width="1200" height="800" alt="Módulo FMM-L montado num veículo terrestre não tripulado." loading="lazy">
+                    </picture>
+                    <figcaption><span class="render-tag">Render conceptual</span>FMM-L montado num veículo terrestre — imagem placeholder, render real por adicionar.</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt">
+        <div class="container">
+            <span class="eyebrow">O Que É — E O Que Não É</span>
+            <h2>Um canal C2 resiliente, não uma ligação de vídeo</h2>
+            <p class="section-intro">O FMM-L é um canal de comando e controlo resiliente e um monitor de integridade GNSS. Complementa a ligação de vídeo já existente no veículo — não a substitui, não transporta vídeo e não é uma ligação de alta largura de banda. Não dizemos que é "impossível de bloquear"; dizemos que mantém o operador no comando e o avisa quando algo está errado com a fixação de GPS.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <span class="eyebrow">Demonstrador</span>
+            <h2>NÓTUS: a provar o FMM-L em voo</h2>
+            <p>O NÓTUS é o planador de asa fixa da Falcata — o demonstrador de voo que usamos para validar o hardware e o software do FMM-L em condições de voo reais, antes de ir para o veículo do cliente. O NÓTUS não é o produto. O FMM-L é.</p>
+        </div>
+    </section>
+
+    <section class="section-alt">
+        <div class="container">
+            <span class="eyebrow">Estado</span>
+            <h2>Da bancada ao terreno</h2>
+            <p>O FMM-L é um protótipo em desenvolvimento ativo. Estamos em fase pré-receita, ainda sem clientes.</p>
             <div class="card status-card">
                 <div class="status-row">
-                    <span class="status-label">Estado</span>
-                    <span class="status-value">Primeiro protótipo em desenvolvimento</span>
+                    <span class="status-label">Demo de Bancada</span>
+                    <span class="status-value">Novembro de 2026</span>
                 </div>
                 <div class="status-row">
-                    <span class="status-label">Foco atual</span>
-                    <span class="status-value">Aquisição de hardware essencial — LiDAR, radar, componentes de controlo de voo</span>
+                    <span class="status-label">Teste de Campo</span>
+                    <span class="status-value">Dezembro de 2026</span>
                 </div>
                 <div class="status-row">
-                    <span class="status-label">Próximo marco</span>
-                    <span class="status-value">Primeiro teste de campo previsto para dezembro</span>
+                    <span class="status-label">Protótipo Final</span>
+                    <span class="status-value">Março de 2027</span>
                 </div>
             </div>
-            <a href="services.html" class="highlight">Saiba mais sobre a nossa abordagem de engenharia &rarr;</a>
-        </div>
-    </section>
-
-    <section class="section-alt">
-        <div class="container">
-            <span class="eyebrow">Foco Tecnológico</span>
-            <h2>Prioridades de engenharia</h2>
-            <div class="tag-row">
-                <span class="tag">Navegação sem GPS</span>
-                <span class="tag">Integração LiDAR</span>
-                <span class="tag">Comunicações resilientes</span>
-                <span class="tag">Voo autónomo</span>
-                <span class="tag">GeoIA</span>
-            </div>
+            <a href="roadmap.html" class="highlight">Ver o roteiro completo &rarr;</a>
         </div>
     </section>
 
     <section>
         <div class="container">
-            <span class="eyebrow">Próximos Desenvolvimentos</span>
-            <h2>O que estamos a construir a seguir</h2>
-            <div class="grid">
-                <div class="card" id="geospatial-intelligence">
-                    <h3>Plataforma de Inteligência Geoespacial</h3>
-                    <p>Levantamentos aéreos com drones — magnetometria, LiDAR, espectrometria de raios gama — processados com ML para análise de terreno e avaliação de ameaças.</p>
-                </div>
-                <div class="card" id="managed-surveys">
-                    <h3>Serviços de Levantamento Geridos</h3>
-                    <p>Recolha de dados aéreos e elaboração de relatórios de ciclo completo para organizações de defesa e proteção civil.</p>
-                </div>
+            <span class="eyebrow">Porquê a Falcata</span>
+            <h2>Construído para encaixar, não para impressionar</h2>
+            <div class="tag-row">
+                <span class="tag">Fabrico Europeu</span>
+                <span class="tag">Componentes UE / NATO</span>
+                <span class="tag">Baixo Custo por Nó</span>
+                <span class="tag">MAVLink Nativo</span>
+                <span class="tag">Monitorização de Integridade GNSS</span>
+                <span class="tag">Duplo Uso</span>
             </div>
+            <p class="tag-row-note">Baixo custo por nó significa que o FMM-L cabe em veículos baratos e sacrificáveis ("attritable"), não só nos caros. Foi concebido para defesa e para proteção civil — combate a incêndios florestais, busca e salvamento — onde quer que sistemas não tripulados precisem de continuar a funcionar sob jamming e negação de GPS.</p>
         </div>
     </section>
 
     <div class="cta-band">
-        <h2>Vamos falar sobre os seus requisitos.</h2>
-        <p>Quer esteja a avaliar a Amélia Nótus para um caso de uso operacional, quer esteja a explorar o financiamento desta fase inicial, a nossa equipa está disponível para o informar diretamente.</p>
+        <h2>Vamos falar sobre a sua plataforma.</h2>
+        <p>Quer esteja a avaliar o FMM-L para um veículo específico, quer esteja a explorar o financiamento desta fase inicial, estamos disponíveis para o informar diretamente.</p>
         <div class="hero-actions">
-            <a href="contact.html" class="btn btn-primary">Parceiros</a>
-            <a href="contact.html" class="btn btn-secondary">Investidores</a>
-            <a href="../falcata-systems-capability-brief-pt.pdf" class="btn btn-secondary">Descarregar Dossier de Capacidades (PDF)</a>
+            <a href="contact.html" class="btn btn-primary">Contactar</a>
         </div>
     </div>
 
@@ -201,12 +180,12 @@
         <div class="footer-inner">
             <div>
                 <h4>Falcata Systems</h4>
-                <p>Ferramentas UAS e de inteligência geoespacial para defesa e proteção civil, concebidas e fabricadas em Portugal.</p>
+                <p>Módulos resilientes de comando, controlo e integridade GNSS para sistemas não tripulados, concebidos em Portugal para defesa e proteção civil.</p>
             </div>
             <div>
                 <h4>Navegar</h4>
                 <a href="index.html">Início</a>
-                <a href="services.html">Serviços</a>
+                <a href="services.html">Produto</a>
                 <a href="company.html">Empresa</a>
                 <a href="roadmap.html">Roteiro</a>
                 <a href="contact.html">Contacto</a>

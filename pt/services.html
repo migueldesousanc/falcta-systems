@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serviços | Falcata Systems</title>
-    <meta name="description" content="A construir a plataforma UAS Amélia Nótus: foco tecnológico, arquitetura de engenharia e o roteiro futuro de inteligência geoespacial e serviços de levantamento geridos da Falcata Systems.">
+    <title>Produto | Falcata Systems</title>
+    <meta name="description" content="FMM-L: uma ligação de comando e controlo resiliente e um monitor de integridade GNSS para qualquer drone ou veículo terrestre ArduPilot ou PX4, concebido em Portugal.">
     <meta name="theme-color" content="#07090a">
-    <meta property="og:title" content="Serviços | Falcata Systems">
-    <meta property="og:description" content="A conceber o UAS Amélia Nótus para desempenho em ambientes hostis e fiabilidade crítica da missão.">
+    <meta property="og:title" content="Produto | Falcata Systems">
+    <meta property="og:description" content="O que o módulo de missão FMM-L faz, o que deliberadamente não faz, e porque é construído desta forma.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://falcatasystems.site/pt/og-image.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="https://falcatasystems.site/assets/img/fmm-hero.jpg">
+    <meta property="og:image:width" content="1600">
+    <meta property="og:image:height" content="900">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="alternate" hreflang="en" href="https://falcatasystems.site/services.html">
@@ -27,7 +27,7 @@
         <a href="index.html" class="nav-brand">FALCATA SYSTEMS</a>
         <div class="nav-links">
             <a href="index.html">Início</a>
-            <a href="services.html" class="active">Serviços</a>
+            <a href="services.html" class="active">Produto</a>
             <a href="company.html">Empresa</a>
             <a href="roadmap.html">Roteiro</a>
             <a href="contact.html">Contacto</a>
@@ -40,132 +40,111 @@
 
     <header>
         <div class="hero-inner">
-            <span class="eyebrow">O Que Fazemos</span>
-            <h1>A conceber o UAS Amélia Nótus para ambientes hostis.</h1>
-            <p class="subtitle">Do nosso primeiro protótipo às plataformas que estamos a construir a seguir.</p>
+            <span class="eyebrow">Produto</span>
+            <h1>FMM-L: o módulo de missão que mantém o seu veículo ligado e no rumo certo.</h1>
+            <p class="subtitle">Uma ligação de comando resiliente e um monitor de integridade GNSS para qualquer plataforma ArduPilot ou PX4.</p>
         </div>
     </header>
 
     <section>
         <div class="container">
-            <span class="eyebrow">Fase Atual</span>
-            <h2>A construir o nosso primeiro protótipo</h2>
-            <p>Estamos atualmente a construir o nosso primeiro protótipo Amélia Nótus — a adquirir hardware essencial, incluindo LiDAR, radar e componentes de controlo de voo, com um primeiro teste de campo previsto para dezembro. O nosso foco é o desempenho em ambientes hostis e a fiabilidade crítica da missão desde o primeiro dia, sistemas concebidos para continuar a funcionar quando o GPS, as comunicações ou as condições no terreno não colaboram.</p>
-        </div>
-    </section>
-
-    <section class="section-alt">
-        <div class="container">
-            <span class="eyebrow">Foco Tecnológico</span>
-            <h2>Onde investimos o esforço de engenharia</h2>
-            <div class="tag-row">
-                <span class="tag">Navegação sem GPS</span>
-                <span class="tag">Integração LiDAR</span>
-                <span class="tag">Comunicações resilientes</span>
-                <span class="tag">Voo autónomo</span>
-                <span class="tag">GeoIA</span>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <span class="eyebrow">Arquitetura da Plataforma</span>
-            <h2>A engenharia por trás da plataforma</h2>
-            <p class="section-intro">Os drones táticos convencionais são dispendiosos de arriscar e vulneráveis à guerra eletrónica — jamming e spoofing. A nossa arquitetura foi concebida para resolver ambos os problemas.</p>
-
-            <div class="grid">
-                <div class="card">
-                    <h3>Navegação sem GPS</h3>
-                    <p>Utiliza odometria visual a bordo, fundida com deteção inercial e barométrica, para corrigir o desvio e manter dados precisos de posição e velocidade — sem necessidade de ligação por satélite. A correspondência com mapas de referência e a relocalização de rota alargam isto a uma solução completa de navegação sem GNSS.</p>
-                </div>
-                <div class="card">
-                    <h3>Cadeia de Valor Limpa</h3>
-                    <p>A eletrónica é adquirida exclusivamente junto de nações aliadas (NATO, Taiwan, Japão), evitando riscos de espionagem e hardware vetado.</p>
-                </div>
-            </div>
-
-            <div class="figure">
-                <svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="archTitle">
-                    <title id="archTitle">Diagrama que mostra os subsistemas centrais do UAS Amélia Nótus — comunicações, sensores, energia e tração — cada um ligado ao MCU central</title>
-                    <rect width="700" height="520" fill="#0b0e12"/>
-
-                    <defs>
-                        <marker id="archArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                            <path d="M0,0 L10,5 L0,10 z" fill="#5c6b62"/>
-                        </marker>
-                    </defs>
-
-                    <line x1="350" y1="112" x2="350" y2="206" stroke="#5c6b62" stroke-width="2" marker-end="url(#archArrow)"/>
-                    <line x1="350" y1="408" x2="350" y2="314" stroke="#5c6b62" stroke-width="2" marker-end="url(#archArrow)"/>
-                    <line x1="202" y1="260" x2="263" y2="260" stroke="#5c6b62" stroke-width="2" marker-end="url(#archArrow)"/>
-                    <line x1="498" y1="260" x2="437" y2="260" stroke="#5c6b62" stroke-width="2" marker-end="url(#archArrow)"/>
-
-                    <!-- Comunicações (topo) -->
-                    <rect x="265" y="30" width="170" height="80" rx="6" fill="#10141a" stroke="#ff9900" stroke-width="2"/>
-                    <text x="350" y="63" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="17" text-anchor="middle">Comms</text>
-                    <text x="350" y="85" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Ligações de controlo e vídeo</text>
-
-                    <!-- Sensores modulares (esquerda) -->
-                    <rect x="30" y="210" width="170" height="100" rx="6" fill="#10141a" stroke="#4a93a8" stroke-width="2"/>
-                    <text x="115" y="253" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="16" text-anchor="middle">Sensores modulares</text>
-                    <text x="115" y="275" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Módulo multissensor</text>
-
-                    <!-- Gestão de energia (direita) -->
-                    <rect x="500" y="210" width="170" height="100" rx="6" fill="#10141a" stroke="#4b6b46" stroke-width="2"/>
-                    <text x="585" y="248" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="15" text-anchor="middle">Gestão de</text>
-                    <text x="585" y="266" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="15" text-anchor="middle">energia</text>
-                    <text x="585" y="288" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Regulação inteligente</text>
-
-                    <!-- Sistema de tração (baixo) -->
-                    <rect x="265" y="410" width="170" height="80" rx="6" fill="#10141a" stroke="#ff3b3b" stroke-width="2"/>
-                    <text x="350" y="443" fill="#dfe7e2" font-family="Archivo, sans-serif" font-weight="700" font-size="17" text-anchor="middle">Sistema de tração</text>
-                    <text x="350" y="465" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Controlo de precisão</text>
-
-                    <!-- MCU central (centro, mais destacado) -->
-                    <rect x="265" y="208" width="170" height="104" rx="6" fill="#10141a" stroke="#39ff14" stroke-width="3"/>
-                    <text x="350" y="253" fill="#39ff14" font-family="Archivo, sans-serif" font-weight="800" font-size="19" text-anchor="middle">MCU central</text>
-                    <text x="350" y="278" fill="#93a39a" font-family="Archivo, sans-serif" font-size="12" text-anchor="middle">Cálculos críticos de voo</text>
-                </svg>
-                <div class="figure-caption">Visão geral da arquitetura do sistema — disposição dos subsistemas em torno do controlador de voo central.</div>
-            </div>
+            <span class="eyebrow">FMM-L v1</span>
+            <h2>O que faz</h2>
+            <p class="section-intro">O FMM-L v1 faz exatamente quatro coisas. Não é feita qualquer afirmação além destas, e nada mais está ainda integrado.</p>
 
             <div class="table-scroll">
             <table>
                 <thead>
                     <tr>
-                        <th>Módulo / Componente</th>
-                        <th>Especificação Operacional</th>
+                        <th>Capacidade</th>
+                        <th>O Que Faz</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><span class="highlight">Core MCU</span></td>
-                        <td>Trata dos cálculos críticos de voo — velocidade, orientação e altitude — a partir de sensores inerciais e de pressão a bordo.</td>
+                        <td><span class="highlight">Ligação C2 Cifrada</span></td>
+                        <td>Comando e telemetria circulam por um canal cifrado com AES-128 entre o operador e o veículo.</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">Comms</span></td>
-                        <td>Ligação de dupla frequência que separa controlo e vídeo, permitindo operação FPV em tempo real além da linha de vista direta.</td>
+                        <td><span class="highlight">Relay / Malha</span></td>
+                        <td>Os módulos FMM-L reencaminham o tráfego uns dos outros, alargando o alcance da ligação sem infraestrutura adicional em terra.</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">Sensores Modulares</span></td>
-                        <td>Módulo de sensores intercambiável que suporta múltiplas tecnologias de deteção para cartografia de terreno e deteção de obstáculos.</td>
+                        <td><span class="highlight">Agnóstico de Veículo</span></td>
+                        <td>Funciona com qualquer piloto automático ArduPilot ou PX4 através de MAVLink — sem trabalho de integração por parte do cliente.</td>
                     </tr>
                     <tr>
-                        <td><span class="highlight">Gestão de Energia</span></td>
-                        <td>Regulação eficiente de energia com controlo de carga inteligente para prolongar o tempo de voo.</td>
-                    </tr>
-                    <tr>
-                        <td><span class="highlight">Sistema de Tração</span></td>
-                        <td>Propulsão de duplo motor com controlo eletrónico de velocidade de precisão.</td>
+                        <td><span class="highlight">Monitorização de Integridade GNSS</span></td>
+                        <td>Deteta jamming e spoofing de GPS e alerta o operador em tempo real.</td>
                     </tr>
                 </tbody>
             </table>
             </div>
+
+            <div class="render-grid">
+                <figure class="render-figure">
+                    <picture>
+                        <source srcset="../assets/img/fmm-exploded.webp" type="image/webp">
+                        <img src="../assets/img/fmm-exploded.jpg" width="1200" height="900" alt="Vista explodida do módulo FMM-L, mostrando a sua montagem interna." loading="lazy">
+                    </picture>
+                    <figcaption><span class="render-tag">Render conceptual</span>FMM-L, vista explodida — imagem placeholder, render real por adicionar.</figcaption>
+                </figure>
+                <figure class="render-figure">
+                    <picture>
+                        <source srcset="../assets/img/fmm-blueprint.webp" type="image/webp">
+                        <img src="../assets/img/fmm-blueprint.jpg" width="1200" height="900" alt="Desenho técnico (blueprint) do módulo FMM-L." loading="lazy">
+                    </picture>
+                    <figcaption><span class="render-tag">Render conceptual</span>FMM-L, blueprint técnico — imagem placeholder, render real por adicionar.</figcaption>
+                </figure>
+            </div>
+
+            <figure class="render-figure">
+                <picture>
+                    <source srcset="../assets/img/fmm-ugv.webp" type="image/webp">
+                    <img src="../assets/img/fmm-ugv.jpg" width="1200" height="800" alt="Módulo FMM-L montado num veículo terrestre não tripulado." loading="lazy">
+                </picture>
+                <figcaption><span class="render-tag">Render conceptual</span>FMM-L montado num veículo terrestre — agnóstico de veículo por conceção. Imagem placeholder, render real por adicionar.</figcaption>
+            </figure>
         </div>
     </section>
 
-    <!-- TODO: Miguel/Nuno — confirm this reflects your actual process -->
+    <section class="section-alt">
+        <div class="container">
+            <span class="eyebrow">O Que É — E O Que Não É</span>
+            <h2>Complementa a sua ligação de vídeo. Não a substitui.</h2>
+            <p class="section-intro">O FMM-L é um canal de comando e controlo resiliente mais um monitor de integridade GNSS — não uma ligação de vídeo. Não transporta vídeo e não reivindica alta largura de banda. Complementa qualquer ligação de vídeo ou de sensores que o veículo já tenha. Não lhe chamamos "impossível de bloquear"; o que construímos é uma ligação concebida para continuar a funcionar sob jamming, e um monitor que avisa o operador quando a fixação de GPS não é de confiança.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <span class="eyebrow">Diferenciadores</span>
+            <h2>Porque é que o FMM-L é construído assim</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>Fabrico Europeu</h3>
+                    <p>Concebido e montado em Portugal, com componentes provenientes da UE e de estados-membros da NATO.</p>
+                </div>
+                <div class="card">
+                    <h3>Baixo Custo por Nó</h3>
+                    <p>Preço ajustado para caber em veículos baratos e sacrificáveis — não só nos que conseguem absorver uma carga útil dispendiosa.</p>
+                </div>
+                <div class="card">
+                    <h3>MAVLink Nativo</h3>
+                    <p>Fala MAVLink nativamente com ArduPilot e PX4, sem necessidade de construir ou manter uma camada de integração personalizada.</p>
+                </div>
+                <div class="card">
+                    <h3>Integridade GNSS Incorporada</h3>
+                    <p>A deteção de spoofing e jamming não é um extra — vem incluída no FMM-L v1, com alertas diretos para o operador.</p>
+                </div>
+                <div class="card">
+                    <h3>Duplo Uso</h3>
+                    <p>Construído para defesa e para proteção civil — combate a incêndios florestais, busca e salvamento — não um produto de mercado único.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section-alt">
         <div class="container">
             <span class="eyebrow">Como Funciona</span>
@@ -174,55 +153,32 @@
                 <div class="process-step">
                     <div class="process-node">1</div>
                     <h3>Consulta Inicial</h3>
-                    <p>Discussão dos requisitos operacionais e restrições.</p>
+                    <p>Discussão do veículo, da missão e do ambiente operacional.</p>
                 </div>
                 <div class="process-step">
                     <div class="process-node">2</div>
-                    <h3>Especificação Técnica</h3>
-                    <p>Especificação da plataforma personalizada com base no perfil de missão.</p>
+                    <h3>Verificação de Compatibilidade</h3>
+                    <p>Confirmação da compatibilidade ArduPilot/PX4 e da montagem na plataforma-alvo.</p>
                 </div>
                 <div class="process-step">
                     <div class="process-node">3</div>
-                    <h3>Desenvolvimento</h3>
-                    <p>Construção e integração, de acordo com as especificações acima.</p>
+                    <h3>Validação em Bancada e Campo</h3>
+                    <p>Validação da ligação, do relay e do comportamento de integridade GNSS antes da implementação.</p>
                 </div>
                 <div class="process-step">
                     <div class="process-node">4</div>
-                    <h3>Testes de Campo</h3>
-                    <p>Validação em condições representativas do terreno.</p>
-                </div>
-                <div class="process-step">
-                    <div class="process-node">5</div>
                     <h3>Entrega e Suporte</h3>
-                    <p>Implementação e suporte técnico contínuo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <span class="eyebrow">Próximos Desenvolvimentos</span>
-            <h2>O que estamos a construir a seguir</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Plataforma de Inteligência Geoespacial</h3>
-                    <p>Levantamentos aéreos com drones — magnetometria, LiDAR, espectrometria de raios gama — processados com aprendizagem automática para análise de terreno e avaliação de ameaças.</p>
-                </div>
-                <div class="card">
-                    <h3>Serviços de Levantamento Geridos</h3>
-                    <p>Recolha de dados aéreos e elaboração de relatórios de ciclo completo para organizações de defesa e proteção civil, desde o planeamento de voo até à entrega da análise.</p>
+                    <p>Implementação no veículo do cliente e suporte técnico contínuo.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <div class="cta-band">
-        <h2>Tem um requisito operacional?</h2>
-        <p>Diga-nos o que precisa que a plataforma faça e diremos o que é possível alcançar.</p>
+        <h2>Tem um veículo que quer proteger?</h2>
+        <p>Diga-nos o que é e o que precisa para sobreviver, e diremos o que é possível alcançar.</p>
         <div class="hero-actions">
             <a href="contact.html" class="btn btn-primary">Contactar</a>
-            <a href="../falcata-systems-capability-brief-pt.pdf" class="btn btn-secondary">Descarregar Dossier de Capacidades (PDF)</a>
         </div>
     </div>
 
@@ -230,12 +186,12 @@
         <div class="footer-inner">
             <div>
                 <h4>Falcata Systems</h4>
-                <p>Ferramentas UAS e de inteligência geoespacial para defesa e proteção civil, concebidas e fabricadas em Portugal.</p>
+                <p>Módulos resilientes de comando, controlo e integridade GNSS para sistemas não tripulados, concebidos em Portugal para defesa e proteção civil.</p>
             </div>
             <div>
                 <h4>Navegar</h4>
                 <a href="index.html">Início</a>
-                <a href="services.html">Serviços</a>
+                <a href="services.html">Produto</a>
                 <a href="company.html">Empresa</a>
                 <a href="roadmap.html">Roteiro</a>
                 <a href="contact.html">Contacto</a>
