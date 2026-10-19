@@ -103,6 +103,19 @@ nav {
     border-bottom-color: var(--accent-primary);
 }
 
+/* CLIENT PORTAL LINK */
+.nav-links a.nav-portal {
+    color: var(--text-bright);
+    padding: 6px 12px;
+    border: 1px solid var(--accent-primary);
+    border-radius: 2px;
+}
+
+.nav-links a.nav-portal:hover {
+    background: var(--accent-primary);
+    color: var(--bg-base);
+}
+
 /* LANGUAGE SWITCH */
 .lang-switch {
     display: flex;

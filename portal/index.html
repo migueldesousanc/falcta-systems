@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07090a">
+<meta name="robots" content="noindex,nofollow">
+<title>Vigia Costeira · Falcata Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+:root{
+  --bg:#07090a; --glass:rgba(12,16,19,.72); --glass2:rgba(255,255,255,.05); --stroke:rgba(255,255,255,.09); --stroke2:rgba(255,255,255,.16);
+  --fg:#e8edef; --muted:#97a3a9; --dim:#5f6b70;
+  --accent:#e2a336; --accent-ink:#0b0d0e;
+  --crit:#ff5a52; --warn:#f0b13e; --ok:#4cc08f; --ais:#9cc6da; --radar:#c39bf0; --event:#ffffff;
+  --h0:#ffe08a; --h1:#ff9a3c; --h2:#ff4d2e; --h3:#c9182b;
+  --f-cond:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+button{font-family:inherit}
+button:focus-visible,input:focus-visible,a:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.glass{background:var(--glass);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid var(--stroke);border-radius:var(--r);box-shadow:0 10px 40px rgba(0,0,0,.45)}
+
+/* ---------- LOGIN ---------- */
+#login{position:fixed;inset:0;display:grid;place-items:center;padding:24px}
+#loginbg{position:absolute;inset:0;z-index:0;background:#0b1418}
+#login::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,rgba(7,9,10,.25),rgba(7,9,10,.82) 75%),linear-gradient(180deg,rgba(7,9,10,.55),rgba(7,9,10,.2) 40%,rgba(7,9,10,.75))}
+.back{position:absolute;z-index:3;top:max(18px,env(safe-area-inset-top));right:max(18px,env(safe-area-inset-right));display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;color:var(--fg);text-decoration:none;font:600 13px var(--f-body)}
+.back:hover{border-color:var(--stroke2)}
+.brandtop{position:absolute;z-index:3;top:max(18px,env(safe-area-inset-top));left:max(20px,env(safe-area-inset-left));display:flex;align-items:center;gap:10px;font:600 12px var(--f-cond);letter-spacing:.32em;color:var(--fg)}
+.card{position:relative;z-index:2;width:min(400px,100%);padding:34px 32px 26px;display:grid;gap:16px}
+.card .logo{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:6px;text-align:center}
+.card .logo .nm{font:700 22px var(--f-cond);letter-spacing:.22em}
+.card .logo .sub{font:500 12.5px var(--f-body);color:var(--muted);letter-spacing:.02em}
+.field{display:grid;gap:6px}
+.field label{font:600 12px var(--f-body);color:var(--muted);letter-spacing:.03em}
+.field input{height:44px;border-radius:10px;border:1px solid var(--stroke);background:rgba(0,0,0,.35);color:var(--fg);padding:0 14px;font:15px var(--f-body)}
+.field input:focus{border-color:var(--accent);outline:none}
+.pw{position:relative}
+.pw input{width:100%;padding-right:44px}
+.pw button{position:absolute;right:6px;top:6px;width:32px;height:32px;border:0;background:none;color:var(--muted);cursor:pointer;border-radius:8px}
+.btn{height:44px;border:0;border-radius:10px;background:var(--fg);color:var(--bg);font:700 14px var(--f-body);letter-spacing:.04em;cursor:pointer}
+.btn:hover{background:#fff}
+.link{justify-self:center;background:none;border:0;color:var(--muted);font:500 13px var(--f-body);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.link:hover{color:var(--fg)}
+.msg{font-size:13px;border-radius:8px;padding:8px 12px}
+.msg.err{background:rgba(255,90,82,.12);color:#ffb3ae;border:1px solid rgba(255,90,82,.3)}
+.msg.info{background:var(--glass2);color:var(--muted);border:1px solid var(--stroke)}
+.foot{position:absolute;z-index:3;bottom:max(14px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;font:11px var(--f-mono);color:var(--dim);letter-spacing:.06em}
+
+/* ---------- PORTAL ---------- */
+#portal{position:fixed;inset:0}
+#map{position:absolute;inset:0;background:#0b1418}
+.leaflet-container{font-family:var(--f-body);background:#0b1418}
+.leaflet-control-attribution{background:rgba(7,9,10,.6)!important;color:var(--dim)!important;font-size:10px!important;border-radius:6px 0 0 0}
+.leaflet-control-attribution a{color:var(--muted)!important}
+.leaflet-bar{border:1px solid var(--stroke)!important;border-radius:10px!important;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.4)!important}
+.leaflet-bar a{background:var(--glass)!important;color:var(--fg)!important;border-bottom:1px solid var(--stroke)!important;backdrop-filter:blur(12px);width:34px!important;height:34px!important;line-height:34px!important}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:rgba(12,16,19,.92);color:var(--fg);border:1px solid var(--stroke);backdrop-filter:blur(12px)}
+.leaflet-popup-content-wrapper{border-radius:12px}
+.leaflet-popup-content{margin:12px 14px;font-size:13px;line-height:1.45}
+.leaflet-popup-content b{font:600 15px var(--f-cond);letter-spacing:.03em}
+.leaflet-popup-content a{color:var(--accent)}
+.leaflet-container a.leaflet-popup-close-button{color:var(--muted)}
+.leaflet-tooltip.vt{background:rgba(7,9,10,.8);border:1px solid var(--stroke);color:var(--fg);font:500 11px var(--f-mono);border-radius:6px;box-shadow:none;padding:2px 6px}
+.leaflet-tooltip.vt:before{display:none}
+
+/* left panel */
+#panel{position:absolute;z-index:500;top:16px;left:16px;bottom:16px;width:316px;display:flex;flex-direction:column;overflow:hidden}
+.ph{display:flex;align-items:center;gap:10px;padding:16px 18px 14px;border-bottom:1px solid var(--stroke)}
+.ph .t1{font:600 10.5px var(--f-cond);letter-spacing:.3em;color:var(--muted)}
+.ph .t2{font:700 18px var(--f-cond);letter-spacing:.1em;line-height:1.05}
+.ph .user{margin-left:auto;font:500 11px var(--f-mono);color:var(--muted);background:var(--glass2);border:1px solid var(--stroke);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.pb{flex:1;overflow:auto;padding:6px 18px 12px}
+.sec{padding:12px 0;border-bottom:1px solid var(--stroke);display:grid;gap:9px}
+.sec:last-child{border-bottom:0}
+.sec h4{margin:0;font:600 11.5px var(--f-cond);letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.opts{display:grid;gap:6px}
+.opt{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;border:1px solid var(--stroke);background:transparent;color:var(--fg);text-align:left;cursor:pointer;font:500 13.5px var(--f-body)}
+.opt:hover{background:var(--glass2)}
+.opt[aria-checked="true"]{border-color:var(--accent);background:rgba(226,163,54,.1)}
+.opt .rd{width:14px;height:14px;border-radius:50%;border:2px solid var(--dim);flex:none}
+.opt[aria-checked="true"] .rd{border-color:var(--accent);background:radial-gradient(circle,var(--accent) 0 3px,transparent 4px)}
+.opt small{display:block;color:var(--muted);font-size:11.5px}
+.opt:disabled{opacity:.45;cursor:not-allowed}
+.soon{margin-left:auto;font:500 10px var(--f-mono);color:var(--muted);border:1px solid var(--stroke);padding:1px 6px;border-radius:999px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--stroke);background:transparent;color:var(--fg);border-radius:999px;padding:5px 11px;font:500 12px var(--f-body);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip.add{color:var(--accent);border-color:rgba(226,163,54,.5)}
+.chip.add:hover{background:rgba(226,163,54,.12)}
+.tg{display:flex;align-items:center;gap:10px;font-size:13.5px;cursor:pointer;user-select:none}
+.tg input{appearance:none;width:34px;height:20px;border-radius:999px;background:rgba(255,255,255,.14);position:relative;cursor:pointer;flex:none;transition:background .15s}
+.tg input::after{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform .15s}
+.tg input:checked{background:var(--accent)}
+.tg input:checked::after{transform:translateX(14px)}
+.tg .sw{margin-left:auto;width:10px;height:10px;border-radius:2px;flex:none}
+.sl{display:grid;grid-template-columns:96px minmax(0,1fr) 42px;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.sl input{width:100%;accent-color:var(--accent)}
+.sl output{font:12px var(--f-mono);color:var(--fg);text-align:right}
+.ramp{height:10px;border-radius:999px;background:linear-gradient(90deg,var(--h0),var(--h1),var(--h2),var(--h3))}
+.rampl{display:flex;justify-content:space-between;font:10.5px var(--f-mono);color:var(--muted)}
+.sym{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;font-size:12px;color:var(--muted)}
+.sym div{display:flex;align-items:center;gap:7px}
+.pf{padding:12px 18px 16px;border-top:1px solid var(--stroke);display:flex;gap:8px}
+.ghost{flex:1;height:38px;border-radius:10px;border:1px solid var(--stroke);background:transparent;color:var(--fg);font:600 13px var(--f-body);cursor:pointer}
+.ghost:hover{background:var(--glass2)}
+.ghost.red:hover{border-color:rgba(255,90,82,.5);color:#ffb3ae}
+
+/* right drawer */
+#drawer{position:absolute;z-index:500;top:16px;right:16px;width:372px;max-height:calc(100% - 140px);display:flex;flex-direction:column;overflow:hidden}
+.tabs{display:flex;padding:6px;gap:4px;border-bottom:1px solid var(--stroke)}
+.tabs button{flex:1;border:0;background:none;color:var(--muted);font:600 12.5px var(--f-body);padding:8px 4px;border-radius:8px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--glass2);color:var(--fg)}
+.tabs .n{margin-left:6px;font:600 10.5px var(--f-mono);background:var(--crit);color:#fff;border-radius:999px;padding:0 6px}
+.pane{overflow:auto;padding:12px 14px 16px;display:grid;gap:9px;align-content:start}
+.kv{font:11.5px var(--f-mono);color:var(--muted)}
+.alert{border:1px solid var(--stroke);border-radius:12px;padding:11px 12px;display:grid;gap:6px;cursor:pointer;background:rgba(0,0,0,.18);position:relative;overflow:hidden}
+.alert::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--sev)}
+.alert:hover{border-color:var(--stroke2)}
+.alert.sel{border-color:var(--accent)}
+.alert .top{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.alert b{font:600 15px var(--f-cond);letter-spacing:.03em}
+.pill{font:600 10px var(--f-mono);letter-spacing:.08em;padding:2px 7px;border-radius:999px;color:#fff;background:var(--sev);white-space:nowrap}
+.alert ul{margin:0;padding-left:16px;display:grid;gap:3px;font-size:13px}
+.alert li::marker{color:var(--sev)}
+.quiet{border:1px dashed var(--stroke);border-radius:12px;padding:9px 12px;font-size:12.5px;color:var(--muted)}
+.ctl{display:grid;gap:8px;border:1px solid var(--stroke);border-radius:12px;padding:10px 12px}
+.spot{display:grid;grid-template-columns:24px minmax(0,1fr) 36px;gap:3px 8px;align-items:center;padding:8px 6px;border-radius:10px;cursor:pointer}
+.spot:hover{background:var(--glass2)}
+.spot .rk{font:11px var(--f-mono);color:var(--dim)}
+.spot .sc{font:600 13px var(--f-mono);text-align:right}
+.spot .bar{grid-column:2/4;height:4px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.spot .bar i{display:block;height:100%;border-radius:999px}
+.spot .why{grid-column:2/4;font:10.5px var(--f-mono);color:var(--dim)}
+.tag{font:600 9.5px var(--f-mono);color:var(--crit);margin-left:6px;letter-spacing:.06em}
+.ev{padding:9px 6px 11px;border-bottom:1px solid var(--stroke);display:grid;gap:3px;cursor:pointer;border-radius:8px}
+.ev:hover{background:var(--glass2)}
+.ev .d{font:11px var(--f-mono);color:var(--accent)}
+.ev b{font:600 15px var(--f-cond);letter-spacing:.02em}
+.ev span{font-size:13px;color:#c9d2d6}
+.ev a{color:var(--muted);font:11.5px var(--f-mono)}
+.note{margin:0;color:var(--muted);font-size:12.5px}
+
+/* timeline */
+#tl{position:absolute;z-index:500;left:348px;right:404px;bottom:16px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 14px}
+.mode{font:600 10.5px var(--f-mono);letter-spacing:.1em;padding:3px 9px;border-radius:999px;border:1px solid var(--stroke);white-space:nowrap}
+.mode .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--warn);margin-right:6px;vertical-align:0}
+.mode.real .dot{background:var(--ok)}
+.mode.live .dot,.livedot{animation:pulse 1.6s ease-in-out infinite}
+.livedot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:6px;vertical-align:1px}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(76,192,143,.6)}50%{box-shadow:0 0 0 5px rgba(76,192,143,0)}}
+.clock{font:500 22px var(--f-mono);font-variant-numeric:tabular-nums;line-height:1}
+.clock small{display:block;font:500 9.5px var(--f-mono);color:var(--muted);letter-spacing:.08em;margin-top:3px}
+#play{width:38px;height:38px;border-radius:50%;border:0;background:var(--fg);color:var(--bg);font-size:13px;cursor:pointer;flex:none}
+#t{flex:1 1 180px;accent-color:var(--accent);min-width:0}
+.jumps{display:flex;flex-wrap:wrap;gap:6px;width:100%}
+.jumps button{border:1px solid var(--stroke);background:transparent;color:var(--muted);border-radius:999px;padding:4px 10px;font:500 11.5px var(--f-body);cursor:pointer}
+.jumps button:hover{color:var(--fg);border-color:var(--stroke2)}
+
+/* base switch */
+#base{position:absolute;z-index:500;right:16px;bottom:16px;display:flex;padding:4px;gap:4px;border-radius:12px}
+#base button{border:0;background:none;color:var(--muted);font:600 12.5px var(--f-body);padding:7px 14px;border-radius:9px;cursor:pointer}
+#base button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.leaflet-bottom.leaflet-right{bottom:62px}
+
+/* markers */
+.vm{width:22px;height:22px;display:grid;place-items:center}
+.vm svg{overflow:visible;filter:drop-shadow(0 1px 2px rgba(0,0,0,.7))}
+.evm{width:16px;height:16px;transform:rotate(45deg);background:var(--event);border:2px solid #0b1418;box-shadow:0 0 0 1px rgba(255,255,255,.4),0 2px 6px rgba(0,0,0,.6)}
+.eta{background:rgba(201,24,43,.92);color:#fff;font:600 11px var(--f-mono);padding:3px 7px;border-radius:6px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+.hl{font:600 11px var(--f-mono);color:#fff;text-shadow:0 1px 3px #000,0 0 6px #000;white-space:nowrap}
+
+.empty{position:absolute;z-index:600;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,calc(100% - 32px));padding:20px 22px;display:grid;gap:10px}
+.empty h3{margin:0;font:700 17px var(--f-cond);letter-spacing:.08em}
+.empty code{font:12px var(--f-mono);background:rgba(0,0,0,.35);padding:7px 9px;border-radius:8px;display:block;overflow-x:auto;white-space:nowrap}
+.mobtoggle{display:none}
+
+@media (max-width:1100px){
+  #tl{left:16px;right:16px;bottom:70px}
+  #drawer{width:340px}
+}
+@media (max-width:800px){
+  #panel{top:auto;bottom:0;left:0;right:0;width:auto;max-height:70%;border-radius:var(--r) var(--r) 0 0}
+  #panel:not(.open){display:none}
+  #drawer{top:auto;left:0;right:0;bottom:0;width:auto;max-height:65%;border-radius:var(--r) var(--r) 0 0}
+  #drawer:not(.open){display:none}
+  #tl{top:max(12px,env(safe-area-inset-top));bottom:auto;left:12px;right:12px}
+  .jumps{display:none}
+  .mobtoggle{display:flex;position:absolute;z-index:550;left:12px;bottom:max(14px,env(safe-area-inset-bottom));gap:8px}
+  .mobtoggle button{height:38px;padding:0 14px;border-radius:10px;color:var(--fg);font:600 13px var(--f-body);cursor:pointer}
+  #base{bottom:max(14px,env(safe-area-inset-bottom))}
+  .leaflet-bottom.leaflet-right{bottom:64px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ================= LOGIN ================= -->
+<section id="login" aria-label="Entrar no portal">
+  <div id="loginbg" aria-hidden="true"></div>
+  <div class="brandtop"><svg width="22" height="22" viewBox="0 0 26 26" aria-hidden="true"><path d="M5 22 C9 15 12 8 21 3 C19 9 16 14 10 19 L8 23 Z" fill="#e8edef"/><path d="M4 21 L9 24" stroke="#e2a336" stroke-width="2.2"/></svg>FALCATA SYSTEMS</div>
+  <a class="back glass" href="/">← Voltar ao site</a>
+  <form class="card glass" id="lform" autocomplete="on" novalidate>
+    <div class="logo">
+      <svg width="46" height="46" viewBox="0 0 26 26" aria-hidden="true"><path d="M5 22 C9 15 12 8 21 3 C19 9 16 14 10 19 L8 23 Z" fill="#e8edef"/><path d="M4 21 L9 24" stroke="#e2a336" stroke-width="2.2"/></svg>
+      <div class="nm">FALCATA SYSTEMS</div>
+      <div class="sub">Portal de clientes · Vigia Costeira</div>
+    </div>
+    <div class="field"><label for="u">Utilizador</label><input id="u" name="username" autocomplete="username" required></div>
+    <div class="field"><label for="p">Password</label><div class="pw"><input id="p" name="password" type="password" autocomplete="current-password" required><button type="button" id="peek" aria-label="Mostrar password">◉</button></div></div>
+    <div class="msg err" id="lerr" hidden>Utilizador ou password incorretos.</div>
+    <div class="msg info" id="linfo" hidden>Para recuperar o acesso, contacte o seu gestor de conta na Falcata Systems.</div>
+    <button class="btn" type="submit">Entrar</button>
+    <button class="link" type="button" id="forgot">Esqueci-me da password</button>
+  </form>
+  <div class="foot" id="lfoot">ACESSO RESTRITO · ATIVIDADE REGISTADA · VERSÃO DE DEMONSTRAÇÃO</div>
+</section>
+
+<!-- ================= PORTAL ================= -->
+<section id="portal" hidden>
+  <div id="map" role="application" aria-label="Mapa da costa Setúbal–Tejo"></div>
+
+  <aside id="panel" class="glass" aria-label="Controlos">
+    <div class="ph">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M5 22 C9 15 12 8 21 3 C19 9 16 14 10 19 L8 23 Z" fill="#e8edef"/><path d="M4 21 L9 24" stroke="#e2a336" stroke-width="2.2"/></svg>
+      <div><div class="t1">FALCATA SYSTEMS</div><div class="t2">VIGIA COSTEIRA</div></div>
+      <span class="user" id="who">pj.demo</span>
+    </div>
+    <div class="pb">
+      <div class="sec"><h4>Tipo de análise</h4>
+        <div class="opts" role="radiogroup" id="atype">
+          <button class="opt" role="radio" aria-checked="true" data-a="vig"><span class="rd"></span><span>Vigilância marítima<small>Navios, comportamento suspeito, alertas</small></span></button>
+          <button class="opt" role="radio" aria-checked="false" data-a="risk"><span class="rd"></span><span>Risco de desembarque<small>Locais prováveis e hora estimada</small></span></button>
+          <button class="opt" role="radio" aria-checked="false" data-a="cases"><span class="rd"></span><span>Casos reais<small>Apreensões de 2026 com fonte</small></span></button>
+        </div>
+      </div>
+      <div class="sec"><h4>Área</h4>
+        <div class="opts">
+          <button class="opt" aria-checked="true" id="area1"><span class="rd"></span><span>Setúbal – Tejo<small>Cascais a Sines · 37°45′–38°51′N</small></span></button>
+          <button class="opt" disabled><span class="rd"></span><span>Algarve – Tavira / Fuseta</span><span class="soon">brevemente</span></button>
+        </div>
+      </div>
+      <div class="sec"><h4>Datas disponíveis</h4>
+        <div class="chips" id="dates"></div>
+        <input type="file" id="file" accept=".csv,.jsonl,.json,.geojson,.txt" multiple hidden>
+      </div>
+      <div class="sec"><h4>Radar satélite · Sentinel-1</h4>
+        <div class="chips" id="sarchips"></div>
+        <p class="note" id="sarnote" style="font-size:12px">Sem passagens carregadas. Corra <b>vigia_sar.py</b> e carregue o GeoJSON.</p>
+      </div>
+      <div class="sec"><h4>Camadas</h4>
+        <label class="tg"><input type="checkbox" id="L-ves" checked>Navios e rastos<span class="sw" style="background:var(--ais)"></span></label>
+        <label class="tg"><input type="checkbox" id="L-alr" checked>Alertas e previsão<span class="sw" style="background:var(--crit)"></span></label>
+        <label class="tg"><input type="checkbox" id="L-heat" checked>Risco de desembarque<span class="sw" style="background:var(--h2)"></span></label>
+        <label class="tg"><input type="checkbox" id="L-ev" checked>Casos reais 2026<span class="sw" style="background:var(--event)"></span></label>
+        <label class="tg"><input type="checkbox" id="L-sar" checked>Radar satélite<span class="sw" style="background:#7fe0d0"></span></label>
+      </div>
+      <div class="sec"><h4>Visualização</h4>
+        <div class="sl"><label for="op">Transparência</label><input id="op" type="range" min="10" max="100" value="80"><output id="opv">80%</output></div>
+        <div class="sl"><label for="sc">Escala</label><input id="sc" type="range" min="50" max="200" value="100"><output id="scv">1,0×</output></div>
+        <div class="ramp" aria-hidden="true"></div>
+        <div class="rampl"><span>0 baixo</span><span>50</span><span>100 alto</span></div>
+        <div class="sym">
+          <div><svg width="14" height="14" viewBox="-7 -7 14 14"><path d="M0,-6 L4,5 L-4,5Z" fill="var(--ais)"/></svg>Navio com AIS</div>
+          <div><svg width="14" height="14" viewBox="-7 -7 14 14"><path d="M0,-6 L4,5 L-4,5Z" fill="var(--crit)"/></svg>Sinalizado</div>
+          <div><svg width="14" height="14" viewBox="-7 -7 14 14"><circle r="4.5" fill="none" stroke="var(--radar)" stroke-width="2"/></svg>Sem AIS</div>
+          <div><svg width="14" height="14" viewBox="-7 -7 14 14"><circle r="4.5" fill="none" stroke="var(--crit)" stroke-width="1.6" stroke-dasharray="2 2"/></svg>AIS desligado</div>
+          <div><svg width="14" height="14" viewBox="-7 -7 14 14"><path d="M0,-5.5 L5.5,0 L0,5.5 L-5.5,0Z" fill="none" stroke="#ff5a52" stroke-width="2"/></svg>Radar, sem AIS</div>
+          <div><svg width="14" height="14" viewBox="-7 -7 14 14"><rect x="-3.5" y="-3.5" width="7" height="7" fill="none" stroke="#7fe0d0" stroke-width="1.8"/></svg>Radar, com AIS</div>
+        </div>
+      </div>
+    </div>
+    <div class="pf"><button class="ghost" id="loadbtn">Carregar AIS</button><button class="ghost red" id="logout">Sair</button></div>
+  </aside>
+
+  <aside id="drawer" class="glass" aria-label="Resultados">
+    <div class="tabs" role="tablist">
+      <button role="tab" id="tab-a" aria-selected="true">Alertas<span class="n" id="na" hidden></span></button>
+      <button role="tab" id="tab-l" aria-selected="false">Desembarque</button>
+      <button role="tab" id="tab-e" aria-selected="false">Casos</button>
+    </div>
+    <div class="pane" id="pane-a"></div>
+    <div class="pane" id="pane-l" hidden>
+      <div class="ctl">
+        <div class="sl"><span>Lua iluminada</span><span></span><output id="moonv"></output></div>
+        <div class="sl"><label for="hs">Ondulação Hs</label><input id="hs" type="range" min="0.3" max="4" step="0.1" value="1.2"><output id="hsv"></output></div>
+      </div>
+      <p class="note">Pontuação 0–100: acesso discreto por terra, escuridão, mar operável, casos próximos e rumo de contactos rápidos. Pesos iniciais, a calibrar com casos reais.</p>
+      <div id="spots"></div>
+    </div>
+    <div class="pane" id="pane-e" hidden></div>
+  </aside>
+
+  <div id="tl" class="glass">
+    <span class="mode" id="mode"><span class="dot"></span>SIMULAÇÃO</span>
+    <div class="clock"><span id="clockt">20:00</span><small id="clocksub"></small></div>
+    <button id="play" aria-label="Reproduzir">▶</button>
+    <input id="t" type="range" min="0" max="600" step="1" value="0" aria-label="Hora">
+    <div class="jumps" id="jumps">
+      <button data-t="180">23:00 · AIS desligado</button>
+      <button data-t="300">01:00 · Encontro no mar</button>
+      <button data-t="395">02:35 · Lancha rumo à costa</button>
+      <button data-t="440">03:20 · Contacto perdido</button>
+    </div>
+  </div>
+
+  <div id="base" class="glass" role="group" aria-label="Fundo do mapa">
+    <button id="b-map" aria-pressed="false">Mapa</button>
+    <button id="b-sat" aria-pressed="true">Satélite</button>
+  </div>
+
+  <div class="mobtoggle"><button class="glass" id="mt-panel">Filtros</button><button class="glass" id="mt-drawer">Alertas</button></div>
+
+  <div class="empty glass" id="empty" hidden>
+    <h3>Sem dados reais para esta data</h3>
+    <p class="note">Grave uma noite de AIS real com o script <b>vigia_recolha.py</b> e carregue o CSV com <b>Carregar AIS</b>, ou arraste-o para o mapa.</p>
+    <code>python vigia_recolha.py --key A_TUA_CHAVE --horas 10</code>
+    <p class="note" id="loaderr" style="color:#ffb3ae" hidden></p>
+  </div>
+</section>
+
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+/* ======================= ACCESS (DEMO) =======================
+   Demo-only gate. Real client access must be enforced by a server
+   (authentication, HTTPS, access logs). Do not rely on this for real data. */
+const DEMO_USERS={'pj.demo':'vigia2026','falcata':'vigia2026'};
+const ss={get(k){try{return sessionStorage.getItem(k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem(k,v)}catch(e){}},del(k){try{sessionStorage.removeItem(k)}catch(e){}}};
+
+/* ======================= ENGINE ======================= */
+const LON0=-10.15,LON1=-8.60,LAT0=37.75,LAT1=38.85,NM=1.852;
+const km=(a,b)=>{const dy=(b[0]-a[0])*110.57,dx=(b[1]-a[1])*111.32*Math.cos((a[0]+b[0])/2*Math.PI/180);return Math.hypot(dx,dy)};
+const brg=(a,b)=>{const dy=(b[0]-a[0])*110.57,dx=(b[1]-a[1])*111.32*Math.cos(a[0]*Math.PI/180);return(Math.atan2(dx,dy)*180/Math.PI+360)%360};
+const adiff=(a,b)=>{let d=Math.abs(a-b)%360;return d>180?360-d:d};
+const fmtDur=m=>m>=60?`${Math.floor(m/60)} h ${String(Math.round(m%60)).padStart(2,'0')} min`:`${Math.round(m)} min`;
+const n1=x=>x.toFixed(1).replace('.',',');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const TF=new Intl.DateTimeFormat('pt-PT',{timeZone:'Europe/Lisbon',hour:'2-digit',minute:'2-digit',hour12:false});
+const DF=new Intl.DateTimeFormat('pt-PT',{timeZone:'Europe/Lisbon',day:'numeric',month:'short'});
+// Simplified coastline used for distance-to-coast and as offline fallback
+const LAND=[
+ [[38.85,-9.472],[38.82,-9.478],[38.795,-9.49],[38.781,-9.5],[38.76,-9.49],[38.735,-9.478],[38.712,-9.487],[38.7,-9.47],[38.692,-9.44],[38.693,-9.42],[38.686,-9.395],[38.68,-9.35],[38.678,-9.325],[38.686,-9.3],[38.695,-9.26],[38.697,-9.235],[38.696,-9.212],[38.704,-9.17],[38.707,-9.136],[38.715,-9.12],[38.735,-9.1],[38.765,-9.093],[38.8,-9.085],[38.85,-9.05]],
+ [[38.85,-8.94],[38.8,-8.96],[38.758,-8.962],[38.73,-8.985],[38.705,-8.975],[38.69,-9.01],[38.68,-9.04],[38.665,-9.075],[38.655,-9.09],[38.645,-9.105],[38.665,-9.12],[38.687,-9.148],[38.683,-9.18],[38.678,-9.215],[38.672,-9.233],[38.665,-9.255],[38.645,-9.24],[38.6,-9.215],[38.56,-9.2],[38.52,-9.19],[38.48,-9.192],[38.45,-9.205],[38.415,-9.218],[38.42,-9.19],[38.435,-9.15],[38.443,-9.102],[38.447,-9.07],[38.46,-9.03],[38.47,-8.99],[38.484,-8.95],[38.505,-8.92],[38.52,-8.895],[38.525,-8.86],[38.52,-8.8],[38.5,-8.7],[38.48,-8.6]],
+ [[38.45,-8.6],[38.44,-8.72],[38.46,-8.8],[38.48,-8.84],[38.49,-8.87],[38.495,-8.905],[38.48,-8.895],[38.42,-8.852],[38.38,-8.808],[38.3,-8.786],[38.2,-8.785],[38.13,-8.792],[38.05,-8.815],[37.975,-8.865],[37.953,-8.888],[37.93,-8.87],[37.88,-8.8],[37.8,-8.793],[37.75,-8.792]]
+];
+const CLOSE=[[[38.85,-9.472]],[[38.85,-8.6]],[[37.75,-8.6]]];
+const COAST=LAND.map(r=>r.filter(p=>p[0]<LAT1-1e-6&&p[0]>LAT0+1e-6&&p[1]<LON1-1e-6));
+function segDist(p,a,b){const c=Math.cos(p[0]*Math.PI/180);const ax=(a[1]-p[1])*111.32*c,ay=(a[0]-p[0])*110.57,bx=(b[1]-p[1])*111.32*c,by=(b[0]-p[0])*110.57;const dx=bx-ax,dy=by-ay;let t=-(ax*dx+ay*dy)/(dx*dx+dy*dy||1);t=Math.max(0,Math.min(1,t));return Math.hypot(ax+t*dx,ay+t*dy)}
+function distCoast(p){let best=1e9;for(const r of COAST)for(let i=0;i<r.length-1;i++){const d=segDist(p,r[i],r[i+1]);if(d<best)best=d}return best}
+const PORTS=[[38.70,-9.15],[38.515,-8.89],[38.442,-9.10],[38.69,-9.42],[37.95,-8.87],[38.493,-8.902],[38.675,-9.10]];
+const nearPort=p=>PORTS.some(q=>km(p,q)<3);
+const nearEdge=p=>p[0]>LAT1-.03||p[0]<LAT0+.03||p[1]<LON0+.04||p[1]>LON1-.04;
+const inBox=p=>p[0]>=LAT0&&p[0]<=LAT1&&p[1]>=LON0&&p[1]<=LON1;
+
+const EVENTS=[
+ {id:'e1',d:'15 mai 2026',p:[38.688,-9.19],t:'Narcolancha apreendida no estuário do Tejo',x:'Saía do porto de Lisboa com mais de 6,5 t de combustível, víveres e peças para apoio logístico em alto mar. 4 detidos. Polícia Marítima (GAT).',src:'Renascença',url:'https://rr.pt/noticia/pais/2026/05/15/narcolancha-apreendida-no-estuario-do-tejo-pelo-grupo-de-acoes-taticas/470990/'},
+ {id:'e2',d:'23 jul 2026',p:[37.82,-9.97],t:'2,6 t de cocaína a ~50 mn a SW do Cabo Espichel',x:'Lancha intercetada após perseguição. 4 detidos. PJ com MAOC-N, Marinha, Força Aérea e autoridades italianas. Outras embarcações detetadas na zona poderão ter fugido.',src:'Renascença',url:'https://rr.pt/noticia/pais/2026/07/25/droga-apreendida-em-alto-mar-pj-desfere-golpe-em-organizacoes-criminosas-muito-poderosas/479576/'},
+ {id:'e3',d:'23–24 jul 2026',p:[38.505,-8.87],t:'Rede logística desmantelada: lanchas lançadas no Sado',x:'GNR apreende 2 lanchas de alta velocidade, 2 barcos de pesca e 407 jerricãs de gasolina (Montijo, Palmela, estuário do Sado). 1 detido, 4 arguidos.',src:'Observador / Lusa',url:'https://observador.pt/2026/07/25/gnr-desmantela-rede-de-apoio-ao-trafico-internacional-de-droga-por-via-maritima/'},
+ {id:'e4',d:'16 set 2026',p:[38.655,-9.29],t:'Narcolancha intercetada na barra do Tejo',x:'Carga logística: combustível, comunicações, víveres e peças. 11 detidos. Operação coordenada pela PJ com Polícia Marítima, Marinha e Força Aérea.',src:'RTP',url:'https://www.rtp.pt/noticias/pais/policia-maritima-intercepta-narcolancha-no-tejo_n1765958'},
+ {id:'e5',d:'17–18 set 2026',p:[38.52,-9.36],t:'Lancha sem tripulantes a ~7 mn da costa, a sul de Lisboa',x:'Apreendida pela Polícia Marítima e rebocada para Lisboa. Posição aproximada.',src:'RTP',url:'https://www.rtp.pt/noticias/pais/sem-tripulantes-apreendida-embarcacao-de-alta-velocidade-a-sul-de-lisboa_n1766256'},
+];
+const EV_OUT={d:'30 set 2026',t:'Fora da área: Tavira e Fuseta (Algarve)',x:'O SIVICC da GNR detetou lanchas ao largo. 10 detidos, 2 embarcações apreendidas.',src:'RTP',url:'https://www.rtp.pt/noticias/pais/trafico-de-droga-10-detidos-e-duas-narcolanchas-apreendidas-pela-gnr-no-algarve_n1768691'};
+const SPOTS=[
+ {n:'Trafaria / Cova do Vapor',p:[38.668,-9.245],acc:.45,exp:.15},{n:'Costa da Caparica',p:[38.640,-9.240],acc:.35,exp:.9},
+ {n:'Fonte da Telha',p:[38.565,-9.199],acc:.7,exp:.9},{n:'Lagoa de Albufeira',p:[38.514,-9.190],acc:.8,exp:.85},
+ {n:'Praia do Meco',p:[38.480,-9.193],acc:.8,exp:.9},{n:'Cabo Espichel (enseadas)',p:[38.425,-9.205],acc:.5,exp:.55},
+ {n:'Ribeira do Cavalo',p:[38.437,-9.135],acc:.45,exp:.2},{n:'Sesimbra (porto)',p:[38.443,-9.102],acc:.35,exp:.15},
+ {n:'Portinho da Arrábida',p:[38.470,-8.988],acc:.6,exp:.15},{n:'Praia de Galapinhos',p:[38.481,-8.958],acc:.6,exp:.15},
+ {n:'Figueirinha',p:[38.486,-8.948],acc:.7,exp:.15},{n:'Estuário do Sado',p:[38.515,-8.860],acc:.65,exp:.05},
+ {n:'Tróia (costa oceânica)',p:[38.450,-8.873],acc:.6,exp:.6},{n:'Comporta',p:[38.384,-8.809],acc:.8,exp:.9},
+ {n:'Carvalhal / Pego',p:[38.300,-8.787],acc:.8,exp:.9},{n:'Melides',p:[38.130,-8.793],acc:.8,exp:.9},
+];
+const EXEMPT_MEET=new Set(['ferry','piloto','reboque','autoridade','sar','passageiros']);
+const DARK_EXEMPT=new Set(['militar','autoridade','sar']);   // allowed to switch AIS off
+const AUTH_NAME=/WARSHIP|\bNAVY\b|^NRP\b|^P\d{3}\b|COAST ?GUARD|GUARDA|POLICIA|MARINHA|MILITARY|NAVAL/i;
+let DATA=null;
+const hhmm=t=>TF.format(new Date(DATA.t0+t*60000));
+function catFromType(t){t=+t;if(!t&&t!==0)return'desconhecido';if(t===30)return'pesca';if(t===31||t===32||t===52)return'reboque';if(t===35)return'militar';if(t===36)return'vela';if(t===37)return'recreio';if(t>=40&&t<=49)return'alta velocidade';if(t===50)return'piloto';if(t===51)return'sar';if(t===55)return'autoridade';if(t>=60&&t<=69)return'passageiros';if(t>=70&&t<=79)return'carga';if(t>=80&&t<=89)return'tanque';return'outro'}
+function finalize(D){
+  for(const v of D.vessels)for(const o of D.obs[v.id])o.dc=distCoast(o.p);
+  // Reception outages: periods with no AIS from ANY ship (receiver or feed down). Never treated as suspicious.
+  const allT=[];for(const v of D.vessels)if(v.ais)for(const o of D.obs[v.id])if(o.src==='AIS')allT.push(o.t);allT.sort((a,b)=>a-b);D.allT=allT;
+  D.outages=[];for(let i=1;i<allT.length;i++)if(allT[i]-allT[i-1]>8)D.outages.push([allT[i-1],allT[i]]);
+  D.uncovered=(a,b)=>{let o=0;for(const[x,y]of D.outages){const l=Math.max(a,x),r=Math.min(b,y);if(r>l)o+=r-l}return(b-a)-o};
+  D.gaps={};const cover=D.aisCoverNm*NM;const raw=[];
+  for(const v of D.vessels){D.gaps[v.id]=[];if(!v.ais||DARK_EXEMPT.has(v.cat))continue;const a=D.obs[v.id].filter(o=>o.src==='AIS');
+    for(let i=1;i<a.length;i++){const x=a[i-1],y=a[i];const real=D.uncovered(x.t,y.t);
+      if(real>30&&!nearPort(x.p)&&!nearEdge(x.p)&&!nearEdge(y.p)&&x.dc<cover&&x.dc>3&&!(x.st===1||x.st===5))raw.push({id:v.id,from:x.t,to:y.t,real,p1:x.p,p2:y.p})}}
+  // Collective gaps: 4+ ships going silent within 6 min of each other = partial reception loss, not intent
+  D.collective=[];
+  for(const g of raw){const n=new Set(raw.filter(h=>Math.abs(h.from-g.from)<=6).map(h=>h.id)).size;if(n>=4){g.coll=true;D.collective.push(g.from)}else D.gaps[g.id].push(g)}
+  const cand=[];for(const v of D.vessels){if(EXEMPT_MEET.has(v.cat))continue;for(const o of D.obs[v.id])if(o.dc>12*NM&&!(o.sog>6))cand.push({v:v.id,o})}
+  const bk=new Map();for(const c of cand){const k=Math.floor(c.o.t/4);if(!bk.has(k))bk.set(k,[]);bk.get(k).push(c)}
+  const pairs=new Map();
+  for(const[k,arr]of bk){const all=arr.concat(bk.get(k+1)||[]);
+    for(const a of arr)for(const b of all){if(a.v===b.v||Math.abs(a.o.t-b.o.t)>4||km(a.o.p,b.o.p)>=.3*NM)continue;
+      const key=[a.v,b.v].sort().join('|');const t=Math.min(a.o.t,b.o.t);const e=pairs.get(key);
+      if(!e)pairs.set(key,{a:key.split('|')[0],b:key.split('|')[1],t,tEnd:t,p:a.o.p,src:a.o.src===b.o.src?a.o.src:a.o.src+' + '+b.o.src,dc:a.o.dc});else{e.t=Math.min(e.t,t);e.tEnd=Math.max(e.tEnd,t)}}}
+  D.meets=[...pairs.values()];D.byId=Object.fromEntries(D.vessels.map(v=>[v.id,v]));return D;
+}
+function buildSim(dateStr){
+  let t0=Date.parse(dateStr+'T20:00:00Z');const h=+TF.format(new Date(t0)).slice(0,2);t0-=(h-20)*3600000;
+  const ferry=[];for(let s=0;s<=540;s+=60)ferry.push([s,38.518,-8.893],[s+20,38.497,-8.900],[s+30,38.497,-8.900],[s+50,38.518,-8.893]);
+  const V=[
+   {id:'M-1',name:'M-1 · pesqueiro, bandeira estrangeira',cat:'pesca alto mar',ais:true,off:[[140,468]],w:[[0,37.76,-10.10],[140,37.93,-9.80],[170,37.945,-9.78],[290,37.952,-9.770],[330,37.948,-9.772],[470,37.87,-10.02],[600,37.80,-10.13]]},
+   {id:'R-7',name:'R-7 · lancha rápida',cat:'desconhecido',ais:false,w:[[195,38.505,-8.875],[203,38.48,-8.93],[290,37.9515,-9.7685],[330,37.9475,-9.7705],[428,38.47,-8.965],[432,38.479,-8.959]]},
+   {id:'C-1',name:'Graneleiro (rumo S)',cat:'carga',ais:true,w:[[0,38.85,-9.86],[300,37.75,-9.98]]},
+   {id:'C-2',name:'Porta-contentores (rumo S)',cat:'carga',ais:true,w:[[200,38.85,-9.86],[500,37.75,-9.98]]},
+   {id:'C-3',name:'Petroleiro (rumo N)',cat:'tanque',ais:true,w:[[60,37.75,-9.70],[360,38.85,-9.60]]},
+   {id:'C-4',name:'Carga geral (rumo N)',cat:'carga',ais:true,w:[[300,37.75,-9.70],[600,38.85,-9.60]]},
+   {id:'C-5',name:'Porta-contentores → Lisboa',cat:'carga',ais:true,w:[[40,38.40,-9.80],[120,38.60,-9.45],[160,38.672,-9.28],[175,38.688,-9.20],[190,38.70,-9.152],[600,38.70,-9.152]]},
+   {id:'P-1',name:'Pesca local (Sesimbra)',cat:'pesca',ais:true,w:[[0,38.44,-9.10],[40,38.40,-9.16],[120,38.38,-9.20],[240,38.39,-9.24],[360,38.36,-9.22],[480,38.38,-9.18],[560,38.44,-9.10]]},
+   {id:'P-2',name:'Pesca local (Sesimbra)',cat:'pesca',ais:true,w:[[10,38.44,-9.10],[100,38.36,-9.05],[300,38.33,-9.10],[450,38.35,-9.02],[580,38.44,-9.10]]},
+   {id:'P-3',name:'Pesca local (Setúbal)',cat:'pesca',ais:true,w:[[30,38.50,-8.90],[45,38.47,-8.93],[110,38.40,-8.98],[300,38.37,-8.95],[520,38.47,-8.93],[560,38.515,-8.885]]},
+   {id:'V-1',name:'Veleiro de recreio',cat:'vela',ais:true,w:[[0,38.60,-9.45],[200,38.50,-9.30],[420,38.43,-9.26],[600,38.44,-9.115]]},
+   {id:'F-1',name:'Ferry Setúbal–Tróia',cat:'ferry',ais:true,w:ferry.filter(x=>x[0]<=600)},
+  ];
+  const pos=(v,t)=>{const w=v.w;if(t<w[0][0]||t>w.at(-1)[0])return null;for(let i=0;i<w.length-1;i++){const a=w[i],b=w[i+1];if(t>=a[0]&&t<=b[0]){const f=(t-a[0])/((b[0]-a[0])||1);return[a[1]+(b[1]-a[1])*f,a[2]+(b[2]-a[2])*f]}}return[w.at(-1)[1],w.at(-1)[2]]};
+  const off=(v,t)=>(v.off||[]).some(([a,b])=>t>=a&&t<=b);
+  const obs={};
+  for(const v of V){obs[v.id]=[];for(let t=0;t<=600;t+=2){const p=pos(v,t);if(!p)continue;let src=null;
+    if(v.ais&&!off(v,t))src='AIS';else if(distCoast(p)<40)src='radar costeiro';else if(t>=280&&t<=320&&p[0]<38.2&&p[1]<-9.4)src='patrulha aérea';
+    if(src)obs[v.id].push({t,p,src})}}
+  return finalize({mode:'sim',t0,tmax:600,vessels:V.map(({id,name,cat,ais})=>({id,name,cat,ais})),obs,aisCoverNm:60,label:'Cenário demo'});
+}
+function parseTime(s){if(s==null||s==='')return NaN;if(typeof s==='number')return s>1e12?s:s*1000;s=String(s).trim();const m=s.match(/^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2}:\d{2})(\.\d+)?\s*(\+0000 UTC|Z|UTC)?$/);if(m)return Date.parse(`${m[1]}T${m[2]}${m[3]?m[3].slice(0,4):''}Z`);return Date.parse(s)}
+function splitCSV(line){const out=[];let cur='',q=false;for(let i=0;i<line.length;i++){const c=line[i];if(q){if(c==='"'){if(line[i+1]==='"'){cur+='"';i++}else q=false}else cur+=c}else if(c==='"')q=true;else if(c===','||c===';'){out.push(cur);cur=''}else cur+=c}out.push(cur);return out}
+function parseFile(text){
+  const rows=[];const lines=text.split(/\r?\n/).filter(l=>l.trim());if(!lines.length)throw new Error('ficheiro vazio.');const statics={};
+  if(/^[\[{]/.test(lines[0].trim())){let items=[];if(lines[0].trim().startsWith('['))items=JSON.parse(text);else for(const l of lines){try{items.push(JSON.parse(l))}catch(e){}}
+    for(const m of items){if(m.MessageType){const mt=m.MessageType,md=m.MetaData||{},b=(m.Message||{})[mt]||{};const id=md.MMSI||b.UserID;if(!id)continue;
+        if(mt==='ShipStaticData'||mt==='StaticDataReport'){statics[id]=statics[id]||{};if(b.Type!=null)statics[id].type=b.Type;if(b.ReportB&&b.ReportB.ShipType)statics[id].type=b.ReportB.ShipType;continue}
+        rows.push({ts:parseTime(md.time_utc),mmsi:id,name:md.ShipName,lat:b.Latitude??md.latitude??md.Latitude,lon:b.Longitude??md.longitude??md.Longitude,sog:b.Sog,cog:b.Cog,st:b.NavigationalStatus})}
+      else rows.push({ts:parseTime(m.time_utc??m.time??m.timestamp),mmsi:m.mmsi??m.MMSI,name:m.name??m.ShipName,type:m.type,lat:+(m.lat??m.latitude),lon:+(m.lon??m.longitude),sog:m.sog,cog:m.cog,st:m.status})}}
+  else{const hdr=splitCSV(lines[0]).map(h=>h.trim().toLowerCase().replace(/^"|"$/g,''));const col=(...n)=>{for(const x of n){const i=hdr.indexOf(x);if(i>=0)return i}return-1};
+    const ci={t:col('time_utc','time','timestamp','basedatetime','datetime'),m:col('mmsi'),n:col('name','shipname','vesselname'),ty:col('type','shiptype','vesseltype'),la:col('lat','latitude'),lo:col('lon','lng','longitude'),s:col('sog','speed'),c:col('cog','course'),st:col('status','navstatus')};
+    if(ci.t<0||ci.m<0||ci.la<0||ci.lo<0)throw new Error('faltam colunas (time_utc, mmsi, lat, lon).');
+    for(let i=1;i<lines.length;i++){const r=splitCSV(lines[i]);const g=k=>ci[k]>=0?r[ci[k]]:'';rows.push({ts:parseTime(g('t')),mmsi:g('m'),name:g('n'),type:g('ty'),lat:+g('la'),lon:+g('lo'),sog:g('s'),cog:g('c'),st:g('st')})}}
+  return buildReal(rows,statics);
+}
+function buildReal(rows,statics={}){
+  const ok=rows.filter(r=>isFinite(r.ts)&&r.mmsi&&isFinite(r.lat)&&isFinite(r.lon)&&inBox([+r.lat,+r.lon]));
+  if(!ok.length)throw new Error('nenhuma posição válida dentro da área Cascais–Sines.');
+  ok.sort((a,b)=>a.ts-b.ts);const t0=ok[0].ts,tmax=Math.max(1,(ok.at(-1).ts-t0)/60000);const vs=new Map(),obs={};
+  for(const r of ok){const id=String(r.mmsi);if(!vs.has(id)){vs.set(id,{id,name:'',type:'',ais:true});obs[id]=[]}const v=vs.get(id);
+    if(r.name&&String(r.name).trim())v.name=String(r.name).trim();if(r.type!==''&&r.type!=null)v.type=r.type;
+    const t=(r.ts-t0)/60000;const a=obs[id];if(a.length&&t-a.at(-1).t<1)continue;
+    const sog=r.sog===''||r.sog==null?undefined:+r.sog,cog=r.cog===''||r.cog==null?undefined:+r.cog;
+    a.push({t,p:[+r.lat,+r.lon],src:'AIS',sog:isFinite(sog)&&sog<102?sog:undefined,cog:isFinite(cog)&&cog<360?cog:undefined,st:r.st===''||r.st==null?undefined:+r.st})}
+  for(const[id,v]of vs){if(statics[id]&&statics[id].type!=null)v.type=statics[id].type;v.cat=AUTH_NAME.test(v.name||'')?'militar':catFromType(v.type);v.name=(v.name||'MMSI '+id)+' · '+v.cat}
+  return finalize({mode:'real',t0,tmax:Math.ceil(tmax),vessels:[...vs.values()],obs,aisCoverNm:25,info:{rows:ok.length,ships:vs.size}});
+}
+function lastIdxN(a,t){let lo=0,hi=a.length-1,r=-1;while(lo<=hi){const m=(lo+hi)>>1;if(a[m]<=t){r=m;lo=m+1}else hi=m-1}return r}
+function lastIdx(a,t){let lo=0,hi=a.length-1,r=-1;while(lo<=hi){const m=(lo+hi)>>1;if(a[m].t<=t){r=m;lo=m+1}else hi=m-1}return r}
+let HS=1.2;
+const moonIllum=ms=>{const jd=ms/86400000+2440587.5;let ph=((jd-2451550.1)/29.530588853)%1;if(ph<0)ph+=1;return(1-Math.cos(2*Math.PI*ph))/2};
+const operable=h=>h<=1.5?1:h>=3.2?.1:1-.9*(h-1.5)/1.7;
+function analyse(t){
+  const D=DATA,st={};
+  for(const v of D.vessels){const a=D.obs[v.id];const i=lastIdx(a,t);if(i<0)continue;const last=a[i];
+    if(!v.ais&&t-last.t>60)continue;
+    if(v.ais&&t-last.t>10&&(nearEdge(last.p)||D.mode==='real'&&t-last.t>90&&!(D.gaps[v.id]||[]).length&&last.dc>D.aisCoverNm*NM))continue;
+    if(v.ais&&t-last.t>15&&nearPort(last.p))continue;
+    let k=null;if(last.sog!=null&&t-last.t<=10)k={sog:last.sog,cog:last.cog??0};else if(i>0&&last.t-a[i-1].t<=10&&t-last.t<=10){const p=a[i-1];k={sog:km(p.p,last.p)/NM/((last.t-p.t)/60||1),cog:brg(p.p,last.p)}}
+    st[v.id]={v,a,i,last,k,flags:[],sev:0}}
+  // dead reckoning: if the ship's last speed/course would have taken it out of AIS coverage, its silence is expected
+  const drOut=(la,t)=>{if(la.sog==null||la.cog==null)return false;const d=la.sog*NM*(t-la.t)/60,c=la.cog*Math.PI/180;
+    const q=[la.p[0]+d*Math.cos(c)/110.57,la.p[1]+d*Math.sin(c)/(111.32*Math.cos(la.p[0]*Math.PI/180))];return!inBox(q)||nearEdge(q)||distCoast(q)>D.aisCoverNm*NM};
+  const fi=lastIdxN(D.allT||[],t),feedLast=fi>=0?D.allT[fi]:null,feedOK=feedLast!=null&&t-feedLast<=8;const darkCand=[],notes=[];
+  if(D.mode==='real'&&!feedOK&&feedLast!=null&&t<=D.tmax)notes.push(`Sem dados AIS de nenhum navio desde as ${hhmm(feedLast)} (falha de receção). Alertas de AIS desligado suspensos.`);
+  for(const[x,y]of D.outages||[])if(x<=t&&y-x>8)notes.push(`Falha de receção AIS ${hhmm(x)}–${y<=t?hhmm(y):'agora'}: nenhum navio recebido. Não conta como AIS desligado.`);
+  for(const id in st){const s=st[id],v=s.v,last=s.last;
+    if(v.ais){let la=null;for(let j=s.i;j>=0;j--)if(s.a[j].src==='AIS'){la=s.a[j];break}
+      const gap=la?D.uncovered(la.t,t):0;
+      if(la&&feedOK&&!DARK_EXEMPT.has(v.cat)&&gap>30&&!drOut(la,t)&&!nearPort(la.p)&&!nearEdge(la.p)&&la.dc>3&&la.dc<D.aisCoverNm*NM&&!(la.st===1||la.st===5))darkCand.push({s,la,gap});
+      for(const g of D.gaps[id]||[])if(g.to<=t)s.flags.push({s:3,txt:`Esteve ${fmtDur(g.real)} sem AIS (${hhmm(g.from)}–${hhmm(g.to)}${g.real<g.to-g.from-1?', descontando falha de receção':''}); reapareceu a ${n1(km(g.p1,g.p2)/NM)} mn`})}
+    if(!['pesca','ferry','piloto','reboque','autoridade'].includes(v.cat)&&t-last.t<=40&&!(last.st===1||last.st===5)){const j=lastIdx(s.a,last.t-60);
+      if(j>=0){const ref=s.a[j];const d=km(ref.p,last.p)/NM,hrs=(last.t-ref.t)/60;if(hrs>=1&&d/hrs<2.5&&last.dc>12*NM)s.flags.push({s:2,txt:`À deriva ao largo: ${n1(d)} mn em ${fmtDur(last.t-ref.t)}, a ${Math.round(last.dc/NM)} mn da costa`})}}
+    if(!v.ais&&s.k&&s.k.sog>25&&t-last.t<=4)s.flags.push({s:3,txt:`Contacto rápido sem AIS: ${Math.round(s.k.sog)} nós, rumo ${String(Math.round(s.k.cog)).padStart(3,'0')}°`});
+  }
+  let coll=0;for(const c of darkCand){const n=darkCand.filter(d=>Math.abs(d.la.t-c.la.t)<=6).length;if(n>=4){coll++;continue}
+    c.s.flags.push({s:3,txt:`AIS desligado há ${fmtDur(c.gap)} (desde as ${hhmm(c.la.t)}), a ${Math.round(c.la.dc/NM)} mn da costa`});c.s.dark=c.la}
+  if(coll)notes.push(`${coll} navios deixaram de ser recebidos ao mesmo tempo: provável falha parcial de receção. Não sinalizados.`);
+  if((D.collective||[]).some(x=>x<=t))notes.push('Silêncios simultâneos de vários navios foram tratados como falha de receção, não como AIS desligado.');
+  for(const m of D.meets){if(m.t>t||t-m.t>240)continue;for(const[x,y]of[[m.a,m.b],[m.b,m.a]]){const s=st[x];if(!s)continue;const on=D.byId[y];
+    s.flags.push({s:3,txt:`Encontro no mar com ${D.mode==='sim'?y:esc(on.name.split(' · ')[0])} às ${hhmm(m.t)}${m.tEnd-m.t>=4?` (${fmtDur(m.tEnd-m.t+2)})`:''}, a ${Math.round(m.dc/NM)} mn da costa · ${m.src.toLowerCase()}`});s.meet=m}}
+  let pred=null;
+  for(const id in st){const s=st[id],v=s.v,last=s.last;const fastOK=!v.ais||!['ferry','piloto','sar','autoridade','passageiros','militar'].includes(v.cat);
+    if(fastOK&&s.k&&s.k.sog>(v.ais?20:15)&&t-last.t<=4&&s.i>0){const prev=s.a[s.i-1];if(last.dc<prev.dc&&!nearPort(last.p)&&last.dc<40*NM){
+      const c=SPOTS.map(sp=>{const d=km(last.p,sp.p);return{sp,align:Math.exp(-((adiff(brg(last.p,sp.p),s.k.cog)/12)**2)),eta:last.t+d/(s.k.sog*NM)*60,d}}).sort((a,b)=>b.align-a.align);
+      if(c[0].align>.2&&(!pred||!v.ais)){pred={id,from:last.p,cand:c,top:c[0]};s.flags.push({s:v.ais?2:3,txt:`Rumo à costa: desembarque provável em ${c[0].sp.n} por volta das ${hhmm(c[0].eta)} (${n1(c[0].d/NM)} mn)`})}}}
+    if(!v.ais&&t-last.t>6&&t-last.t<=60&&last.dc<3*NM){const sp=SPOTS.slice().sort((a,b)=>km(last.p,a.p)-km(last.p,b.p))[0];s.flags.push({s:3,txt:`Contacto perdido junto à costa às ${hhmm(last.t)}, perto de ${sp.n}`});s.lost=sp}}
+  for(const id in st){const s=st[id];s.sev=s.flags.reduce((m,f)=>Math.max(m,f.s),0)}
+  return{st,pred,notes:[...new Set(notes)]};
+}
+function scoreSpots(t,an){
+  const ms=DATA.t0+t*60000;const illum=moonIllum(ms);const hr=+TF.format(new Date(ms)).slice(0,2);const night=hr>=20||hr<7;const dark=(night?1:.35)*(1-.6*illum);
+  const hist=sp=>Math.max(0,...EVENTS.map(e=>Math.max(0,1-km(sp.p,e.p)/20)));const lost=Object.values(an.st).map(s=>s.lost).filter(Boolean);
+  return SPOTS.map(sp=>{const op=operable(HS*(.35+.65*sp.exp));const h=hist(sp);let base=sp.acc*dark*op*(.7+.3*h);let al=0,eta=null;
+    if(an.pred){const c=an.pred.cand.find(c=>c.sp===sp);al=c.align;eta=c.eta;base=Math.min(1,base*.45+al*op*.85)}
+    const isLost=lost.includes(sp);if(isLost)base=Math.max(base,.9*op);
+    return{sp,score:Math.round(Math.min(1,base)*100),acc:sp.acc,dark,op,h,al,eta,lost:isLost}}).sort((a,b)=>b.score-a.score);
+}
+
+/* ======================= MAP ======================= */
+const TILES={
+  sat:['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagem © Esri, Maxar, Earthstar Geographics'}],
+  satLabels:['https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,opacity:.85}],
+  map:['https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:20,attribution:'© OpenStreetMap · © CARTO'}],
+};
+const fallbackLand=m=>{m.createPane('land').style.zIndex=150;return L.layerGroup(LAND.map((r,i)=>L.polygon(r.concat(CLOSE[i]),{pane:'land',stroke:false,fillColor:'#161d21',fillOpacity:1,interactive:false})))};
+const hasLeaflet=typeof L!=='undefined';
+
+// login background: real satellite view of the Arrábida coast
+let bgMap=null;
+if(hasLeaflet){bgMap=L.map('loginbg',{zoomControl:false,attributionControl:false,dragging:false,scrollWheelZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,touchZoom:false}).setView([38.455,-9.07],12);
+  fallbackLand(bgMap).addTo(bgMap);L.tileLayer(...TILES.sat).addTo(bgMap)}
+
+let map,base={},lay={},heatOpacity=.8,heatScale=1;
+function initMap(){
+  map=L.map('map',{zoomControl:false,preferCanvas:false,minZoom:7,maxBounds:[[36.8,-11.5],[39.8,-7.5]]}).setView([38.33,-9.40],10);
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  L.control.scale({position:'bottomright',metric:true,imperial:false,maxWidth:120}).addTo(map);
+  fallbackLand(map).addTo(map);
+  base.sat=L.layerGroup([L.tileLayer(...TILES.sat),L.tileLayer(...TILES.satLabels)]);
+  base.map=L.tileLayer(...TILES.map);
+  base.sat.addTo(map);
+  for(const[n,z]of[['sar',402],['heat',405],['events',420],['tracks',430],['pred',440],['sarpts',446],['vessels',450]]){map.createPane(n).style.zIndex=z;lay[n]=L.layerGroup([],{pane:n}).addTo(map)}
+  // static: real cases
+  for(const e of EVENTS)L.marker(e.p,{pane:'events',icon:L.divIcon({className:'',html:'<div class="evm"></div>',iconSize:[16,16],iconAnchor:[8,8]})})
+    .bindPopup(`<span style="font:11px var(--f-mono);color:var(--accent)">${e.d}</span><br><b>${esc(e.t)}</b><br>${esc(e.x)}<br><a href="${e.url}" target="_blank" rel="noopener">${e.src} ↗</a>`,{maxWidth:280})
+    .bindTooltip(e.d,{className:'vt',direction:'right',offset:[10,0]}).addTo(lay.events);
+  map.on('zoomend',()=>render());
+  fitArea();
+}
+function fitArea(){const wide=innerWidth>800;map.fitBounds([[37.80,-10.05],[38.80,-8.75]],wide?{paddingTopLeft:[350,16],paddingBottomRight:[innerWidth>1100?400:16,innerWidth>1100?100:150]}:{padding:[10,10]})}
+function setBase(k){if(!map)return;for(const x of['sat','map']){$('b-'+x).setAttribute('aria-pressed',x===k);if(x===k)base[x].addTo(map);else map.removeLayer(base[x])}}
+$('b-sat').onclick=()=>setBase('sat');$('b-map').onclick=()=>setBase('map');
+
+/* ======================= RENDER ======================= */
+let T=0,SEL=null,SELSP=null,SIM=null,REAL=[],CUR='sim';
+const sevVar=s=>s>=3?'var(--crit)':s===2?'var(--warn)':'var(--ais)';
+const sevHex=s=>s>=3?'#ff5a52':s===2?'#f0b13e':'#9cc6da';
+const ramp=v=>{const st=[[0,[255,224,138]],[.4,[255,154,60]],[.7,[255,77,46]],[1,[201,24,43]]];for(let i=1;i<st.length;i++){if(v<=st[i][0]){const[a,ca]=st[i-1],[b,cb]=st[i];const f=(v-a)/(b-a);return`rgb(${ca.map((c,j)=>Math.round(c+(cb[j]-c)*f)).join(',')})`}}return'rgb(201,24,43)'};
+function shipIcon(col,cog,kind){const s=kind==='ais'?`<svg width="18" height="18" viewBox="-9 -9 18 18" style="transform:rotate(${cog||0}deg)"><path d="M0,-8 L5,7 L0,4 L-5,7Z" fill="${col}" stroke="#0b1418" stroke-width="1.2"/></svg>`
+  :kind==='still'?`<svg width="14" height="14" viewBox="-7 -7 14 14"><rect x="-4.5" y="-4.5" width="9" height="9" fill="${col}" stroke="#0b1418" stroke-width="1.2"/></svg>`
+  :kind==='dark'?`<svg width="26" height="26" viewBox="-13 -13 26 26"><circle r="10" fill="rgba(255,90,82,.12)" stroke="#ff5a52" stroke-width="1.8" stroke-dasharray="3 3"/><text y="4.5" text-anchor="middle" font-size="12" font-weight="700" fill="#ff5a52" font-family="JetBrains Mono,monospace">?</text></svg>`
+  :`<svg width="20" height="20" viewBox="-10 -10 20 20"><circle r="6.5" fill="${kind==='stale'?'none':'#0b1418'}" stroke="${col}" stroke-width="2.4" ${kind==='stale'?'stroke-dasharray="2 3"':''}/></svg>`;
+  return L.divIcon({className:'',html:`<div class="vm" style="width:auto;height:auto">${s}</div>`,iconSize:null,iconAnchor:kind==='dark'?[13,13]:kind==='ais'?[9,9]:kind==='still'?[7,7]:[10,10]})}
+function render(){
+  if(!map)return;for(const k of['heat','tracks','pred','vessels'])lay[k].clearLayers();
+  const show={ves:$('L-ves').checked,alr:$('L-alr').checked,heat:$('L-heat').checked,ev:$('L-ev').checked};
+  if(show.ev)lay.events.addTo(map);else map.removeLayer(lay.events);
+  if(!DATA){$('pane-a').innerHTML=sarSummary()+`<div class="quiet">${CUR==='live'?'À espera de dados AIS ao vivo. As primeiras posições chegam em poucos minutos.':'Sem dados para esta data. Carregue um ficheiro AIS.'}</div>`;$('spots').innerHTML='';$('na').hidden=true;$('clockt').textContent='--:--';return}
+  const an=analyse(T),spots=scoreSpots(T,an);
+  if(show.heat){for(const s of spots){const v=s.score/100;if(v<.05)continue;const col=ramp(v);const R=(900+3800*v)*heatScale;
+      for(const[f,o]of[[1,.18],[.62,.3],[.32,.5]])L.circle(s.sp.p,{pane:'heat',radius:R*f,stroke:false,fillColor:col,fillOpacity:o*heatOpacity*(.35+.65*v),interactive:false}).addTo(lay.heat);
+      L.circle(s.sp.p,{pane:'heat',radius:R,stroke:SELSP===s.sp.n,color:'#e2a336',weight:2,fill:true,fillOpacity:0}).on('click',()=>{SELSP=s.sp.n;showTab('l');render()})
+       .bindTooltip(`${s.sp.n} · ${s.score}`,{className:'vt',direction:'top'}).addTo(lay.heat)}
+    for(const s of spots.slice(0,3))L.marker(s.sp.p,{pane:'heat',interactive:false,icon:L.divIcon({className:'',html:`<div class="hl">${s.score}</div>`,iconSize:null,iconAnchor:[-10,18]})}).addTo(lay.heat)}
+  if(show.ves){for(const id in an.st){const s=an.st[id],v=s.v;const from=lastIdx(s.a,T-120);const rec=s.a.slice(Math.max(0,from),s.i+1).filter(o=>T-o.t<=120);
+    const flagged=s.sev&&show.alr;const col=flagged?sevHex(s.sev):(v.ais?'#9cc6da':'#c39bf0');
+    const ais=rec.filter(o=>o.src==='AIS'),oth=rec.filter(o=>o.src!=='AIS');
+    if(ais.length>1)L.polyline(ais.map(o=>o.p),{pane:'tracks',color:col,weight:SEL===id?3:1.6,opacity:flagged?.9:.55,interactive:false}).addTo(lay.tracks);
+    for(const o of oth)L.circleMarker(o.p,{pane:'tracks',radius:2,stroke:false,fillColor:'#c39bf0',fillOpacity:.8,interactive:false}).addTo(lay.tracks);
+    const last=s.last;const stale=T-last.t>(v.ais?10:4);let kind,p=last.p;
+    if(v.ais&&!stale)kind=(s.k&&s.k.sog<.5)?'still':'ais';else if(v.ais&&s.dark&&show.alr){kind='dark';p=s.dark.p}else if(!v.ais)kind=stale?'stale':'radar';else continue;
+    const m=L.marker(p,{pane:'vessels',icon:shipIcon(col,s.k?s.k.cog:0,kind)}).on('click',()=>{SEL=id;showTab('a');render()});
+    const lbl=DATA.mode==='sim'?id:v.name.split(' · ')[0];
+    m.bindTooltip(`${esc(lbl)}${s.k?` · ${s.k.sog<10?n1(s.k.sog):Math.round(s.k.sog)} nós`:''}`,{className:'vt',direction:'right',offset:[10,0],permanent:!!(flagged||SEL===id)});m.addTo(lay.vessels)}}
+  if(show.alr&&an.pred){for(const c of an.pred.cand.slice(0,3)){if(c.align<.15)continue;L.polyline([an.pred.from,c.sp.p],{pane:'pred',color:'#ff5a52',weight:c===an.pred.top?2.5:1.2,opacity:c===an.pred.top?.95:.5,dashArray:'7 6',interactive:false}).addTo(lay.pred)}
+    L.marker(an.pred.top.sp.p,{pane:'pred',interactive:false,icon:L.divIcon({className:'',html:`<div class="eta">ETA ${hhmm(an.pred.top.eta)}</div>`,iconSize:null,iconAnchor:[-12,-10]})}).addTo(lay.pred)}
+  // panes
+  $('clockt').textContent=hhmm(T);$('moonv').textContent=Math.round(moonIllum(DATA.t0+T*60000)*100)+'%';
+  const all=Object.values(an.st);const fl=all.filter(s=>s.sev).sort((a,b)=>b.sev-a.sev||b.flags.length-a.flags.length);
+  $('na').hidden=!fl.length;$('na').textContent=fl.length;
+  $('pane-a').innerHTML=`<div class="kv">${hhmm(T)} · ${all.length} contactos seguidos · ${fl.length} sinalizados</div>`+an.notes.map(n=>`<div class="quiet" style="border-style:solid;border-color:rgba(240,177,62,.35);color:#e8d3a6">${esc(n)}</div>`).join('')+sarSummary()+
+   (fl.length?fl.slice(0,40).map(s=>`<div class="alert${SEL===s.v.id?' sel':''}" data-v="${esc(s.v.id)}" tabindex="0" style="--sev:${sevVar(s.sev)}"><div class="top"><b>${esc(s.v.name)}</b><span class="pill">${s.sev>=3?'ALTO':'MÉDIO'}</span></div><ul>${s.flags.map(f=>`<li>${f.txt}</li>`).join('')}</ul><div class="kv">${DATA.mode==='real'?'MMSI '+esc(s.v.id)+' · ':''}última deteção ${hhmm(s.last.t)} · ${s.last.src}${s.k?` · ${s.k.sog<10?n1(s.k.sog):Math.round(s.k.sog)} nós`:''}</div></div>`).join(''):`<div class="quiet">Nada suspeito a esta hora.${DATA.mode==='sim'?' Avance o tempo ou use os atalhos.':''}</div>`)+
+   `<div class="quiet">${all.length-fl.length} contactos com comportamento normal. As regras não geram alarme para eles.</div>`;
+  $('spots').innerHTML=spots.map((s,i)=>`<div class="spot" data-sp="${s.sp.n}" tabindex="0" ${SELSP===s.sp.n?'style="background:var(--glass2)"':''}><span class="rk">${String(i+1).padStart(2,'0')}</span><span>${s.sp.n}${s.lost?'<span class="tag">CONTACTO PERDIDO</span>':s.al>.5?'<span class="tag">NO RUMO</span>':''}</span><span class="sc">${s.score}</span><span class="bar"><i style="width:${s.score}%;background:${ramp(s.score/100)}"></i></span><span class="why">acesso ${Math.round(s.acc*100)} · escuro ${Math.round(s.dark*100)} · mar ${Math.round(s.op*100)} · hist ${Math.round(s.h*100)}${an.pred?` · rumo ${Math.round(s.al*100)}`:''}${s.eta&&s.al>.3?` · ETA ${hhmm(s.eta)}`:''}</span></div>`).join('');
+}
+$('pane-e').innerHTML=`<p class="note">Casos reais de 2026 noticiados na imprensa. Posições aproximadas.</p>`+EVENTS.map(e=>`<div class="ev" data-ev="${e.id}" tabindex="0"><span class="d">${e.d}</span><b>${e.t}</b><span>${e.x}</span><a href="${e.url}" target="_blank" rel="noopener">${e.src} ↗</a></div>`).join('')+`<div class="ev"><span class="d">${EV_OUT.d}</span><b>${EV_OUT.t}</b><span>${EV_OUT.x}</span><a href="${EV_OUT.url}" target="_blank" rel="noopener">${EV_OUT.src} ↗</a></div>`;
+
+/* ======================= DATES / DATA ======================= */
+const MO=['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'];
+let SERVER=false,LIVE=null,liveTimer=null,sarTimer=null;
+function renderDates(){
+  const live=SERVER?`<button class="chip" data-d="live" aria-pressed="${CUR==='live'}"><span class="livedot"></span>Ao vivo${LIVE?` · ${LIVE.info.ships} navios`:''}</button>`:'';
+  $('dates').innerHTML=live+`<button class="chip" data-d="sim" aria-pressed="${CUR==='sim'}">17–18 out · demo</button>`+REAL.map((R,i)=>`<button class="chip" data-d="${i}" aria-pressed="${CUR===i}">${DF.format(new Date(R.t0))} · ${R.info.ships} navios</button>`).join('')+`<button class="chip add" id="addd">+ Carregar</button>`;
+  $('addd').onclick=()=>$('file').click();
+  document.querySelectorAll('#dates .chip[data-d]').forEach(b=>b.onclick=()=>{const d=b.dataset.d;select(d==='sim'||d==='live'?d:+d)})}
+function setClockSub(){if(CUR==='sim'){$('clocksub').textContent='NOITE 17→18 OUT';return}const a=new Date(DATA.t0),b=new Date(DATA.t0+DATA.tmax*60000);$('clocksub').textContent=(CUR==='live'?'ÚLTIMAS HORAS · ':'')+`${DF.format(a).toUpperCase()} ${TF.format(a)}→${TF.format(b)}`}
+function setMode(){const live=CUR==='live',real=CUR!=='sim';$('mode').className='mode'+(real?' real':'')+(live?' live':'');
+  $('mode').innerHTML='<span class="dot"></span>'+(live?(DATA?'AO VIVO · AIS':'AO VIVO · à espera de dados'):real?`DADOS REAIS · ${esc(DATA.info.file)}`:'SIMULAÇÃO')}
+function select(k){stop();SEL=null;CUR=k;DATA=k==='sim'?SIM:k==='live'?LIVE:REAL[k];
+  $('jumps').hidden=k!=='sim';setMode();$('empty').hidden=true;
+  if(!DATA){$('clocksub').textContent='';$('t').max=1;T=0;$('t').value=0;renderDates();render();return}
+  setClockSub();$('t').max=DATA.tmax;T=k==='sim'?0:DATA.tmax;$('t').value=T;renderDates();render()}
+async function pollLive(){
+  try{const r=await fetch('api/ais?hours=12',{credentials:'same-origin',cache:'no-store'});if(r.status===401){sessionExpired();return}
+    const j=await r.json();const rows=j.rows.map(x=>({ts:x[0],mmsi:x[1],name:x[2],type:x[3]??'',lat:x[4],lon:x[5],sog:x[6],cog:x[7],st:x[8]}));
+    if(!rows.length){renderDates();return}
+    const D=buildReal(rows);D.info.file='ao vivo';
+    const onLive=CUR==='live',wasEdge=onLive&&LIVE&&T>=LIVE.tmax-1,absT=onLive&&LIVE?LIVE.t0+T*60000:null;
+    LIVE=D;
+    if(onLive){DATA=LIVE;$('t').max=D.tmax;T=(wasEdge||absT==null)?D.tmax:Math.max(0,Math.min(D.tmax,(absT-D.t0)/60000));$('t').value=T;setMode();setClockSub();render()}
+    renderDates()}catch(e){}
+}
+/* ---------- radar (Sentinel-1) ---------- */
+let SARS=[],SARSEL=null;
+function addSar(gj,name){const p=gj.properties||{};if(SARS.some(s=>s.acq===p.acquired))return;SARS.push({gj,name,acq:p.acquired});
+  SARS.sort((a,b)=>b.acq.localeCompare(a.acq));SARSEL=SARS.findIndex(s=>s.acq===p.acquired);renderSarChips();drawSar();render()}
+function renderSarChips(){$('sarnote').hidden=SARS.length>0;
+  $('sarchips').innerHTML=SARS.map((s,i)=>{const p=s.gj.properties,d=new Date(p.acquired);return`<button class="chip" data-s="${i}" aria-pressed="${SARSEL===i}">${DF.format(d)} ${TF.format(d)} · ${p.ais_crossmatch?p.n_dark+' sem AIS':p.n_detections+' navios'}</button>`}).join('');
+  document.querySelectorAll('#sarchips .chip').forEach(b=>b.onclick=()=>{const i=+b.dataset.s;SARSEL=SARSEL===i?null:i;renderSarChips();drawSar();render()})}
+function sarPopup(q,P){const d=new Date(P.acquired);
+  return`<span style="font:11px var(--f-mono);color:#7fe0d0">RADAR SENTINEL-1 · ${DF.format(d)} ${TF.format(d)}</span><br><b>Deteção ${esc(q.id)}</b><br>Comprimento estimado ~${q.length_m} m · contraste ${q.contrast_db} dB (confiança ${q.confidence})<br>${n1(q.dist_coast_nm)} mn da costa<br>`+
+    (q.ais?`AIS: <b style="font-size:13px">${esc(q.ais.name||'MMSI '+q.ais.mmsi)}</b> · MMSI ${esc(q.ais.mmsi)} · a ${q.ais.dist_m} m`:`<span style="color:#ffb3ae">Sem AIS correspondente</span>`)+(q.note?`<br><i style="color:var(--muted)">${esc(q.note)}</i>`:'')}
+function drawSar(){if(!map)return;lay.sar.clearLayers();lay.sarpts.clearLayers();if(!$('L-sar').checked||SARSEL==null)return;
+  const s=SARS[SARSEL],P=s.gj.properties;
+  if(P.quicklook&&P.quicklook.png_base64)L.imageOverlay('data:image/png;base64,'+P.quicklook.png_base64,P.quicklook.bounds,{pane:'sar',opacity:Math.min(.95,heatOpacity),interactive:false}).addTo(lay.sar);
+  for(const f of s.gj.features){const q=f.properties,[lon,lat]=f.geometry.coordinates;const kind=q.ais?'ok':q.dark?'dark':'unk';
+    const col=kind==='ok'?'#7fe0d0':kind==='dark'?'#ff5a52':'#f0b13e';
+    const html=kind==='ok'?`<svg width="14" height="14" viewBox="-7 -7 14 14"><rect x="-4" y="-4" width="8" height="8" fill="rgba(0,0,0,.35)" stroke="${col}" stroke-width="1.8"/></svg>`
+      :`<svg width="20" height="20" viewBox="-10 -10 20 20"><path d="M0,-7.5 L7.5,0 L0,7.5 L-7.5,0Z" fill="rgba(0,0,0,.35)" stroke="${col}" stroke-width="2.2"/></svg>`;
+    L.marker([lat,lon],{pane:'sarpts',icon:L.divIcon({className:'',html:`<div class="vm" style="width:auto;height:auto">${html}</div>`,iconSize:null,iconAnchor:kind==='ok'?[7,7]:[10,10]})}).bindPopup(sarPopup(q,P),{maxWidth:280}).addTo(lay.sarpts)}}
+function sarSummary(){if(SARSEL==null||!$('L-sar').checked)return'';const P=SARS[SARSEL].gj.properties,d=new Date(P.acquired);
+  const list=SARS[SARSEL].gj.features.filter(f=>!f.properties.ais).sort((a,b)=>b.properties.contrast_db-a.properties.contrast_db);
+  return`<div class="alert" style="--sev:#7fe0d0"><div class="top"><b>Radar satélite · ${DF.format(d)} ${TF.format(d)}</b><span class="pill" style="background:#2c6f66">SENTINEL-1</span></div>`+
+   `<div class="kv">${P.n_detections} navios detetados${P.ais_crossmatch?` · <span style="color:#ffb3ae">${P.n_dark} sem AIS</span>`:' · sem cruzamento AIS'}</div>`+
+   (list.length?`<ul>${list.slice(0,12).map(f=>{const q=f.properties;return`<li data-sarpt="${f.geometry.coordinates[1]},${f.geometry.coordinates[0]}" style="cursor:pointer">${esc(q.id)} · ~${q.length_m} m · ${n1(q.dist_coast_nm)} mn da costa${q.note?` · <span style="color:var(--muted)">${esc(q.note)}</span>`:''}</li>`}).join('')}</ul>`:'')+`</div>`}
+// radar passes published with the static site (demo mode)
+const STATIC_SAR=['sar/sar_20261018T0643Z.geojson'];
+async function loadStaticSar(){for(const u of STATIC_SAR){try{const r=await fetch(u);if(r.ok)addSar(await r.json(),u.split('/').pop())}catch(e){}}}
+async function pollSar(){try{const r=await fetch('api/sar',{credentials:'same-origin',cache:'no-store'});if(!r.ok)return;const j=await r.json();
+  for(const p of j.passes.slice(0,3).reverse()){if(SARS.some(s=>s.name===p.name))continue;const g=await(await fetch('api/sar/'+encodeURIComponent(p.name),{credentials:'same-origin'})).json();addSar(g,p.name)}}catch(e){}}
+async function loadFile(f){try{const text=await f.text();
+    if(/^\s*\{/.test(text)&&/"FeatureCollection"/.test(text.slice(0,300))){const j=JSON.parse(text);
+      if(!(j.properties&&j.properties.source==='Sentinel-1'))throw new Error('este GeoJSON não é uma passagem radar da Vigia Costeira.');
+      $('L-sar').checked=true;addSar(j,f.name);showTab('a');return}
+    const D=parseFile(text);D.info.file=f.name;REAL.push(D);select(REAL.length-1);showTab('a')}
+  catch(e){$('empty').hidden=false;$('loaderr').hidden=false;$('loaderr').textContent='Não foi possível ler '+f.name+': '+e.message}}
+$('loadbtn').onclick=()=>$('file').click();
+$('file').onchange=async e=>{for(const f of e.target.files)await loadFile(f);e.target.value=''};
+const pt=$('portal');pt.addEventListener('dragover',e=>{e.preventDefault()});pt.addEventListener('drop',async e=>{e.preventDefault();for(const f of e.dataTransfer.files)await loadFile(f)});
+
+/* ======================= UI ======================= */
+function showTab(k){for(const x of['a','l','e']){$('tab-'+x).setAttribute('aria-selected',x===k);$('pane-'+x).hidden=x!==k}if(innerWidth<=800)$('drawer').classList.add('open')}
+for(const x of['a','l','e'])$('tab-'+x).onclick=()=>showTab(x);
+document.querySelectorAll('#atype .opt').forEach(b=>b.onclick=()=>{document.querySelectorAll('#atype .opt').forEach(o=>o.setAttribute('aria-checked',o===b));
+  const a=b.dataset.a;if(a==='vig'){$('L-ves').checked=$('L-alr').checked=true;showTab('a')}else if(a==='risk'){$('L-heat').checked=true;showTab('l')}else{$('L-ev').checked=true;showTab('e');map&&map.flyToBounds(EVENTS.map(e=>e.p),{padding:[80,80],duration:.8})}render()});
+for(const id of['L-ves','L-alr','L-heat','L-ev'])$(id).onchange=render;
+$('L-sar').onchange=()=>{drawSar();render()};
+$('op').oninput=e=>{heatOpacity=e.target.value/100;$('opv').textContent=e.target.value+'%';drawSar();render()};
+$('sc').oninput=e=>{heatScale=e.target.value/100;$('scv').textContent=n1(heatScale)+'×';render()};
+$('hs').oninput=e=>{HS=+e.target.value;$('hsv').textContent=n1(HS)+' m';render()};$('hsv').textContent=n1(HS)+' m';
+document.addEventListener('click',e=>{
+  const sp0=e.target.closest('[data-sarpt]');if(sp0&&map){const[a,b]=sp0.dataset.sarpt.split(',').map(Number);map.flyTo([a,b],12,{duration:.6});return}
+  const v=e.target.closest('.alert[data-v]');if(v&&DATA){const id=v.dataset.v;SEL=SEL===id?null:id;const s=analyse(T).st[id];if(SEL&&s&&map)map.flyTo(s.dark?s.dark.p:s.last.p,Math.max(map.getZoom(),11),{duration:.6});render();return}
+  const ev=e.target.closest('.ev[data-ev]');if(ev&&!e.target.closest('a')&&map){const E=EVENTS.find(x=>x.id===ev.dataset.ev);map.flyTo(E.p,12,{duration:.7});return}
+  const sp=e.target.closest('.spot[data-sp]');if(sp&&map){SELSP=sp.dataset.sp;const S=SPOTS.find(s=>s.n===SELSP);map.flyTo(S.p,13,{duration:.7});render()}});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('[tabindex="0"]'))e.target.click()});
+const slider=$('t');slider.oninput=()=>{T=+slider.value;render()};
+let timer=null;
+function stop(){if(timer){clearInterval(timer);timer=null}$('play').textContent='▶'}
+$('play').onclick=()=>{if(!DATA)return;if(timer){stop();return}const max=DATA.tmax;if(T>=max)T=0;$('play').textContent='❚❚';const step=Math.max(1,max/240);
+  timer=setInterval(()=>{T=Math.min(max,T+step);slider.value=T;render();if(T>=max)stop()},90)};
+document.querySelectorAll('#jumps button').forEach(b=>b.onclick=()=>{T=+b.dataset.t;slider.value=T;showTab('a');render()});
+$('mt-panel').onclick=()=>{$('panel').classList.toggle('open');$('drawer').classList.remove('open')};
+$('mt-drawer').onclick=()=>{$('drawer').classList.toggle('open');$('panel').classList.remove('open')};
+
+/* ======================= LOGIN FLOW ======================= */
+$('peek').onclick=()=>{const p=$('p');p.type=p.type==='password'?'text':'password'};
+$('forgot').onclick=()=>{$('linfo').hidden=false;$('lerr').hidden=true};
+function enter(user){$('login').hidden=true;$('portal').hidden=false;$('who').textContent=user;
+  if(!map){if(!hasLeaflet){$('pane-a').innerHTML='<div class="quiet">Sem ligação à internet: o mapa não carregou.</div>';return}initMap();SIM=buildSim('2026-10-17');
+    if(SERVER){select('live');pollLive();pollSar();liveTimer=setInterval(pollLive,30000);sarTimer=setInterval(pollSar,600000)}else{select('sim');loadStaticSar()}}else map.invalidateSize()}
+function sessionExpired(){clearInterval(liveTimer);clearInterval(sarTimer);location.reload()}
+const showErr=m=>{$('lerr').textContent=m;$('lerr').hidden=false;$('linfo').hidden=true};
+$('lform').onsubmit=async e=>{e.preventDefault();const u=$('u').value.trim().toLowerCase(),p=$('p').value;
+  if(SERVER){try{const r=await fetch('api/login',{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',body:JSON.stringify({username:u,password:p})});
+      const j=await r.json().catch(()=>({}));if(r.ok){$('lerr').hidden=true;$('p').value='';enter(j.user)}else showErr(j.error||'Não foi possível entrar.')}
+    catch(err){showErr('Sem ligação ao servidor.')}return}
+  if(DEMO_USERS[u]&&DEMO_USERS[u]===p){ss.set('vc_user',u);$('lerr').hidden=true;enter(u)}else showErr('Utilizador ou password incorretos.')};
+$('logout').onclick=async()=>{stop();if(SERVER){try{await fetch('api/logout',{method:'POST',credentials:'same-origin'})}catch(e){}sessionExpired();return}
+  ss.del('vc_user');$('portal').hidden=true;$('login').hidden=false;$('p').value='';if(bgMap)bgMap.invalidateSize()};
+// Server mode when served by vigia_server.py (real logins, live AIS); demo mode otherwise (file or static hosting)
+(async()=>{let user=null;
+  if(/^https?:$/.test(location.protocol)){try{const r=await fetch('api/me',{credentials:'same-origin',cache:'no-store'});const j=await r.json();if(j&&j.server){SERVER=true;user=j.user;$('lfoot').textContent='ACESSO RESTRITO · ATIVIDADE REGISTADA'}}catch(e){}}
+  if(SERVER){if(user)enter(user)}else{const prev=ss.get('vc_user');if(prev&&DEMO_USERS[prev])enter(prev)}})();
+})();
+</script>
+</body>
+</html>
