@@ -520,20 +520,20 @@ const TILES={
   satLabels:['https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,opacity:.85}],
   map:['https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:20,attribution:'© OpenStreetMap · © CARTO'}],
 };
-const fallbackLand=()=>L.layerGroup(LAND.map((r,i)=>L.polygon(r.concat(CLOSE[i]),{stroke:true,color:'#33424a',weight:1,fillColor:'#161d21',fillOpacity:1,interactive:false})));
+const fallbackLand=m=>{m.createPane('land').style.zIndex=150;return L.layerGroup(LAND.map((r,i)=>L.polygon(r.concat(CLOSE[i]),{pane:'land',stroke:false,fillColor:'#161d21',fillOpacity:1,interactive:false})))};
 const hasLeaflet=typeof L!=='undefined';
 
 // login background: real satellite view of the Arrábida coast
 let bgMap=null;
 if(hasLeaflet){bgMap=L.map('loginbg',{zoomControl:false,attributionControl:false,dragging:false,scrollWheelZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,touchZoom:false}).setView([38.455,-9.07],12);
-  fallbackLand().addTo(bgMap);L.tileLayer(...TILES.sat).addTo(bgMap)}
+  fallbackLand(bgMap).addTo(bgMap);L.tileLayer(...TILES.sat).addTo(bgMap)}
 
 let map,base={},lay={},heatOpacity=.8,heatScale=1;
 function initMap(){
   map=L.map('map',{zoomControl:false,preferCanvas:false,minZoom:7,maxBounds:[[36.8,-11.5],[39.8,-7.5]]}).setView([38.33,-9.40],10);
   L.control.zoom({position:'bottomright'}).addTo(map);
   L.control.scale({position:'bottomright',metric:true,imperial:false,maxWidth:120}).addTo(map);
-  fallbackLand().addTo(map);
+  fallbackLand(map).addTo(map);
   base.sat=L.layerGroup([L.tileLayer(...TILES.sat),L.tileLayer(...TILES.satLabels)]);
   base.map=L.tileLayer(...TILES.map);
   base.sat.addTo(map);
