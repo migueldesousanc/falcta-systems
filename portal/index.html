@@ -641,6 +641,9 @@ function sarSummary(){if(SARSEL==null||!$('L-sar').checked)return'';const P=SARS
   return`<div class="alert" style="--sev:#7fe0d0"><div class="top"><b>Radar satélite · ${DF.format(d)} ${TF.format(d)}</b><span class="pill" style="background:#2c6f66">SENTINEL-1</span></div>`+
    `<div class="kv">${P.n_detections} navios detetados${P.ais_crossmatch?` · <span style="color:#ffb3ae">${P.n_dark} sem AIS</span>`:' · sem cruzamento AIS'}</div>`+
    (list.length?`<ul>${list.slice(0,12).map(f=>{const q=f.properties;return`<li data-sarpt="${f.geometry.coordinates[1]},${f.geometry.coordinates[0]}" style="cursor:pointer">${esc(q.id)} · ~${q.length_m} m · ${n1(q.dist_coast_nm)} mn da costa${q.note?` · <span style="color:var(--muted)">${esc(q.note)}</span>`:''}</li>`}).join('')}</ul>`:'')+`</div>`}
+// radar passes published with the static site (demo mode)
+const STATIC_SAR=['sar/sar_20261018T0643Z.geojson'];
+async function loadStaticSar(){for(const u of STATIC_SAR){try{const r=await fetch(u);if(r.ok)addSar(await r.json(),u.split('/').pop())}catch(e){}}}
 async function pollSar(){try{const r=await fetch('api/sar',{credentials:'same-origin',cache:'no-store'});if(!r.ok)return;const j=await r.json();
   for(const p of j.passes.slice(0,3).reverse()){if(SARS.some(s=>s.name===p.name))continue;const g=await(await fetch('api/sar/'+encodeURIComponent(p.name),{credentials:'same-origin'})).json();addSar(g,p.name)}}catch(e){}}
 async function loadFile(f){try{const text=await f.text();
@@ -683,7 +686,7 @@ $('peek').onclick=()=>{const p=$('p');p.type=p.type==='password'?'text':'passwor
 $('forgot').onclick=()=>{$('linfo').hidden=false;$('lerr').hidden=true};
 function enter(user){$('login').hidden=true;$('portal').hidden=false;$('who').textContent=user;
   if(!map){if(!hasLeaflet){$('pane-a').innerHTML='<div class="quiet">Sem ligação à internet: o mapa não carregou.</div>';return}initMap();SIM=buildSim('2026-10-17');
-    if(SERVER){select('live');pollLive();pollSar();liveTimer=setInterval(pollLive,30000);sarTimer=setInterval(pollSar,600000)}else select('sim')}else map.invalidateSize()}
+    if(SERVER){select('live');pollLive();pollSar();liveTimer=setInterval(pollLive,30000);sarTimer=setInterval(pollSar,600000)}else{select('sim');loadStaticSar()}}else map.invalidateSize()}
 function sessionExpired(){clearInterval(liveTimer);clearInterval(sarTimer);location.reload()}
 const showErr=m=>{$('lerr').textContent=m;$('lerr').hidden=false;$('linfo').hidden=true};
 $('lform').onsubmit=async e=>{e.preventDefault();const u=$('u').value.trim().toLowerCase(),p=$('p').value;
