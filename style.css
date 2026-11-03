@@ -72,6 +72,14 @@ nav {
     color: var(--text-bright);
     letter-spacing: 0.04em;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-brand img {
+    display: block;
+    height: 38px;
+    width: auto;
 }
 
 .nav-links {
@@ -1033,6 +1041,10 @@ footer {
 
     .container {
         padding: 3rem 1.25rem;
+    }
+
+    .nav-brand img {
+        height: 30px;
     }
 
     .contact-form {
