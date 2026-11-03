@@ -1,4 +1,4 @@
-Contact: mailto:comms@falcatasystems.site
+Contact: mailto:geral.falcata@gmail.com
 Expires: 2027-09-10T00:00:00.000Z
 Preferred-Languages: en, pt
 Canonical: https://falcatasystems.site/.well-known/security.txt

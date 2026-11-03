@@ -7,7 +7,7 @@ Falcata Systems takes the security of our website and infrastructure seriously.
 If you believe you've found a security vulnerability affecting this site or
 any Falcata Systems service, please report it privately to:
 
-**comms@falcatasystems.site**
+**geral.falcata@gmail.com**
 
 Please include:
 - A description of the vulnerability and its potential impact
