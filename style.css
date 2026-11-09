@@ -1063,3 +1063,57 @@ footer {
         scroll-margin-top: 140px;
     }
 }
+
+/* CENTERED LAYOUT — all page text centred, with the Falcata symbol
+   above each page title. */
+body {
+    text-align: center;
+}
+
+header {
+    text-align: center;
+}
+
+.title-logo {
+    display: block;
+    width: 56px;
+    height: auto;
+    margin: 0 auto 1.25rem;
+    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.45));
+}
+
+h1,
+p,
+.subtitle,
+.section-intro,
+li {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-actions,
+.tag-row,
+.footer-social {
+    justify-content: center;
+}
+
+th, td {
+    text-align: center;
+}
+
+li {
+    padding-left: 0;
+}
+
+li::before {
+    position: static;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.6rem;
+}
+
+.contact-form::before {
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
