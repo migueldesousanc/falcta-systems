@@ -1074,12 +1074,37 @@ header {
     text-align: center;
 }
 
+/* Symbol sits in the empty space to the right of the title block.
+   Equal side padding keeps the centred text optically centred. */
+header .hero-inner {
+    padding-left: 170px;
+    padding-right: 170px;
+}
+
 .title-logo {
-    display: block;
-    width: 56px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 120px;
     height: auto;
-    margin: 0 auto 1.25rem;
+    opacity: 0.95;
     filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.45));
+}
+
+@media (max-width: 900px) {
+    header .hero-inner {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .title-logo {
+        position: static;
+        transform: none;
+        display: block;
+        width: 56px;
+        margin: 0 auto 1.25rem;
+    }
 }
 
 h1,
