@@ -1069,13 +1069,16 @@ body {
     text-align: center;
 }
 
-/* HERO — shared by every page. Text column (left-aligned) + Falcata
-   symbol on the right, centred as one group horizontally and vertically.
-   Stacks on mobile with the symbol above the text. */
+/* HERO — shared by every page. Text column (left-aligned, starting at
+   the same left edge as .container content) + Falcata symbol at the
+   right edge of the same row, both vertically centred in the hero.
+   max-width matches .container's content box (1100px minus its 2rem
+   side padding). Stacks on mobile with the symbol above the text. */
 header .hero-inner {
+    max-width: calc(1100px - 4rem);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 56px;
 }
 
